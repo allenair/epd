@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="./epd_functions.js"></script>
+    <script type="text/javascript" src="./rule_parse.js"></script>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var options = {};
+        $.getJSON("http://localhost/template/test.json", function (data) {
+            options = {
+                "template": data,
+                "justRun": false,
+                "inputParameters": {}
+            };
+
+            epd.justInit(options);
+            console.log(epd.inputs);
+            console.log(epd.outputs);
+            console.log(epd.logicUnits);
+        });
+
+
+        // console.log(Or3D(['YES', 'YES', 'NO', 'NO', 'YES', 'YES'],['YES', 'NO', 'NO', 'YES', 'YES', 'YES']))
+        // console.log(E_AND());
+        // console.log(E_OR(3+2==15,true));
+        // console.log(E_IF(3+2==5,Math.abs(-1)==1,'asd'));
+
+        //console.log(ISLOGICAL("Yes"))
+
+        // var a=[3,5,6]
+        // console.log(5.1/0);
+        // console.log(ISNA(FLOOR(12,-9)));
+        // console.log(ISNA(123));
+        // console.log(FLOOR(-1.2, 2));
+        // console.log(_checkParam('2.2', '(1,3)/0.3'));
+
+        // var ss = epd.logicUnits[13]['calUnit']['formulas'][0][0];
+        // eval("var cc = " + ss + ".substring(3,6);");
+        // console.log(cc)
+    </script>
+
+</body>
+
+</html>
