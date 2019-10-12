@@ -5,15 +5,20 @@ var epdtool = {
     _isString: function (str) {
         return (typeof str == 'string') && str.constructor == String;
     },
+
     _isNumber: function (obj) {
         return (typeof obj == 'number') && obj.constructor == Number;
     },
+
     _isEqual: function (val1, val2) {
         if (Math.abs(val1 - val2) < 1e-8) {
             return true;
         }
         return false;
     },
+
+    // 计算小数位数，目的是解决准确计算问题，一般需要将浮点转换为整数计算，例如1.5, 0.15, 0.00015这三个数都需要转换为15，
+    // 此函数就是得到转换到15，三个数都需要乘以几个10（10的幂数），以便与其同时计算的其他数字扩大相同倍数
     _calFloatDigitsCount: function (val) {
         if (!val) {
             return 0;
@@ -25,6 +30,8 @@ var epdtool = {
         }
         return valStr.length - valStr.indexOf('.') - 1;
     },
+
+    // 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断
     _checkParam: function (val, scopeStr) {
         if (!val) {
             return false;
@@ -42,10 +49,8 @@ var epdtool = {
             if (varOne == val.toString()) {
                 return true;
             }
-        }
 
-        // 离散取值
-        if (scopeMap['valType'] === 'D') {
+        } else if (scopeMap['valType'] === 'D') { // 离散取值
             var varArr = scopeMap['valScope'];
             for (let s of varArr) {
                 if (s == val.toString()) {
@@ -90,6 +95,8 @@ var epdtool = {
 
         return false;
     },
+
+    // 将scope的值进行解析，为空标记为N, 单个值标记为O，范围值标记为S（并处理上下界以及步长问题），离散值标记为D（并解析为数组，以英文逗号分隔）
     _parseValueScope: function (scopeStr) {
         var resMap = {};
         if (!scopeStr || scopeStr === 'NA') {
@@ -134,7 +141,6 @@ var epdtool = {
             valMap['startNum'] = tmpArr[0] === '$' ? -Infinity : parseFloat(tmpArr[0]);
             valMap['endNum'] = tmpArr[1] === '$' ? Infinity : parseFloat(tmpArr[1]);
 
-
             resMap['valScope'] = valMap;
 
         } else if (val.indexOf(',') > -1) {
@@ -150,15 +156,6 @@ var epdtool = {
     }
 
 };
-
-
-
-
-
-
-
-
-
 
 
 //======4.5=logic====================================================
@@ -197,30 +194,37 @@ function E_IF(condition, trueVal, falseVal) {
 
 //======4.6=math===================================================
 function ABS(val) {
+    val = parseFloat(val);
     return Math.abs(val);
 }
 
 function ACOS(val) {
+    val = parseFloat(val);
     return Math.acos(val);
 }
 
 function ASIN(val) {
+    val = parseFloat(val);
     return Math.asin(val);
 }
 
 function ATAN(val) {
+    val = parseFloat(val);
     return Math.atan(val);
 }
 
 function COS(val) {
+    val = parseFloat(val);
     return Math.cos(val);
 }
 
 function SIN(val) {
+    val = parseFloat(val);
     return Math.sin(val);
 }
 
 function TAN(val) {
+    val = parseFloat(val);
     return Math.tan(val);
 }
 
@@ -232,6 +236,7 @@ function DEGREES(val) {
     if (!ISNUMBER(val)) {
         return NaN;
     }
+    val = parseFloat(val);
     return val * 180.0 / Math.PI;
 }
 
@@ -239,6 +244,7 @@ function RADIANS(val) {
     if (!ISNUMBER(val)) {
         return NaN;
     }
+    val = parseFloat(val);
     return val * Math.PI / 180.0;
 }
 
@@ -247,6 +253,8 @@ function ROUND(val, precision) {
         return NaN;
     }
 
+    val = parseFloat(val);
+    precision = parseFloat(precision);
     var flag = val > 0 ? 1 : -1;
     var tmp = Math.pow(10, precision);
     return flag * Math.round(Math.abs(val) * tmp) / tmp;
@@ -257,6 +265,8 @@ function ROUNDUP(val, precision) {
         return NaN;
     }
 
+    val = parseFloat(val);
+    precision = parseFloat(precision);
     var flag = val > 0 ? 1 : -1;
     var tmp = Math.pow(10, precision);
     var correctVal = 0.5 / tmp;
@@ -268,6 +278,8 @@ function ROUNDDOWN(val, precision) {
         return NaN;
     }
 
+    val = parseFloat(val);
+    precision = parseFloat(precision);
     var flag = val > 0 ? 1 : -1;
     var tmp = Math.pow(10, precision);
     var correctVal = 0.5 / tmp;
@@ -280,10 +292,13 @@ function INT(val) {
 }
 
 function LN(val) {
+    val = parseFloat(val);
     return Math.log(val);
 }
 
 function LOG(val, base) {
+    val = parseFloat(val);
+    base = parseFloat(base);
     return Math.log(val) / Math.log(base || 10);
 }
 
@@ -295,7 +310,7 @@ function MAX(...numbers) {
     var maxNum = -Infinity;
     for (let num of numbers) {
         if (ISNUMBER(num) && num > maxNum) {
-            maxNum = num;
+            maxNum = parseFloat(num);
         }
     }
     return maxNum;
@@ -309,17 +324,20 @@ function MIN(...numbers) {
     var minNum = Infinity;
     for (let num of numbers) {
         if (ISNUMBER(num) && num < minNum) {
-            minNum = num;
+            minNum = parseFloat(num);
         }
     }
     return minNum;
 }
 
 function POWER(val, powerNum) {
+    val = parseFloat(val);
+    powerNum = parseFloat(powerNum);
     return Math.pow(val, powerNum);
 }
 
 function SQRT(val) {
+    val = parseFloat(val);
     return Math.sqrt(val);
 }
 
@@ -328,6 +346,8 @@ function EMOD(val, divisor) {
         return NaN;
     }
 
+    val = parseFloat(val);
+    divisor = parseFloat(divisor);
     var tmp = INT(val / divisor);
     return val - tmp * divisor;
 }
@@ -336,6 +356,9 @@ function CEILING(val, significance) {
     if (!ISNUMBER(val) || !ISNUMBER(significance) || epdtool._isEqual(significance, 0)) {
         return NaN;
     }
+
+    val = parseFloat(val);
+    significance = parseFloat(significance);
 
     if (val > 0 && significance < 0) {
         return NaN;
@@ -372,6 +395,9 @@ function FLOOR(val, significance) {
     if (!ISNUMBER(val) || !ISNUMBER(significance) || epdtool._isEqual(significance, 0)) {
         return NaN;
     }
+
+    val = parseFloat(val);
+    significance = parseFloat(significance);
 
     if (val > 0 && significance < 0) {
         return NaN;
@@ -410,7 +436,7 @@ function ISNUMBER(val) {
     if (parseFloat(val).toString() === "NaN") {
         return false;
     }
-    return true;
+    return !isNaN(val);
 }
 
 function ISLOGICAL(val) {
