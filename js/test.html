@@ -53,10 +53,9 @@
 
         $('#input_id').val(inputStr);
 
-        // var inputObj = $.parseJSON($('#input_id').val());
-        var inputObj = JSON.parse($('#input_id').val());
-
         $('#cal_bn').click(()=>{
+            var inputObj = JSON.parse($('#input_id').val());
+            
             $.getJSON(getUrl, function (data) {
                 options = {
                     "template": data,
