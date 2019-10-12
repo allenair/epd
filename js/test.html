@@ -4,35 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        textarea {
+            width: 300px;
+            height: 250px;
+        }
+        div {
+            width: 1280px;
+            height: 200px;
+            border: 1px solid;
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body>
+    模板文件名：<input type="text" id="tpl_id" value="test.json" />
+    <p></p>
+
+    输入参数：<br/><textarea id="input_id" value=""></textarea>
+    <p></p>
+
+    <button id="cal_bn" value="">计算</button>
+    <p></p>
+
+    计算结果：<br/>
+    <div id="result_id" ></div>
+
     <script type="text/javascript" src="./epd_functions.js"></script>
     <script type="text/javascript" src="./rule_parse.js"></script>
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
         var options = {};
-        $.getJSON("http://localhost/template/test.json", function (data) {
-            options = {
-                "template": data,
-                "justRun": false,
-                "inputParameters": {
-                    "Es_Angle": "30",
-                    "Es_TH": "1000",
-                    "Es_HD": "7000",
-                    "Es_SW": "800",
-                    "Es_TBS": "10",
-                    "Es_BBS": "20",
-                    "Es_PIT_L": "30",
-                    "System_lang": "CN"
-                }
-            };
+        var getUrl = "http://localhost/template/"+ $('#tpl_id').val();
 
-            console.log(epd.calResultByRule(options));
-            console.log(epd.unionParaMap);
-            console.log(epd.logicUnits);
+        var inputStr = `
+{
+  "Es_Angle": "30", 
+  "Es_TH": "1000", 
+  "Es_HD": "7000", 
+  "Es_SW": "800", 
+  "Es_TBS": "10", 
+  "Es_BBS": "20", 
+  "Es_PIT_L": "30", 
+  "System_lang": "CN" 
+}`;
+
+        $('#input_id').val(inputStr);
+
+        // var inputObj = $.parseJSON($('#input_id').val());
+        var inputObj = JSON.parse($('#input_id').val());
+
+        $('#cal_bn').click(()=>{
+            $.getJSON(getUrl, function (data) {
+                options = {
+                    "template": data,
+                    "justRun": false,
+                    "inputParameters": inputObj
+                };
+
+                var res = epd.calResultByRule(options)
+                console.log(res);
+                console.log(epd.unionParaMap);
+                console.log(epd.logicUnits);
+
+                $('#result_id').html(JSON.stringify(res, null, 4));
+            });
         });
+
+        
     </script>
 
 </body>
