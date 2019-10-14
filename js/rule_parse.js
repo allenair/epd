@@ -55,7 +55,7 @@
  * ]
  * 
 */
-var epd = {
+let epd = {
     unionParaMap: {},
     logicUnits: [],
 
@@ -68,8 +68,8 @@ var epd = {
         this._setInputsValue(options['inputParameters']);
 
         // 进行实际计算
-        for (let index in this.logicUnits) {
-            this._realCalResult(this.logicUnits[index]['name'], this.logicUnits[index]['calUnit']);
+        for (let logic of this.logicUnits) {
+            this._realCalResult(logic['name'], logic['calUnit']);
         }
 
         return this._combineParamters();
@@ -83,11 +83,10 @@ var epd = {
     _initParamtersFromTemplate: function (tplObj) {
         this.unionParaMap = {};
 
-        var inputObj = tplObj['CPARA_InputParameterValueList'];
-        for (let index in inputObj) {
-            var obj = inputObj[index];
-            var name = obj['PropertyName'];
-            var inMap = {};
+        let inputObj = tplObj['CPARA_InputParameterValueList'];
+        for (let obj of inputObj) {
+            let name = obj['PropertyName'];
+            let inMap = {};
             inMap['name'] = name;
             inMap['scope'] = obj['ValueList'] || '';
             inMap['type'] = 'S';
@@ -97,11 +96,10 @@ var epd = {
             this.unionParaMap[name] = inMap
         }
 
-        var outputObj = tplObj['CPARA_InternalParameterValueList'];
-        for (let index in outputObj) {
-            var obj = outputObj[index];
-            var name = obj['PropertyName'];
-            var inMap = {};
+        let outputObj = tplObj['CPARA_InternalParameterValueList'];
+        for (let obj of outputObj) {
+            let name = obj['PropertyName'];
+            let inMap = {};
             inMap['name'] = name;
             inMap['scope'] = obj['ValueList'] || '';
             inMap['type'] = 'S';
@@ -113,11 +111,10 @@ var epd = {
     },
 
     _initLogicUnitFromTemplate: function (tplObj) {
-        var logicObj = tplObj['CPARA_FormulaLinkup'];
+        let logicObj = tplObj['CPARA_FormulaLinkup'];
         this.logicUnits = [];
-        for (let index in logicObj) {
-            var obj = logicObj[index];
-            var inMap = {};
+        for (let obj of logicObj) {
+            let inMap = {};
             inMap['name'] = obj['PropertyName'];
             inMap['calUnit'] = {
                 'params': [],
@@ -126,39 +123,37 @@ var epd = {
             };
 
             if (obj['Condition']) {
-                var conObj = obj['Condition'];
+                let conObj = obj['Condition'];
 
-                var paramArr = [];
-                for (let k in conObj) {
-                    var innerObj = conObj[k];
+                let paramArr = [];
+                let firstFlag = true;
+                for (let innerObj of conObj) {
                     // 处理变量名和取值
-                    var innerCondArr = innerObj['Conditions'];
-                    var valueArr = [];
-                    for (let kk in innerCondArr) {
-                        var singleCondObj = innerCondArr[kk];
+                    let innerCondArr = innerObj['Conditions'];
+                    let valueArr = [];
+                    for (let singleCondObj of innerCondArr) {
                         // 按照结构，变量名称只赋值一次
-                        if (k == 0) {
+                        if (firstFlag) {
                             paramArr.push(singleCondObj['Key']);
+                            firstFlag = false;
                         }
                         valueArr.push(singleCondObj['Value']);
                     }
                     inMap['calUnit']['values'].push(valueArr);
 
                     // 处理计算公式
-                    var innerResultArr = innerObj['Results'];
-                    var formulaArr = [];
-                    for (let kk in innerResultArr) {
-                        var singleResObj = innerResultArr[kk];
+                    let innerResultArr = innerObj['Results'];
+                    let formulaArr = [];
+                    for (let singleResObj of innerResultArr) {
                         formulaArr.push(singleResObj['Value']);
                     }
                     inMap['calUnit']['formulas'].push(formulaArr);
                 }
                 inMap['calUnit']['params'] = paramArr;
 
-
             } else {
-                var dataObj = obj['Data'];
-                var formulaArr = [];
+                let dataObj = obj['Data'];
+                let formulaArr = [];
                 for (let key in dataObj) {
                     if (key === 'ID') {
                         continue;
@@ -173,11 +168,11 @@ var epd = {
     },
 
     _setInputsValue: function (inputParameters) {
-        var inputVal, inputType, isNum;
+        let inputVal, inputType, isNum;
         for (let key in inputParameters) {
             inputVal = inputParameters[key] || '';
             isNum = false;
-            if (inputVal.indexOf(',') > -1) {
+            if (inputVal.toString().indexOf(',') > -1) {
                 inputType = 'M';
                 if (ISNUMBER(inputType.split(',')[0])) {
                     isNum = true;
@@ -189,16 +184,18 @@ var epd = {
                 }
             }
 
-            if (this.unionParaMap[key]) {
-                this.unionParaMap[key]['value'] = inputVal;
-                this.unionParaMap[key]['type'] = inputType;
-                this.unionParaMap[key]['isNum'] = isNum;
+            if (!this.unionParaMap[key]) {
+                this.unionParaMap[key] = {};
+                this.unionParaMap[key]['name'] = key;
             }
+            this.unionParaMap[key]['value'] = inputVal;
+            this.unionParaMap[key]['type'] = inputType;
+            this.unionParaMap[key]['isNum'] = isNum;
         }
     },
 
     _updateValue: function (name, value) {
-        var isNum = false;
+        let isNum = false;
         if (ISNUMBER(value)) {
             value = parseFloat(value);
             isNum = true;
@@ -220,7 +217,7 @@ var epd = {
     },
 
     _realCalResult: function (name, calUnit) {
-        var nameArr = [];
+        let nameArr = [];
         if (name.indexOf(',') > -1) {
             nameArr = name.split(',');
 
@@ -228,14 +225,15 @@ var epd = {
             nameArr.push(name);
         }
 
-        var contextDeclareStr = this._getDeclareParamterStr();
-        var paramName, paramValue, conParamArr, conValueArr2D, formulaArr2D;
+        let contextDeclareStr = this._getDeclareParamterStr();
+        let paramName, paramValue, conParamArr, conValueArr2D, formulaArr2D;
         conParamArr = calUnit['params'];
         conValueArr2D = calUnit['values'];
         formulaArr2D = calUnit['formulas'];
 
         if (conParamArr.length == 0) {
             for (let nindex in nameArr) {
+                nindex = parseInt(nindex);
                 paramName = nameArr[nindex];
                 paramValue = eval(contextDeclareStr + formulaArr2D[0][nindex]);
                 this._updateValue(paramName, paramValue);
@@ -243,8 +241,9 @@ var epd = {
 
         } else {
             for (let vindex in conValueArr2D) {
-                var flag = false;
+                let flag = false;
                 for (let pindex in conParamArr) {
+                    pindex = parseInt(pindex);
                     flag = this._checkCondition(conParamArr[pindex], conValueArr2D[vindex][pindex]);
                     if (!flag) {
                         break;
@@ -253,6 +252,7 @@ var epd = {
 
                 if (flag) {
                     for (let nindex in nameArr) {
+                        nindex = parseInt(nindex);
                         paramName = nameArr[nindex];
                         paramValue = eval(contextDeclareStr + formulaArr2D[vindex][nindex]);
                         this._updateValue(paramName, paramValue);
@@ -281,8 +281,8 @@ var epd = {
     },
 
     _getDeclareParamterStr: function () {
-        var paramArr = [];
-        var valStr;
+        let paramArr = [];
+        let valStr;
 
         for (let name in this.unionParaMap) {
             if (this.unionParaMap[name]['isNum']) {
@@ -290,14 +290,14 @@ var epd = {
             } else {
                 valStr = " = '" + this.unionParaMap[name]['value'] + "'";
             }
-            paramArr.push("var " + this.unionParaMap[name]['name'] + valStr);
+            paramArr.push("let " + this.unionParaMap[name]['name'] + valStr);
         }
 
         return paramArr.join('; ') + '; ';
     },
 
     _combineParamters: function () {
-        var resParamters = {};
+        let resParamters = {};
         for (let name in this.unionParaMap) {
             resParamters[this.unionParaMap[name]['name']] = this.unionParaMap[name]['value'];
         }

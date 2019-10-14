@@ -1,7 +1,11 @@
 "use strict";
 
 //======inner functions===================================================
-var epdtool = {
+let epdtool = {
+    _outerFunction: function (DN, Para, InputParalist) {
+
+    },
+
     _isString: function (str) {
         return (typeof str == 'string') && str.constructor == String;
     },
@@ -24,7 +28,7 @@ var epdtool = {
             return 0;
         }
 
-        var valStr = val.toString();
+        let valStr = val.toString();
         if (valStr.indexOf('.') < 0) {
             return 0;
         }
@@ -37,7 +41,7 @@ var epdtool = {
             return false;
         }
 
-        var scopeMap = this._parseValueScope(scopeStr);
+        let scopeMap = this._parseValueScope(scopeStr);
         // 没有指定范围
         if (scopeMap['valType'] === 'N') {
             return true;
@@ -45,13 +49,13 @@ var epdtool = {
 
         // 只有一个取值
         if (scopeMap['valType'] === 'O') {
-            var varOne = scopeMap['valScope'].toString();
+            let varOne = scopeMap['valScope'].toString();
             if (varOne == val.toString()) {
                 return true;
             }
 
         } else if (scopeMap['valType'] === 'D') { // 离散取值
-            var varArr = scopeMap['valScope'];
+            let varArr = scopeMap['valScope'];
             for (let s of varArr) {
                 if (s == val.toString()) {
                     return true;
@@ -59,13 +63,13 @@ var epdtool = {
             }
 
         } else { // 范围取值
-            var realVal = parseFloat(val);
-            var varMap = scopeMap['valScope'];
-            var step = varMap['step'];
-            var startNum = varMap['startNum'];
-            var endNum = varMap['endNum'];
-            var startFlag = varMap['startFlag'];
-            var endFlag = varMap['endFlag'];
+            let realVal = parseFloat(val);
+            let varMap = scopeMap['valScope'];
+            let step = varMap['step'];
+            let startNum = varMap['startNum'];
+            let endNum = varMap['endNum'];
+            let startFlag = varMap['startFlag'];
+            let endFlag = varMap['endFlag'];
 
             if (startFlag && realVal < startNum || !startFlag && realVal <= startNum || endFlag && realVal > endNum || !endFlag && realVal >= endNum) {
                 return false;
@@ -75,7 +79,7 @@ var epdtool = {
                 return true;
 
             } else {
-                var stepDigits = this._calFloatDigitsCount(step);
+                let stepDigits = this._calFloatDigitsCount(step);
                 realVal = parseInt(realVal * Math.pow(10, stepDigits));
                 step = parseInt(step * Math.pow(10, stepDigits));
 
@@ -98,20 +102,20 @@ var epdtool = {
 
     // 将scope的值进行解析，为空标记为N, 单个值标记为O，范围值标记为S（并处理上下界以及步长问题），离散值标记为D（并解析为数组，以英文逗号分隔）
     _parseValueScope: function (scopeStr) {
-        var resMap = {};
+        let resMap = {};
         if (!scopeStr || scopeStr === 'NA') {
             resMap['valType'] = 'N';
             return resMap;
         }
 
-        var val = scopeStr.toString();
-        var startChar = val.charAt(0);
-        var endChar = val.charAt(val.length - 1);
+        let val = scopeStr.toString();
+        let startChar = val.charAt(0);
+        let endChar = val.charAt(val.length - 1);
 
         if (startChar === '(' || startChar === '[') {
             resMap['valType'] = 'S';
-            var valMap = {};
-            var realScope, tmpArr;
+            let valMap = {};
+            let realScope, tmpArr;
 
             if (endChar === ')' || endChar === ']') {
                 realScope = val;
@@ -157,6 +161,14 @@ var epdtool = {
 
 };
 
+//======4.2=get-info====================================================
+function GetValueFromGL(DN, Para, InputParalist) {
+    return epdtool._outerFunction(DN, Para, InputParalist);
+}
+
+function GetValuesFromGL(DN, Para, InputParalist) {
+
+}
 
 //======4.5=logic====================================================
 function E_AND(...conditions) {
@@ -194,38 +206,31 @@ function E_IF(condition, trueVal, falseVal) {
 
 //======4.6=math===================================================
 function ABS(val) {
-    val = parseFloat(val);
-    return Math.abs(val);
+    return Math.abs(parseFloat(val));
 }
 
 function ACOS(val) {
-    val = parseFloat(val);
-    return Math.acos(val);
+    return Math.acos(parseFloat(val));
 }
 
 function ASIN(val) {
-    val = parseFloat(val);
-    return Math.asin(val);
+    return Math.asin(parseFloat(val));
 }
 
 function ATAN(val) {
-    val = parseFloat(val);
-    return Math.atan(val);
+    return Math.atan(parseFloat(val));
 }
 
 function COS(val) {
-    val = parseFloat(val);
-    return Math.cos(val);
+    return Math.cos(parseFloat(val));
 }
 
 function SIN(val) {
-    val = parseFloat(val);
-    return Math.sin(val);
+    return Math.sin(parseFloat(val));
 }
 
 function TAN(val) {
-    val = parseFloat(val);
-    return Math.tan(val);
+    return Math.tan(parseFloat(val));
 }
 
 function PI() {
@@ -236,16 +241,14 @@ function DEGREES(val) {
     if (!ISNUMBER(val)) {
         return NaN;
     }
-    val = parseFloat(val);
-    return val * 180.0 / Math.PI;
+    return parseFloat(val) * 180.0 / Math.PI;
 }
 
 function RADIANS(val) {
     if (!ISNUMBER(val)) {
         return NaN;
     }
-    val = parseFloat(val);
-    return val * Math.PI / 180.0;
+    return parseFloat(val) * Math.PI / 180.0;
 }
 
 function ROUND(val, precision) {
@@ -255,8 +258,8 @@ function ROUND(val, precision) {
 
     val = parseFloat(val);
     precision = parseFloat(precision);
-    var flag = val > 0 ? 1 : -1;
-    var tmp = Math.pow(10, precision);
+    let flag = val > 0 ? 1 : -1;
+    let tmp = Math.pow(10, precision);
     return flag * Math.round(Math.abs(val) * tmp) / tmp;
 }
 
@@ -267,9 +270,9 @@ function ROUNDUP(val, precision) {
 
     val = parseFloat(val);
     precision = parseFloat(precision);
-    var flag = val > 0 ? 1 : -1;
-    var tmp = Math.pow(10, precision);
-    var correctVal = 0.5 / tmp;
+    let flag = val > 0 ? 1 : -1;
+    let tmp = Math.pow(10, precision);
+    let correctVal = 0.5 / tmp;
     return flag * Math.round((Math.abs(val) + correctVal) * tmp) / tmp;
 }
 
@@ -280,26 +283,23 @@ function ROUNDDOWN(val, precision) {
 
     val = parseFloat(val);
     precision = parseFloat(precision);
-    var flag = val > 0 ? 1 : -1;
-    var tmp = Math.pow(10, precision);
-    var correctVal = 0.5 / tmp;
+    let flag = val > 0 ? 1 : -1;
+    let tmp = Math.pow(10, precision);
+    let correctVal = 0.5 / tmp;
     return flag * Math.round((Math.abs(val) - correctVal) * tmp) / tmp;
 }
 
 function INT(val) {
-    var tmp = ROUNDDOWN(val, 0);
+    let tmp = ROUNDDOWN(val, 0);
     return tmp <= val ? tmp : tmp - 1;
 }
 
 function LN(val) {
-    val = parseFloat(val);
-    return Math.log(val);
+    return Math.log(parseFloat(val));
 }
 
 function LOG(val, base) {
-    val = parseFloat(val);
-    base = parseFloat(base);
-    return Math.log(val) / Math.log(base || 10);
+    return Math.log(parseFloat(val)) / Math.log(parseFloat(base) || 10);
 }
 
 function MAX(...numbers) {
@@ -307,7 +307,7 @@ function MAX(...numbers) {
         return 0;
     }
 
-    var maxNum = -Infinity;
+    let maxNum = -Infinity;
     for (let num of numbers) {
         if (ISNUMBER(num) && num > maxNum) {
             maxNum = parseFloat(num);
@@ -321,7 +321,7 @@ function MIN(...numbers) {
         return 0;
     }
 
-    var minNum = Infinity;
+    let minNum = Infinity;
     for (let num of numbers) {
         if (ISNUMBER(num) && num < minNum) {
             minNum = parseFloat(num);
@@ -331,9 +331,7 @@ function MIN(...numbers) {
 }
 
 function POWER(val, powerNum) {
-    val = parseFloat(val);
-    powerNum = parseFloat(powerNum);
-    return Math.pow(val, powerNum);
+    return Math.pow(parseFloat(val), parseFloat(powerNum));
 }
 
 function SQRT(val) {
@@ -348,8 +346,7 @@ function EMOD(val, divisor) {
 
     val = parseFloat(val);
     divisor = parseFloat(divisor);
-    var tmp = INT(val / divisor);
-    return val - tmp * divisor;
+    return val - INT(val / divisor) * divisor;
 }
 
 function CEILING(val, significance) {
@@ -369,14 +366,14 @@ function CEILING(val, significance) {
     }
 
     if (val * significance > 0) {
-        var flag = val > 0 ? 1 : -1;
+        let flag = val > 0 ? 1 : -1;
 
-        var nval = val > 0 ? val : -1 * val;
-        var nsignificance = significance > 0 ? significance : -1 * significance;
+        let nval = val > 0 ? val : -1 * val;
+        let nsignificance = significance > 0 ? significance : -1 * significance;
 
-        var times = Math.round(nval / nsignificance);
-        var lower = times * nsignificance;
-        var upper = (times + 1) * nsignificance;
+        let times = Math.round(nval / nsignificance);
+        let lower = times * nsignificance;
+        let upper = (times + 1) * nsignificance;
 
         if (lower > nval || epdtool._isEqual(lower, nval)) {
             return flag * lower;
@@ -408,14 +405,14 @@ function FLOOR(val, significance) {
     }
 
     if (val * significance > 0) {
-        var flag = val > 0 ? 1 : -1;
+        let flag = val > 0 ? 1 : -1;
 
-        var nval = val > 0 ? val : -1 * val;
-        var nsignificance = significance > 0 ? significance : -1 * significance;
+        let nval = val > 0 ? val : -1 * val;
+        let nsignificance = significance > 0 ? significance : -1 * significance;
 
-        var times = Math.round(nval / nsignificance);
-        var lower = (times - 1) * nsignificance;
-        var upper = times * nsignificance;
+        let times = Math.round(nval / nsignificance);
+        let lower = (times - 1) * nsignificance;
+        let upper = times * nsignificance;
 
         if (upper < nval || epdtool._isEqual(upper, nval)) {
             return flag * upper;
@@ -444,7 +441,7 @@ function ISLOGICAL(val) {
         return false;
     }
 
-    var realVal = epdtool._isString(val) ? val.toUpperCase() : '';
+    let realVal = epdtool._isString(val) ? val.toUpperCase() : '';
 
     if (realVal === 'YES' || realVal === 'TRUE' || realVal === 'NO' || realVal === 'FALSE') {
         return true;
@@ -480,7 +477,7 @@ function CNUM(val) {
 }
 
 function CBOOL(val) {
-    var realVal = val && epdtool._isString(val) ? val.toUpperCase() : val;
+    let realVal = val && epdtool._isString(val) ? val.toUpperCase() : val;
 
     if (realVal === 'YES' || realVal === 'TRUE' || realVal === true) {
         return true;
