@@ -6,9 +6,10 @@
     <title>Document</title>
     <style>
         textarea {
-            width: 300px;
+            width: 400px;
             height: 250px;
         }
+
         div {
             width: 1280px;
             height: 200px;
@@ -22,56 +23,123 @@
     模板文件名：<input type="text" id="tpl_id" value="test.json" />
     <p></p>
 
-    输入参数：<br/><textarea id="input_id" value=""></textarea>
+    输入参数：<br /><textarea id="input_id" value=""></textarea>
     <p></p>
 
     <button id="cal_bn" value="">计算</button>
     <p></p>
 
-    计算结果：<br/>
-    <div id="result_id" ></div>
+    计算结果：<br />
+    <div id="result_id"></div>
 
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="./epd_functions.js"></script>
     <script type="text/javascript" src="./rule_parse.js"></script>
 
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
-        let getUrl = "../template/"+ $('#tpl_id').val();
+        $('#input_id').val(`[
+  {"target": "Es_Angle", "src": "30"},
+  {"target": "Es_TH", "src": "1000"},
+  {"target": "Es_HD", "src": "7000"},
+  {"target": "Es_SW", "src": "800"},
+  {"target": "Es_TBS", "src": "10"},
+  {"target": "Es_BBS", "src": "20"},
+  {"target": "Es_PIT_L", "src": "30"},
+  {"target": "System_lang", "src": "CN"}
+]`);
 
-        let inputStr = `
-\{
-  "Es_Angle": "30", 
-  "Es_TH": "1000", 
-  "Es_HD": "7000", 
-  "Es_SW": "800", 
-  "Es_TBS": "10", 
-  "Es_BBS": "20", 
-  "Es_PIT_L": "30", 
-  "System_lang": "CN" 
-\}`;
 
-        $('#input_id').val(inputStr);
+        let tplSet = new Set();
+        let tplMap = {
+            "TEST": {
+                "fileName": "test.json",
+                "tplObj": null
+            },
+            "DN1": {
+                "fileName": "dn1.json",
+                "tplObj": null
+            },
+            "DN2": {
+                "fileName": "dn2.json",
+                "tplObj": null
+            }
+        };
 
-        $('#cal_bn').click(()=>{
-            let inputObj = JSON.parse($('#input_id').val());
-            
-            $.getJSON(getUrl, function (data) {
+
+        var initAllTmplate = async function () {
+            let resObj;
+            for (let key in tplMap) {
+                resObj = await getTplObjByAjax(tplMap[key]['fileName']);
+                tplMap[key]['tplObj'] = resObj
+            }
+
+            $('#cal_bn').click(() => {
+                let inputObj = JSON.parse($('#input_id').val());
                 let options = {
-                    "template": data,
-                    "justRun": false,
-                    "inputParameters": inputObj
+                    "template": tplMap['TEST']['tplObj'],
+                    "inputParameters": inputObj,
+                    "glFunction": innerCallFunction
                 };
 
                 let res = epd.calResultByRule(options)
                 console.log(res);
-                console.log(epd.unionParaMap);
-                console.log(epd.logicUnits);
 
                 $('#result_id').html(JSON.stringify(res, null, 4));
             });
-        });
+        };
+        initAllTmplate();
 
-        
+
+        function getTplObjByAjax(urlStr) {
+            const p = new Promise((resolve, reject) => {
+                $.getJSON("../template/" + urlStr, function (data) {
+                    resolve(data);
+                });
+            });
+            return p
+        }
+
+        function innerCallFunction(DNum, Para, inputParaArr) {
+            let innerCalRes = {};
+
+            // 存在循环调用问题,或没设置模板json
+            if (tplSet.has(DNum) || !tmpMap[DNum] || !Para) {
+                return {};
+            } else {
+                tplSet.add(DNum);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
+            let options = {
+                "template": tplMap[DNum]['tplObj'],
+                "inputParameters": inputParaArr,
+                "glFunction": innerCallFunction
+            };
+            let res = epd.calResultByRule(options)
+
+            let paraArr = Para.split(',');
+            for(let paraName of paraArr){
+                innerCalRes[paraName] = res[paraName];
+            }
+
+            return innerCalRes;
+        }
+    </script>
+
+    <script type="text/javascript">
+        console.log(epdtool._parseGLParamter('V:20>P1,V:Yes>P2'));
     </script>
 
 </body>

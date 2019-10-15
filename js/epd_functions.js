@@ -2,8 +2,9 @@
 
 //======inner functions===================================================
 let epdtool = {
-    _outerFunction: function (DN, Para, InputParalist) {
-
+    // 此函数是一个桩函数，目的是内外建立关联，使用时候外部需要定义此函数并传入
+    _outerFunction: function (DNum, Para, inputParaArr) {
+        return '';
     },
 
     _isString: function (str) {
@@ -157,16 +158,71 @@ let epdtool = {
         }
 
         return resMap;
+    },
+
+    // 解析GetValueFromGL的第三个特殊参数格式
+    _parseGLParamter: function (paramStr) {
+        if (!paramStr) {
+            return [];
+        }
+
+        let resArr = [],
+            innerMap;
+        let paramArr = paramStr.split(',');
+        let innerTmpArr, srcParamName, targetParamName;
+        for (let val of paramArr) {
+            val = val.trim();
+            innerTmpArr = val.split('>');
+            if (innerTmpArr.length !== 2) {
+                continue;
+            }
+            srcParamName = innerTmpArr[0];
+            targetParamName = innerTmpArr[1];
+
+            innerMap = {};
+            innerMap['target'] = targetParamName;
+            if (srcParamName.startsWith('V:')) {
+                srcParamName = srcParamName.substring(2);
+                innerMap['src'] = this._realValue(srcParamName);
+                innerMap['type'] = 'value';
+                
+            }else{
+                innerMap['src'] = srcParamName;
+                innerMap['type'] = 'map';
+            }
+            resArr.push(innerMap);
+        }
+        return resArr;
+    },
+
+    // 依据传入的字符串得到真正的数值
+    _realValue: function (valStr) {
+        if (ISLOGICAL(valStr)) {
+            if (valStr.toUpperCase() === 'YES') {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if (ISNUMBER(valStr)) {
+                return parseFloat(valStr);
+            } else if (!valStr) {
+                return '';
+            } else {
+                return valStr;
+            }
+        }
     }
 
 };
 
 //======4.2=get-info====================================================
-function GetValueFromGL(DN, Para, InputParalist) {
-    return epdtool._outerFunction(DN, Para, InputParalist);
+function GetValueFromGL(DNum, Para, InputParalist) {
+    let innerCalMap = epdtool._outerFunction(DNum, Para, epdtool._parseGLParamter(InputParalist));
+    return innerCalMap[Para];
 }
 
-function GetValuesFromGL(DN, Para, InputParalist) {
+function GetValuesFromGL(DNum, Para, InputParalist) {
 
 }
 

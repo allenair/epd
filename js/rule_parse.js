@@ -7,21 +7,21 @@
  * 示例：
  *          options = {
                 "template": templateJsonString,
-                "justRun": false, // false，代表需要处理一下模板，第一次调用必须处理模板，多次调用可跳过处理模板步骤以便节省时间
-                "inputParameters": { // 此处结构方式是  name, value 组成的赋值对
-                    "Es_Angle": "30",
-                    "Es_TH": "1000",
-                    "Es_HD": "7000",
-                    "Es_SW": "800",
-                    "Es_TBS": "10",
-                    "Es_BBS": "20",
-                    "Es_PIT_L": "30",
-                    "System_lang": "CN"
-                }
+                "inputParameters": [   // target代表目标参数名，src代表所赋的值，还有一个type参数默认为空，如果为‘map’则代表此时src属性代表的是源参数名（target参数的值需要与此相同）
+                    {"target": "Es_Angle", "src": "30"},
+                    {"target": "Es_TH", "src": "1000"},
+                    {"target": "Es_HD", "src": "7000"},
+                    {"target": "Es_SW", "src": "800"},
+                    {"target": "Es_TBS", "src": "10"},
+                    {"target": "Es_BBS", "src": "20"},
+                    {"target": "Es_PIT_L", "src": "30"},
+                    {"target": "System_lang", "src": "CN"},
+                ],
+                "glFunction": null
             };
  * 2、接口函数：calResultByRule，返回值为整合输入与输出参数的 name, value 对的json结构（结构类似inputParameters）
- * 3、内部结构：为方便计算，需要对模板进行精简处理，主要由参数（包含输入和输出）和逻辑两个内部结构支撑引擎的计算
- * （1）参数，对象，unionParaMap
+ * 3、主要结构：为方便计算，需要对模板进行精简处理，主要由参数（包含输入和输出）和逻辑两个内部结构支撑引擎的计算
+ * （1）参数，对象，unionParaMap, 全局参数列表
  * 示例：
  * {
  *      "Es_Angle": {
@@ -57,62 +57,62 @@
 */
 let epd = {
     unionParaMap: {},
-    logicUnits: [],
 
     calResultByRule: function (options) {
-        if (!options['justRun']) {
-            this.justInit(options);
+        this._initParamtersFromTemplate(options["template"]);
+        let logicUnits = this._initLogicUnitFromTemplate(options["template"]);
+
+        if (options['glFunction'] && Object.prototype.toString.call(options['glFunction']) === '[object Function]') {
+            epdtool._outerFunction = options['glFunction'];
         }
 
         // 设置传入的初始化的值
         this._setInputsValue(options['inputParameters']);
 
         // 进行实际计算
-        for (let logic of this.logicUnits) {
+        for (let logic of logicUnits) {
             this._realCalResult(logic['name'], logic['calUnit']);
         }
 
         return this._combineParamters();
     },
 
-    justInit: function (options) {
-        this._initParamtersFromTemplate(options["template"]);
-        this._initLogicUnitFromTemplate(options["template"]);
-    },
-
     _initParamtersFromTemplate: function (tplObj) {
-        this.unionParaMap = {};
-
         let inputObj = tplObj['CPARA_InputParameterValueList'];
         for (let obj of inputObj) {
             let name = obj['PropertyName'];
-            let inMap = {};
-            inMap['name'] = name;
-            inMap['scope'] = obj['ValueList'] || '';
-            inMap['type'] = 'S';
-            inMap['value'] = '';
-            inMap['isNum'] = false;
-            inMap['from'] = 'input';
-            this.unionParaMap[name] = inMap
+            if (!this.unionParaMap[name]) {
+                let inMap = {};
+                inMap['name'] = name;
+                inMap['scope'] = obj['ValueList'] || '';
+                inMap['type'] = 'S';
+                inMap['value'] = '';
+                inMap['isNum'] = false;
+                inMap['from'] = 'input';
+                this.unionParaMap[name] = inMap;
+            }
         }
 
         let outputObj = tplObj['CPARA_InternalParameterValueList'];
         for (let obj of outputObj) {
             let name = obj['PropertyName'];
-            let inMap = {};
-            inMap['name'] = name;
-            inMap['scope'] = obj['ValueList'] || '';
-            inMap['type'] = 'S';
-            inMap['value'] = 'NA'
-            inMap['isNum'] = false;
-            inMap['from'] = 'output';
-            this.unionParaMap[name] = inMap
+            if (!this.unionParaMap[name]) {
+                let inMap = {};
+                inMap['name'] = name;
+                inMap['scope'] = obj['ValueList'] || '';
+                inMap['type'] = 'S';
+                inMap['value'] = 'NA'
+                inMap['isNum'] = false;
+                inMap['from'] = 'output';
+                this.unionParaMap[name] = inMap;
+            }
         }
     },
 
     _initLogicUnitFromTemplate: function (tplObj) {
         let logicObj = tplObj['CPARA_FormulaLinkup'];
-        this.logicUnits = [];
+        let logicUnits = [];
+
         for (let obj of logicObj) {
             let inMap = {};
             inMap['name'] = obj['PropertyName'];
@@ -163,34 +163,52 @@ let epd = {
                 inMap['calUnit']['formulas'].push(formulaArr);
             }
 
-            this.logicUnits.push(inMap);
+            logicUnits.push(inMap);
         }
+
+        return logicUnits;
     },
 
     _setInputsValue: function (inputParameters) {
-        let inputVal, inputType, isNum;
-        for (let key in inputParameters) {
-            inputVal = inputParameters[key] || '';
+        let target, src, inputType, isNum;
+        for (let obj of inputParameters) {
+            target = obj['target'];
+            src = obj['src'];
+            if (src == undefined || src == null || src == NaN) {
+                src = '';
+            }
             isNum = false;
-            if (inputVal.toString().indexOf(',') > -1) {
-                inputType = 'M';
-                if (ISNUMBER(inputType.split(',')[0])) {
-                    isNum = true;
-                }
-            } else {
-                inputType = 'S';
-                if (ISNUMBER(inputType)) {
-                    isNum = true;
-                }
+
+            if (!this.unionParaMap[target]) {
+                this.unionParaMap[target] = {};
+                this.unionParaMap[target]['name'] = target;
+                this.unionParaMap[target]['scope'] = '';
+                this.unionParaMap[target]['from'] = 'input';
             }
 
-            if (!this.unionParaMap[key]) {
-                this.unionParaMap[key] = {};
-                this.unionParaMap[key]['name'] = key;
+            // 此时是需要使用src代表的参数的值给target参数赋值
+            if (obj['type'] && obj['type'] === 'map') {
+                this.unionParaMap[target]['value'] = this.unionParaMap[src]['value'];
+                this.unionParaMap[target]['type'] = this.unionParaMap[src]['type'];
+                this.unionParaMap[target]['isNum'] = this.unionParaMap[src]['isNum'];
+
+            } else {
+                let inputVal = src;
+                if (inputVal.toString().indexOf(',') > -1) {
+                    inputType = 'M';
+                    if (ISNUMBER(inputType.split(',')[0])) {
+                        isNum = true;
+                    }
+                } else {
+                    inputType = 'S';
+                    if (ISNUMBER(inputType)) {
+                        isNum = true;
+                    }
+                }
+                this.unionParaMap[target]['value'] = inputVal;
+                this.unionParaMap[target]['type'] = inputType;
+                this.unionParaMap[target]['isNum'] = isNum;
             }
-            this.unionParaMap[key]['value'] = inputVal;
-            this.unionParaMap[key]['type'] = inputType;
-            this.unionParaMap[key]['isNum'] = isNum;
         }
     },
 
