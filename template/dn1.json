@@ -23,7 +23,7 @@
     {
       "Condition": null,
       "Data": {
-        "Formula1": "12345*100+99",
+        "Formula1": "GetValuesFromGL('DN2','D2S1,D2S2', 'V:1980>D2TMP')",
         "Formula10": null,
         "Formula11": null,
         "Formula12": null,
@@ -37,7 +37,7 @@
         "Formula9": null,
         "ID": "10"
       },
-      "PropertyName": "DNTS1"
+      "PropertyName": "#DNTS1,DNTS2"
     }
   ],
   "CPARA_InputParameterValueList": [
@@ -61,6 +61,10 @@
     },
     {
       "PropertyName": "DNTS1",
+      "ValueList": null
+    },
+    {
+      "PropertyName": "DNTS2",
       "ValueList": null
     }
   ],

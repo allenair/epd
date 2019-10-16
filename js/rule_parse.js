@@ -250,8 +250,8 @@ const epd = {
 
         if (conParamArr.length == 0) {
             if (valuesFromGlFlag) {
-                let paramValueArr = eval(contextDeclareStr + formulaArr2D[0][nindex]);
-                let minLen = epdtool.MIN(nameArr.length, paramValueArr.length);
+                let paramValueArr = eval(contextDeclareStr + formulaArr2D[0][0]);
+                let minLen = MIN(nameArr.length, paramValueArr.length);
                 for (let nindex = 0; nindex < minLen; nindex++) {
                     this._updateValue(nameArr[nindex], paramValueArr[nindex]);
                 }
