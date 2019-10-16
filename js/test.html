@@ -32,12 +32,13 @@
     计算结果：<br />
     <div id="result_id"></div>
 
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> -->
+    <script type="text/javascript" src="./jquery.min.js"></script>
     <script type="text/javascript" src="./epd_functions.js"></script>
     <script type="text/javascript" src="./rule_parse.js"></script>
 
     <script type="text/javascript">
-        $('#input_id').val(`[
+        const inputValue = `[
   {"target": "Es_Angle", "src": "30"},
   {"target": "Es_TH", "src": "1000"},
   {"target": "Es_HD", "src": "7000"},
@@ -46,17 +47,21 @@
   {"target": "Es_BBS", "src": "20"},
   {"target": "Es_PIT_L", "src": "30"},
   {"target": "System_lang", "src": "CN"}
-]`);
+]`;
 
 
-        let tplSet = new Set();
-        let tplMap = {
+        const tplSet = new Set();
+        const tplMap = {
             "TEST": {
                 "fileName": "test.json",
                 "tplObj": null
             },
-            "DN1": {
+            "STANDART": {
                 "fileName": "standart.json",
+                "tplObj": null
+            },
+            "DN1": {
+                "fileName": "dn1.json",
                 "tplObj": null
             },
             "DN2": {
@@ -66,17 +71,30 @@
         };
 
 
-        var initAllTmplate = async function () {
+        let initAllTmplate = async function () {
             let resObj;
             for (let key in tplMap) {
-                resObj = await getTplObjByAjax(tplMap[key]['fileName']);
-                tplMap[key]['tplObj'] = resObj
+                tplMap[key]['tplObj'] = await
+
+                function (urlStr) {
+                    return new Promise((resolve, reject) => {
+                        $.getJSON("../template/" + urlStr, function (data) {
+                            resolve(data);
+                        });
+                    });
+                }(tplMap[key]['fileName']);
             }
+
+            initHtmlContent();
+        };
+
+        function initHtmlContent() {
+            $('#input_id').val(inputValue);
 
             $('#cal_bn').click(() => {
                 let inputObj = JSON.parse($('#input_id').val());
                 let options = {
-                    "template": tplMap['TEST']['tplObj'],
+                    "template": tplMap['STANDART']['tplObj'],
                     "inputParameters": inputObj,
                     "glFunction": innerCallFunction
                 };
@@ -86,41 +104,17 @@
 
                 $('#result_id').html(JSON.stringify(res, null, 4));
             });
-        };
-        initAllTmplate();
-
-
-        function getTplObjByAjax(urlStr) {
-            const p = new Promise((resolve, reject) => {
-                $.getJSON("../template/" + urlStr, function (data) {
-                    resolve(data);
-                });
-            });
-            return p
         }
 
         function innerCallFunction(DNum, Para, inputParaArr) {
             let innerCalRes = {};
 
             // 存在循环调用问题,或没设置模板json
-            if (tplSet.has(DNum) || !tmpMap[DNum] || !Para) {
+            if (tplSet.has(DNum) || !tplMap[DNum] || !Para) {
                 return {};
             } else {
                 tplSet.add(DNum);
             }
-
-
-
-
-
-
-
-
-
-
-
-
-            
 
             let options = {
                 "template": tplMap[DNum]['tplObj'],
@@ -130,17 +124,19 @@
             let res = epd.calResultByRule(options)
 
             let paraArr = Para.split(',');
-            for(let paraName of paraArr){
+            for (let paraName of paraArr) {
                 innerCalRes[paraName] = res[paraName];
             }
 
             return innerCalRes;
         }
+
+        initAllTmplate();
     </script>
 
     <script type="text/javascript">
-        console.log(epdtool._parseGLParamter('V:20>P1,V:Yes>P2'));
-        console.log(FLOOR('3.78',2));
+        // console.log(epdtool._parseGLParamter('V:20>P1,V:Yes>P2'));
+        // console.log(FLOOR('3.78', 2));
     </script>
 
 </body>

@@ -1,0 +1,69 @@
+{
+  "CPARA_ChangeRecord": [],
+  "CPARA_FormulaLinkup": [
+    {
+      "Condition": null,
+      "Data": {
+        "Formula1": "DNTN3+DNTN7-Es_BBS",
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "9"
+      },
+      "PropertyName": "DNTN9"
+    },
+    {
+      "Condition": null,
+      "Data": {
+        "Formula1": "12345*100+99",
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "10"
+      },
+      "PropertyName": "DNTS1"
+    }
+  ],
+  "CPARA_InputParameterValueList": [
+    {
+      "PropertyName": "DNTN3",
+      "ValueList": "30,35"
+    },
+    {
+      "PropertyName": "DNTN7",
+      "ValueList": "(0,$)"
+    },
+    {
+      "PropertyName": "Es_BBS",
+      "ValueList": "(0,$)"
+    }
+  ],
+  "CPARA_InternalParameterValueList": [
+    {
+      "PropertyName": "DNTN9",
+      "ValueList": null
+    },
+    {
+      "PropertyName": "DNTS1",
+      "ValueList": null
+    }
+  ],
+  "CPARA_Script": [],
+  "CPARA_XYTable": []
+}

@@ -169,7 +169,7 @@ const epdtool = {
 
         const resArr = [];
         const paramArr = paramStr.split(',');
-        
+
         for (let val of paramArr) {
             let innerMap;
             let innerTmpArr, srcParamName, targetParamName;
@@ -200,8 +200,11 @@ const epdtool = {
 
     // 依据传入的字符串得到真正的数值
     _realValue: function (valStr) {
+        if (valStr == null || valStr == undefined || valStr == NaN) {
+            return '';
+        }
         if (ISLOGICAL(valStr)) {
-            if (valStr.toUpperCase() === 'YES') {
+            if (valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE') {
                 return true;
             } else {
                 return false;
@@ -226,7 +229,14 @@ function GetValueFromGL(DNum, Para, InputParalist) {
 }
 
 function GetValuesFromGL(DNum, Para, InputParalist) {
+    const resArr = [];
+    const innerCalMap = epdtool._outerFunction(DNum, Para, epdtool._parseGLParamter(InputParalist));
 
+    const paraArr = Para.split(',');
+    for (let pName of paraArr) {
+        resArr.push(innerCalMap[pName]);
+    }
+    return resArr;
 }
 
 //======4.5=logic====================================================

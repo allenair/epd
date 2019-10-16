@@ -173,10 +173,7 @@ const epd = {
         let target, src, inputType, isNum;
         for (let obj of inputParameters) {
             target = obj['target'];
-            src = obj['src'];
-            if (src == undefined || src == null || src == NaN) {
-                src = '';
-            }
+            src = epdtool._realValue(obj['src']);
             isNum = false;
 
             if (!this.unionParaMap[target]) {
@@ -196,12 +193,12 @@ const epd = {
                 let inputVal = src;
                 if (inputVal.toString().indexOf(',') > -1) {
                     inputType = 'M';
-                    if (ISNUMBER(inputType.split(',')[0])) {
+                    if (ISNUMBER(inputVal.split(',')[0])) {
                         isNum = true;
                     }
                 } else {
                     inputType = 'S';
-                    if (ISNUMBER(inputType)) {
+                    if (ISNUMBER(inputVal)) {
                         isNum = true;
                     }
                 }
@@ -214,17 +211,10 @@ const epd = {
 
     _updateValue: function (name, value) {
         let isNum = false;
+        value = epdtool._realValue(value);
         if (ISNUMBER(value)) {
-            value = parseFloat(value);
             isNum = true;
-
-        } else if (value) {
-            value = value.toString();
-
-        } else {
-            value = '';
         }
-
         if (this.unionParaMap[name]) {
             this.unionParaMap[name]['value'] = value;
             this.unionParaMap[name]['isNum'] = isNum;
@@ -235,8 +225,18 @@ const epd = {
     },
 
     _realCalResult: function (name, calUnit) {
+        // 标记是否是GetValuesFromGL方法
+        let valuesFromGlFlag = false;
+
         let nameArr = [];
-        if (name.indexOf(',') > -1) {
+        if (name === '#DO' || name === '#LOOP') {
+            // do somethings.......
+
+        } else if (name.startsWith('#')) {
+            valuesFromGlFlag = true;
+            nameArr = name.substring(1).split(',');
+
+        } else if (name.indexOf(',') > -1) {
             nameArr = name.split(',');
 
         } else {
@@ -248,15 +248,21 @@ const epd = {
         const conValueArr2D = calUnit['values'];
         const formulaArr2D = calUnit['formulas'];
 
-        let paramName, paramValue;
         if (conParamArr.length == 0) {
-            for (let nindex in nameArr) {
-                nindex = parseInt(nindex);
-                paramName = nameArr[nindex];
-                paramValue = eval(contextDeclareStr + formulaArr2D[0][nindex]);
-                this._updateValue(paramName, paramValue);
-            }
+            if (valuesFromGlFlag) {
+                let paramValueArr = eval(contextDeclareStr + formulaArr2D[0][nindex]);
+                let minLen = epdtool.MIN(nameArr.length, paramValueArr.length);
+                for (let nindex = 0; nindex < minLen; nindex++) {
+                    this._updateValue(nameArr[nindex], paramValueArr[nindex]);
+                }
 
+            } else {
+                for (let nindex in nameArr) {
+                    nindex = parseInt(nindex);
+                    let paramValue = eval(contextDeclareStr + formulaArr2D[0][nindex]);
+                    this._updateValue(nameArr[nindex], paramValue);
+                }
+            }
         } else {
             for (let vindex in conValueArr2D) {
                 let flag = false;
@@ -271,9 +277,8 @@ const epd = {
                 if (flag) {
                     for (let nindex in nameArr) {
                         nindex = parseInt(nindex);
-                        paramName = nameArr[nindex];
-                        paramValue = eval(contextDeclareStr + formulaArr2D[vindex][nindex]);
-                        this._updateValue(paramName, paramValue);
+                        let paramValue = eval(contextDeclareStr + formulaArr2D[vindex][nindex]);
+                        this._updateValue(nameArr[nindex], paramValue);
                     }
                     break;
                 }

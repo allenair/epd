@@ -1247,7 +1247,7 @@
 			"Condition": null,
 			"Data": {
 				"ID": "9",
-				"Formula1": "TN3+TN7-Es_BBS",
+				"Formula1": "Math.sqrt(20+80)*GetValueFromGL('DN1','DNTN9', 'TN3>DNTN3,V:1>DNTN7')",
 				"Formula2": null,
 				"Formula3": null,
 				"Formula4": null,
