@@ -55,12 +55,12 @@
  * ]
  * 
 */
-let epd = {
+const epd = {
     unionParaMap: {},
 
     calResultByRule: function (options) {
         this._initParamtersFromTemplate(options["template"]);
-        let logicUnits = this._initLogicUnitFromTemplate(options["template"]);
+        const logicUnits = this._initLogicUnitFromTemplate(options["template"]);
 
         if (options['glFunction'] && Object.prototype.toString.call(options['glFunction']) === '[object Function]') {
             epdtool._outerFunction = options['glFunction'];
@@ -78,7 +78,7 @@ let epd = {
     },
 
     _initParamtersFromTemplate: function (tplObj) {
-        let inputObj = tplObj['CPARA_InputParameterValueList'];
+        const inputObj = tplObj['CPARA_InputParameterValueList'];
         for (let obj of inputObj) {
             let name = obj['PropertyName'];
             if (!this.unionParaMap[name]) {
@@ -93,7 +93,7 @@ let epd = {
             }
         }
 
-        let outputObj = tplObj['CPARA_InternalParameterValueList'];
+        const outputObj = tplObj['CPARA_InternalParameterValueList'];
         for (let obj of outputObj) {
             let name = obj['PropertyName'];
             if (!this.unionParaMap[name]) {
@@ -110,8 +110,8 @@ let epd = {
     },
 
     _initLogicUnitFromTemplate: function (tplObj) {
-        let logicObj = tplObj['CPARA_FormulaLinkup'];
-        let logicUnits = [];
+        const logicObj = tplObj['CPARA_FormulaLinkup'];
+        const logicUnits = [];
 
         for (let obj of logicObj) {
             let inMap = {};
@@ -243,12 +243,12 @@ let epd = {
             nameArr.push(name);
         }
 
-        let contextDeclareStr = this._getDeclareParamterStr();
-        let paramName, paramValue, conParamArr, conValueArr2D, formulaArr2D;
-        conParamArr = calUnit['params'];
-        conValueArr2D = calUnit['values'];
-        formulaArr2D = calUnit['formulas'];
+        const contextDeclareStr = this._getDeclareParamterStr();
+        const conParamArr = calUnit['params'];
+        const conValueArr2D = calUnit['values'];
+        const formulaArr2D = calUnit['formulas'];
 
+        let paramName, paramValue;
         if (conParamArr.length == 0) {
             for (let nindex in nameArr) {
                 nindex = parseInt(nindex);
@@ -299,7 +299,7 @@ let epd = {
     },
 
     _getDeclareParamterStr: function () {
-        let paramArr = [];
+        const paramArr = [];
         let valStr;
 
         for (let name in this.unionParaMap) {
@@ -315,7 +315,7 @@ let epd = {
     },
 
     _combineParamters: function () {
-        let resParamters = {};
+        const resParamters = {};
         for (let name in this.unionParaMap) {
             resParamters[this.unionParaMap[name]['name']] = this.unionParaMap[name]['value'];
         }

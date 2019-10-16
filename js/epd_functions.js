@@ -1,7 +1,7 @@
 "use strict";
 
 //======inner functions===================================================
-let epdtool = {
+const epdtool = {
     // 此函数是一个桩函数，目的是内外建立关联，使用时候外部需要定义此函数并传入
     _outerFunction: function (DNum, Para, inputParaArr) {
         return '';
@@ -29,7 +29,7 @@ let epdtool = {
             return 0;
         }
 
-        let valStr = val.toString();
+        const valStr = val.toString();
         if (valStr.indexOf('.') < 0) {
             return 0;
         }
@@ -42,7 +42,7 @@ let epdtool = {
             return false;
         }
 
-        let scopeMap = this._parseValueScope(scopeStr);
+        const scopeMap = this._parseValueScope(scopeStr);
         // 没有指定范围
         if (scopeMap['valType'] === 'N') {
             return true;
@@ -64,13 +64,14 @@ let epdtool = {
             }
 
         } else { // 范围取值
-            let realVal = parseFloat(val);
-            let varMap = scopeMap['valScope'];
-            let step = varMap['step'];
+            const varMap = scopeMap['valScope'];
+            const startFlag = varMap['startFlag'];
+            const endFlag = varMap['endFlag'];
             let startNum = varMap['startNum'];
             let endNum = varMap['endNum'];
-            let startFlag = varMap['startFlag'];
-            let endFlag = varMap['endFlag'];
+            let step = varMap['step'];
+
+            let realVal = parseFloat(val);
 
             if (startFlag && realVal < startNum || !startFlag && realVal <= startNum || endFlag && realVal > endNum || !endFlag && realVal >= endNum) {
                 return false;
@@ -103,19 +104,19 @@ let epdtool = {
 
     // 将scope的值进行解析，为空标记为N, 单个值标记为O，范围值标记为S（并处理上下界以及步长问题），离散值标记为D（并解析为数组，以英文逗号分隔）
     _parseValueScope: function (scopeStr) {
-        let resMap = {};
+        const resMap = {};
         if (!scopeStr || scopeStr === 'NA') {
             resMap['valType'] = 'N';
             return resMap;
         }
 
-        let val = scopeStr.toString();
-        let startChar = val.charAt(0);
+        const val = scopeStr.toString();
+        const startChar = val.charAt(0);
         let endChar = val.charAt(val.length - 1);
 
         if (startChar === '(' || startChar === '[') {
             resMap['valType'] = 'S';
-            let valMap = {};
+            const valMap = {};
             let realScope, tmpArr;
 
             if (endChar === ')' || endChar === ']') {
@@ -166,11 +167,13 @@ let epdtool = {
             return [];
         }
 
-        let resArr = [],
-            innerMap;
-        let paramArr = paramStr.split(',');
-        let innerTmpArr, srcParamName, targetParamName;
+        const resArr = [];
+        const paramArr = paramStr.split(',');
+        
         for (let val of paramArr) {
+            let innerMap;
+            let innerTmpArr, srcParamName, targetParamName;
+
             val = val.trim();
             innerTmpArr = val.split('>');
             if (innerTmpArr.length !== 2) {
@@ -185,8 +188,8 @@ let epdtool = {
                 srcParamName = srcParamName.substring(2);
                 innerMap['src'] = this._realValue(srcParamName);
                 innerMap['type'] = 'value';
-                
-            }else{
+
+            } else {
                 innerMap['src'] = srcParamName;
                 innerMap['type'] = 'map';
             }
@@ -218,7 +221,7 @@ let epdtool = {
 
 //======4.2=get-info====================================================
 function GetValueFromGL(DNum, Para, InputParalist) {
-    let innerCalMap = epdtool._outerFunction(DNum, Para, epdtool._parseGLParamter(InputParalist));
+    const innerCalMap = epdtool._outerFunction(DNum, Para, epdtool._parseGLParamter(InputParalist));
     return innerCalMap[Para];
 }
 
@@ -314,8 +317,8 @@ function ROUND(val, precision) {
 
     val = parseFloat(val);
     precision = parseFloat(precision);
-    let flag = val > 0 ? 1 : -1;
-    let tmp = Math.pow(10, precision);
+    const flag = val > 0 ? 1 : -1;
+    const tmp = Math.pow(10, precision);
     return flag * Math.round(Math.abs(val) * tmp) / tmp;
 }
 
@@ -326,9 +329,9 @@ function ROUNDUP(val, precision) {
 
     val = parseFloat(val);
     precision = parseFloat(precision);
-    let flag = val > 0 ? 1 : -1;
-    let tmp = Math.pow(10, precision);
-    let correctVal = 0.5 / tmp;
+    const flag = val > 0 ? 1 : -1;
+    const tmp = Math.pow(10, precision);
+    const correctVal = 0.5 / tmp;
     return flag * Math.round((Math.abs(val) + correctVal) * tmp) / tmp;
 }
 
@@ -339,14 +342,14 @@ function ROUNDDOWN(val, precision) {
 
     val = parseFloat(val);
     precision = parseFloat(precision);
-    let flag = val > 0 ? 1 : -1;
-    let tmp = Math.pow(10, precision);
-    let correctVal = 0.5 / tmp;
+    const flag = val > 0 ? 1 : -1;
+    const tmp = Math.pow(10, precision);
+    const correctVal = 0.5 / tmp;
     return flag * Math.round((Math.abs(val) - correctVal) * tmp) / tmp;
 }
 
 function INT(val) {
-    let tmp = ROUNDDOWN(val, 0);
+    const tmp = ROUNDDOWN(val, 0);
     return tmp <= val ? tmp : tmp - 1;
 }
 
@@ -422,14 +425,14 @@ function CEILING(val, significance) {
     }
 
     if (val * significance > 0) {
-        let flag = val > 0 ? 1 : -1;
+        const flag = val > 0 ? 1 : -1;
 
-        let nval = val > 0 ? val : -1 * val;
-        let nsignificance = significance > 0 ? significance : -1 * significance;
+        const nval = val > 0 ? val : -1 * val;
+        const nsignificance = significance > 0 ? significance : -1 * significance;
 
-        let times = Math.round(nval / nsignificance);
-        let lower = times * nsignificance;
-        let upper = (times + 1) * nsignificance;
+        const times = Math.round(nval / nsignificance);
+        const lower = times * nsignificance;
+        const upper = (times + 1) * nsignificance;
 
         if (lower > nval || epdtool._isEqual(lower, nval)) {
             return flag * lower;
@@ -461,14 +464,14 @@ function FLOOR(val, significance) {
     }
 
     if (val * significance > 0) {
-        let flag = val > 0 ? 1 : -1;
+        const flag = val > 0 ? 1 : -1;
 
-        let nval = val > 0 ? val : -1 * val;
-        let nsignificance = significance > 0 ? significance : -1 * significance;
+        const nval = val > 0 ? val : -1 * val;
+        const nsignificance = significance > 0 ? significance : -1 * significance;
 
-        let times = Math.round(nval / nsignificance);
-        let lower = (times - 1) * nsignificance;
-        let upper = times * nsignificance;
+        const times = Math.round(nval / nsignificance);
+        const lower = (times - 1) * nsignificance;
+        const upper = times * nsignificance;
 
         if (upper < nval || epdtool._isEqual(upper, nval)) {
             return flag * upper;
@@ -497,7 +500,7 @@ function ISLOGICAL(val) {
         return false;
     }
 
-    let realVal = epdtool._isString(val) ? val.toUpperCase() : '';
+    const realVal = epdtool._isString(val) ? val.toUpperCase() : '';
 
     if (realVal === 'YES' || realVal === 'TRUE' || realVal === 'NO' || realVal === 'FALSE') {
         return true;
@@ -533,7 +536,7 @@ function CNUM(val) {
 }
 
 function CBOOL(val) {
-    let realVal = val && epdtool._isString(val) ? val.toUpperCase() : val;
+    const realVal = val && epdtool._isString(val) ? val.toUpperCase() : val;
 
     if (realVal === 'YES' || realVal === 'TRUE' || realVal === true) {
         return true;
