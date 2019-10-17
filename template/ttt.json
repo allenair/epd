@@ -1,0 +1,1894 @@
+{
+  "CPARA_ChangeRecord": [],
+  "CPARA_FormulaLinkup": [
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "Es_SW",
+              "Value": "600"
+            },
+            {
+              "Key": "Es_Angle",
+              "Value": "30"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ROUND(Es_TH*1.732+5185,0)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "Es_SW",
+              "Value": "800"
+            },
+            {
+              "Key": "Es_Angle",
+              "Value": "30"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ROUND(Es_TH*1.732+4785,0)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "Es_SW",
+              "Value": "1000"
+            },
+            {
+              "Key": "Es_Angle",
+              "Value": "30"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ROUND(Es_TH*1.732+4785,0)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "Es_SW",
+              "Value": "600"
+            },
+            {
+              "Key": "Es_Angle",
+              "Value": "35"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ROUND(Es_TH*1.428+4925+400,0)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "Es_SW",
+              "Value": "800"
+            },
+            {
+              "Key": "Es_Angle",
+              "Value": "35"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ROUND(Es_TH*1.428+4925,0)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "Es_SW",
+              "Value": "1000"
+            },
+            {
+              "Key": "Es_Angle",
+              "Value": "35"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ROUND(Es_TH*1.428+4925,0)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "1"
+      },
+      "PropertyName": "TN1"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "Es_SW",
+              "Value": "600"
+            },
+            {
+              "Key": "Es_Angle",
+              "Value": "30"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "3170"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "Es_SW",
+              "Value": "800,1000"
+            },
+            {
+              "Key": "Es_Angle",
+              "Value": "30"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2770"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "Es_SW",
+              "Value": "600"
+            },
+            {
+              "Key": "Es_Angle",
+              "Value": "35"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "3200"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "Es_SW",
+              "Value": "800,1000"
+            },
+            {
+              "Key": "Es_Angle",
+              "Value": "35"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2800"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "2"
+      },
+      "PropertyName": "TN2"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "Es_Angle",
+              "Value": "30"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2015"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "Es_Angle",
+              "Value": "35"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2125"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "3"
+      },
+      "PropertyName": "TN3"
+    },
+    {
+      "Data": {
+        "Formula1": "4200",
+        "ID": "4"
+      },
+      "PropertyName": "TN4"
+    },
+    {
+      "Data": {
+        "Formula1": "Es_HD-TN1",
+        "ID": "5"
+      },
+      "PropertyName": "TN5"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "TN5",
+              "Value": "(0,600]"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "TN5"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN5",
+              "Value": "(600,1200]"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ROUND(TN5/2,0)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN5",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "6"
+      },
+      "PropertyName": "TN6"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "TN5",
+              "Value": "(0,600]"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN5",
+              "Value": "(600,1200]"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "TN5-TN6"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN5",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "7"
+      },
+      "PropertyName": "TN7"
+    },
+    {
+      "Data": {
+        "Formula1": "TN2+TN6-Es_TBS",
+        "ID": "8"
+      },
+      "PropertyName": "TN8"
+    },
+    {
+      "Data": {
+        "Formula1": "TN3+TN7-Es_BBS",
+        "ID": "9"
+      },
+      "PropertyName": "TN9"
+    },
+    {
+      "Data": {
+        "Formula1": "TN4+TN7-Es_PIT_L",
+        "ID": "10"
+      },
+      "PropertyName": "TN10"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "TN8",
+              "Value": "($,0)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "CN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"上水平段长度应为\"+CSTR(TN2+TN6)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN8",
+              "Value": "(0,$)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "CN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"上水平段长度应为\"+CSTR(TN2+TN6)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN8",
+              "Value": "($,0)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "EN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"Top base length should be\"+CSTR(TN2+TN6)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN8",
+              "Value": "(0,$)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "EN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"Top base length should be\"+CSTR(TN2+TN6)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "11"
+      },
+      "PropertyName": "TS1"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "TN9",
+              "Value": "($,0)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "CN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"下水平段长度应为\"+CSTR(TN3+TN7)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN9",
+              "Value": "(0,$)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "CN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"下水平段长度应为\"+CSTR(TN3+TN7)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN9",
+              "Value": "($,0)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "EN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"Bottom base length should be\"+CSTR(TN3+TN7)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN9",
+              "Value": "(0,$)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "EN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"Bottom base length should be\"+CSTR(TN3+TN7)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "12"
+      },
+      "PropertyName": "TS2"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "TN10",
+              "Value": "($,0)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "CN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"底坑长度应为\"+CSTR(TN4+TN7)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN10",
+              "Value": "(0,$)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "CN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"底坑长度应为\"+CSTR(TN4+TN7)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN10",
+              "Value": "($,0)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "EN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"Pit length should be\"+CSTR(TN4+TN7)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN10",
+              "Value": "(0,$)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "EN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"Pit length should be\"+CSTR(TN4+TN7)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "13"
+      },
+      "PropertyName": "TS3"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "TN5",
+              "Value": "($,0)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "CN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"实际跨距小于标准跨距\""
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN5",
+              "Value": "(1200,$)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "CN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"跨距总延长不得超过1200\""
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN5",
+              "Value": "($,0)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "EN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"Real horizontal distance less than standard value\""
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TN5",
+              "Value": "(1200,$)"
+            },
+            {
+              "Key": "System_lang",
+              "Value": "EN"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "\"The horizontal space extention must be less than 1200mm\""
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "14"
+      },
+      "PropertyName": "TS4"
+    }
+  ],
+  "CPARA_InputParameterValueList": [
+    {
+      "PropertyName": "Es_Angle",
+      "ValueList": "30,35"
+    },
+    {
+      "PropertyName": "Es_TH",
+      "ValueList": "(0,$)"
+    },
+    {
+      "PropertyName": "Es_HD",
+      "ValueList": "(0,$)"
+    },
+    {
+      "PropertyName": "Es_SW",
+      "ValueList": "600,800,1000"
+    },
+    {
+      "PropertyName": "Es_TBS",
+      "ValueList": "(0,$)"
+    },
+    {
+      "PropertyName": "Es_BBS",
+      "ValueList": "(0,$)"
+    },
+    {
+      "PropertyName": "Es_PIT_L",
+      "ValueList": "(0,$)"
+    },
+    {
+      "PropertyName": "System_lang",
+      "ValueList": "CN,EN"
+    }
+  ],
+  "CPARA_InternalParameterValueList": [
+    {
+      "PropertyName": "TN1"
+    },
+    {
+      "PropertyName": "TN2"
+    },
+    {
+      "PropertyName": "TN3"
+    },
+    {
+      "PropertyName": "TN4"
+    },
+    {
+      "PropertyName": "TN5"
+    },
+    {
+      "PropertyName": "TN6"
+    },
+    {
+      "PropertyName": "TN7"
+    },
+    {
+      "PropertyName": "TN8"
+    },
+    {
+      "PropertyName": "TN9"
+    },
+    {
+      "PropertyName": "TN10"
+    },
+    {
+      "PropertyName": "TS1"
+    },
+    {
+      "PropertyName": "TS2"
+    },
+    {
+      "PropertyName": "TS3"
+    },
+    {
+      "PropertyName": "TS4"
+    }
+  ],
+  "CPARA_Script": [],
+  "CPARA_XYTable": []
+}
