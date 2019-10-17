@@ -200,7 +200,7 @@ const epdtool = {
 
     // 依据传入的字符串得到真正的数值
     _realValue: function (valStr) {
-        if (valStr == null || valStr == undefined || valStr == NaN) {
+        if (valStr == null || valStr == undefined) {
             return '';
         }
         if (ISLOGICAL(valStr)) {
