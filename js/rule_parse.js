@@ -58,11 +58,11 @@
 let epd = {
     unionParaMap: {},
 
-    registerGlFunction: function(fun){
+    registerGlFunction: function (fun) {
         if (fun && Object.prototype.toString.call(fun) === '[object Function]') {
             epdtool._outerFunction = fun;
         }
-    }, 
+    },
 
     calResultByRule: function (options) {
         this._initParamtersFromTemplate(options["template"]);
@@ -143,7 +143,11 @@ let epd = {
                     let innerResultArr = innerObj['Results'];
                     let formulaArr = [];
                     for (let singleResObj of innerResultArr) {
-                        formulaArr.push(singleResObj['Value']);
+                        let tmpStr = singleResObj['Value'];
+                        if (tmpStr) {
+                            tmpStr = tmpStr.replace(/&/g, '+');
+                        }
+                        formulaArr.push(tmpStr);
                     }
                     inMap['calUnit']['formulas'].push(formulaArr);
                 }
@@ -156,7 +160,11 @@ let epd = {
                     if (key === 'ID') {
                         continue;
                     }
-                    formulaArr.push(dataObj[key]);
+                    let tmpStr = dataObj[key];
+                    if (tmpStr) {
+                        tmpStr = tmpStr.replace(/&/g, '+');
+                    }
+                    formulaArr.push(tmpStr);
                 }
                 inMap['calUnit']['formulas'].push(formulaArr);
             }
@@ -290,9 +298,9 @@ let epd = {
 
     _checkCondition: function (name, conStr) {
         if (conStr === 'ELSE' || conStr === 'ANY') {
-            if(this.unionParaMap[name]['value']==='NA'){
+            if (this.unionParaMap[name]['value'] === 'NA') {
                 return false;
-            }else{
+            } else {
                 return true;
             }
 
@@ -300,6 +308,11 @@ let epd = {
             if (this.unionParaMap[name] && this.unionParaMap[name]['from'] === 'input') {
                 return epdtool._checkParam(this.unionParaMap[name]['value'], this.unionParaMap[name]['scope']);
             }
+
+        } else if (conStr.startsWith('@')) {
+            let paraName = conStr.substring(1);
+            return epdtool._checkParam(this.unionParaMap[name]['value'], this.unionParaMap[paraName]['value']);
+
         } else {
             if (this.unionParaMap[name]) {
                 return epdtool._checkParam(this.unionParaMap[name]['value'], conStr);
