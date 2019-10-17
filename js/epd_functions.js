@@ -105,7 +105,7 @@ const epdtool = {
     // 将scope的值进行解析，为空标记为N, 单个值标记为O，范围值标记为S（并处理上下界以及步长问题），离散值标记为D（并解析为数组，以英文逗号分隔）
     _parseValueScope: function (scopeStr) {
         const resMap = {};
-        if (!scopeStr || scopeStr === 'NA') {
+        if (!scopeStr || scopeStr === 'NA' || scopeStr === 'ANY') {
             resMap['valType'] = 'N';
             return resMap;
         }
