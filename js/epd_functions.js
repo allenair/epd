@@ -38,7 +38,7 @@ const epdtool = {
 
     // 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断
     _checkParam: function (val, scopeStr) {
-        if (!val) {
+        if (!val || val==='NA') {
             return false;
         }
 
@@ -73,7 +73,7 @@ const epdtool = {
 
             let realVal = parseFloat(val);
 
-            if (startFlag && realVal < startNum || !startFlag && realVal <= startNum || endFlag && realVal > endNum || !endFlag && realVal >= endNum) {
+            if (isNaN(realVal) || startFlag && realVal < startNum || !startFlag && realVal <= startNum || endFlag && realVal > endNum || !endFlag && realVal >= endNum) {
                 return false;
             }
 
@@ -201,9 +201,12 @@ const epdtool = {
     // 依据传入的字符串得到真正的数值
     _realValue: function (valStr) {
         if (valStr == null || valStr == undefined) {
-            return '';
-        }
-        if (ISLOGICAL(valStr)) {
+            return 'NA';
+
+        } else if (valStr.toString() === "NaN") {
+            return 'NA';
+
+        } else if (ISLOGICAL(valStr)) {
             if (valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE') {
                 return true;
             } else {
@@ -526,7 +529,7 @@ function ISNA(val) {
     if (val == undefined || val == null) {
         return true;
     }
-    if (val.toString() === 'NA' || val.toString() === 'NaN') {
+    if (val.toString() === 'NA' || val.toString() === 'NaN' || val.toString() === '') {
         return true;
     }
 

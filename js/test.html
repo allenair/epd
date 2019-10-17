@@ -11,7 +11,7 @@
         }
 
         div {
-            width: 1280px;
+            width: 580px;
             height: 200px;
             border: 1px solid;
             padding: 10px;
@@ -70,7 +70,7 @@
             }
         };
 
-
+        // 初始化全部模板，需要使用同步方式，等待全部模板请求完成后，才能为计算按钮装载事件并允许触发计算
         let initAllTmplate = async function () {
             let resObj;
             for (let key in tplMap) {
@@ -88,55 +88,66 @@
             initHtmlContent();
         };
 
+        // 为按钮装载计算事件
         function initHtmlContent() {
             $('#input_id').val(inputValue);
 
             $('#cal_bn').click(() => {
                 let inputObj = JSON.parse($('#input_id').val());
+
+                // 初始化环境变量
+                tplSet.clear();
+                epd.unionParaMap = {};
+
+                // 注册模板之间回调函数
+                epd.registerGlFunction(innerCallFunction);
+
+                // 进入入口进行计算
                 let options = {
                     "template": tplMap['STANDART']['tplObj'],
-                    "inputParameters": inputObj,
-                    "glFunction": innerCallFunction
+                    "inputParameters": inputObj
                 };
-
                 let res = epd.calResultByRule(options)
-                console.log(res);
-
                 $('#result_id').html(JSON.stringify(res, null, 4));
             });
-        }
 
-        function innerCallFunction(DNum, Para, inputParaArr) {
-            let innerCalRes = {};
 
-            // 存在循环调用问题,或没设置模板json
-            if (tplSet.has(DNum) || !tplMap[DNum] || !Para) {
-                return {};
-            } else {
-                tplSet.add(DNum);
+            // 声明回调函数
+            function innerCallFunction(DNum, Para, inputParaArr) {
+                let innerCalRes = {};
+
+                // 存在循环调用问题,或没设置模板json
+                if (tplSet.has(DNum) || !tplMap[DNum] || !Para) {
+                    console.log("出现错误！存在循环调用，或是没有对应模板，或是表达式参数不正确！");
+                    return {};
+                } else {
+                    tplSet.add(DNum);
+                }
+
+                let options = {
+                    "template": tplMap[DNum]['tplObj'],
+                    "inputParameters": inputParaArr
+                };
+                let res = epd.calResultByRule(options)
+
+                let paraArr = Para.split(',');
+                for (let paraName of paraArr) {
+                    innerCalRes[paraName] = res[paraName];
+                }
+
+                return innerCalRes;
             }
-
-            let options = {
-                "template": tplMap[DNum]['tplObj'],
-                "inputParameters": inputParaArr,
-                "glFunction": innerCallFunction
-            };
-            let res = epd.calResultByRule(options)
-
-            let paraArr = Para.split(',');
-            for (let paraName of paraArr) {
-                innerCalRes[paraName] = res[paraName];
-            }
-
-            return innerCalRes;
         }
 
         initAllTmplate();
+        
     </script>
 
     <script type="text/javascript">
         // console.log(epdtool._parseGLParamter('V:20>P1,V:Yes>P2'));
         // console.log(FLOOR('3.78', 2));
+        // let a=null,b=null;
+        // console.log('ssss'+CSTR(a+b));
     </script>
 
 </body>

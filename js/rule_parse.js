@@ -55,16 +55,18 @@
  * ]
  * 
 */
-const epd = {
+let epd = {
     unionParaMap: {},
+
+    registerGlFunction: function(fun){
+        if (fun && Object.prototype.toString.call(fun) === '[object Function]') {
+            epdtool._outerFunction = fun;
+        }
+    }, 
 
     calResultByRule: function (options) {
         this._initParamtersFromTemplate(options["template"]);
         const logicUnits = this._initLogicUnitFromTemplate(options["template"]);
-
-        if (options['glFunction'] && Object.prototype.toString.call(options['glFunction']) === '[object Function]') {
-            epdtool._outerFunction = options['glFunction'];
-        }
 
         // 设置传入的初始化的值
         this._setInputsValue(options['inputParameters']);
@@ -125,18 +127,14 @@ const epd = {
             if (obj['Condition']) {
                 let conObj = obj['Condition'];
 
-                let paramArr = [];
-                let firstFlag = true;
+                let paramSet = new Set();
                 for (let innerObj of conObj) {
                     // 处理变量名和取值
                     let innerCondArr = innerObj['Conditions'];
                     let valueArr = [];
                     for (let singleCondObj of innerCondArr) {
                         // 按照结构，变量名称只赋值一次
-                        if (firstFlag) {
-                            paramArr.push(singleCondObj['Key']);
-                            firstFlag = false;
-                        }
+                        paramSet.add(singleCondObj['Key']);
                         valueArr.push(singleCondObj['Value']);
                     }
                     inMap['calUnit']['values'].push(valueArr);
@@ -149,7 +147,7 @@ const epd = {
                     }
                     inMap['calUnit']['formulas'].push(formulaArr);
                 }
-                inMap['calUnit']['params'] = paramArr;
+                inMap['calUnit']['params'] = [...paramSet];
 
             } else {
                 let dataObj = obj['Data'];
@@ -248,6 +246,10 @@ const epd = {
         const conValueArr2D = calUnit['values'];
         const formulaArr2D = calUnit['formulas'];
 
+        for (let name of nameArr) {
+            this._updateValue(name, 'NA');
+        }
+
         if (conParamArr.length == 0) {
             if (valuesFromGlFlag) {
                 let paramValueArr = eval(contextDeclareStr + formulaArr2D[0][0]);
@@ -288,7 +290,11 @@ const epd = {
 
     _checkCondition: function (name, conStr) {
         if (conStr === 'ELSE' || conStr === 'ANY') {
-            return true;
+            if(this.unionParaMap[name]['value']==='NA'){
+                return false;
+            }else{
+                return true;
+            }
 
         } else if (conStr === 'ALL') {
             if (this.unionParaMap[name] && this.unionParaMap[name]['from'] === 'input') {
@@ -322,7 +328,7 @@ const epd = {
     _combineParamters: function () {
         const resParamters = {};
         for (let name in this.unionParaMap) {
-            resParamters[this.unionParaMap[name]['name']] = this.unionParaMap[name]['value'];
+            resParamters[this.unionParaMap[name]['name']] = ISNA(this.unionParaMap[name]['value']) ? 'NA' : this.unionParaMap[name]['value'];
         }
         return resParamters;
     },
