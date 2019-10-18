@@ -106,8 +106,10 @@
 
                 // 进入入口进行计算
                 let options = {
+                    "name": "TEST",
                     "template": contentObj,
-                    "inputParameters": inputObj
+                    "inputParameters": inputObj,
+                    "initialFlag": true
                 };
                 let res = epd.calResultByRule(options)
                 $('#result_id').html(JSON.stringify(res, null, 4));
@@ -115,30 +117,31 @@
 
 
             // 声明回调函数
-            function innerCallFunction(DNum, Para, inputParaArr) {
-                let innerCalRes = {};
+            // function innerCallFunction(DNum, Para, inputParaArr) {
+            //     let innerCalRes = {};
 
-                // 存在循环调用问题,或没设置模板json
-                if (tplSet.has(DNum) || !tplMap[DNum] || !Para) {
-                    console.log("出现错误！存在循环调用，或是没有对应模板，或是表达式参数不正确！");
-                    return {};
-                } else {
-                    tplSet.add(DNum);
-                }
+            //     // 存在循环调用问题,或没设置模板json
+            //     if (tplSet.has(DNum) || !tplMap[DNum] || !Para) {
+            //         console.log("出现错误！存在循环调用，或是没有对应模板，或是表达式参数不正确！");
+            //         return {};
+            //     } else {
+            //         tplSet.add(DNum);
+            //     }
 
-                let options = {
-                    "template": tplMap[DNum]['tplObj'],
-                    "inputParameters": inputParaArr
-                };
-                let res = epd.calResultByRule(options)
+            //     let options = {
+            //         "template": tplMap[DNum]['tplObj'],
+            //         "inputParameters": inputParaArr
+            //     };
+            //     let res = epd.calResultByRule(options)
 
-                let paraArr = Para.split(',');
-                for (let paraName of paraArr) {
-                    innerCalRes[paraName] = res[paraName];
-                }
+            //     let paraArr = Para.split(',');
+            //     for (let paraName of paraArr) {
+            //         innerCalRes[paraName] = res[paraName];
+            //     }
 
-                return innerCalRes;
-            }
+            //     return innerCalRes;
+            // }
+
         }
 
         initAllTmplate();

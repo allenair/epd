@@ -152,10 +152,10 @@ const epdtool = {
         } else if (val.indexOf(',') > -1) {
             resMap['valType'] = 'D';
             let valArr = [];
-            for(let tmp of val.split(',')) {
+            for (let tmp of val.split(',')) {
                 if (ISLOGICAL(val)) {
                     valArr.push(this._realValue(tmp).toString());
-                }else{
+                } else {
                     valArr.push(tmp);
                 }
             }
@@ -165,7 +165,7 @@ const epdtool = {
             resMap['valType'] = 'O';
             if (ISLOGICAL(val)) {
                 resMap['valScope'] = this._realValue(valStr).toString();
-            }else{
+            } else {
                 resMap['valScope'] = val || '';
             }
         }
@@ -187,6 +187,12 @@ const epdtool = {
             let innerTmpArr, srcParamName, targetParamName;
 
             val = val.trim();
+
+            // 此处处理类似  p1,p2 的问题，目标处理为 p1>p1, p2>p2
+            if (val.indexOf('>') < 0) {
+                val = val + '>' + val;
+            }
+
             innerTmpArr = val.split('>');
             if (innerTmpArr.length !== 2) {
                 continue;
@@ -264,6 +270,10 @@ function GetValuesFromGL(DNum, Para, InputParalist) {
         resArr.push(innerCalMap[pName]);
     }
     return resArr;
+}
+
+function QueryTable(TNo, RNo, QCol) {
+    return epd._queryTableFunction(TNo, RNo, epdtool._parseGLParamter(QCol));
 }
 
 //======4.5=logic====================================================

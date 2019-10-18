@@ -6,6 +6,7 @@
  * 1、传入参数options结构：
  * 示例：
  *          options = {
+ *              "name": "DN1", // 模板名称
                 "template": templateJsonString,
                 "inputParameters": [   // target代表目标参数名，src代表所赋的值，还有一个type参数默认为空，如果为‘map’则代表此时src属性代表的是源参数名（target参数的值需要与此相同）
                     {"target": "Es_Angle", "src": "30"},
@@ -17,7 +18,7 @@
                     {"target": "Es_PIT_L", "src": "30"},
                     {"target": "System_lang", "src": "CN"},
                 ],
-                "glFunction": null
+                "initialFlag": false // 全部初始化，当作为程序入口时设置为true，循环进入的模板不用设置，保持为false
             };
  * 2、接口函数：calResultByRule，返回值为整合输入与输出参数的 name, value 对的json结构（结构类似inputParameters）
  * 3、主要结构：为方便计算，需要对模板进行精简处理，主要由参数（包含输入和输出）和逻辑两个内部结构支撑引擎的计算
@@ -53,10 +54,41 @@
  *      },
  *      ...
  * ]
+ * （3）XY表格存储，tableCalculateMap，此处数据是不可改变的，因此可以按照模板名称进行分割存储，eval调用时通过传入模板名称进行调用
+ * 示例：
+ * {
+ *      "TEST": {
+ *          "T1": {
+ *              "tbNum": "T1",
+ *              "conditionArray": [
+ *                  {
+ *                      "M_PRJ_TYPE": "fds", 
+ *                      "N301": "10",
+ *                      "RZZ043": "YES",
+ *                      "ZZ088": "(10,20]",
+ *                      "TB123": "YES",
+ *                      "TS30": "SDAF"
+ *                  },
+ *                  ...
+ *              ],
+ *              "resultArray": [
+ *                  {
+ *                      "R:1": 1, 
+ *                      "R:2": 2
+ *                  },
+ *                  ...
+ *              ]
+ *          },
+ * 
+ *          "T2": {},
+ *          ...
+ *      }
+ * }
  * 
 */
-let epd = {
+const epd = {
     unionParaMap: {},
+    tableCalculateMap: {},
 
     registerGlFunction: function (fun) {
         if (fun && Object.prototype.toString.call(fun) === '[object Function]') {
@@ -65,15 +97,43 @@ let epd = {
     },
 
     calResultByRule: function (options) {
+        const tplName = options['name'] || 'TEST';
+        if (options['initialFlag']) {
+            this.unionParaMap = {};
+            this.tableCalculateMap = {};
+        }
+
+        // 根据模板形成内部处理结构
         this._initParamtersFromTemplate(options["template"]);
+        this._initXYTableFromTemplate(options["template"], tplName);
         const logicUnits = this._initLogicUnitFromTemplate(options["template"]);
+
+        // 设置执行单元（支持循环）
+        const excuteCells = this._arrangeExcuteCell(logicUnits);
 
         // 设置传入的初始化的值
         this._setInputsValue(options['inputParameters']);
 
         // 进行实际计算
-        for (let logic of logicUnits) {
-            this._realCalResult(logic['name'], logic['calUnit']);
+        let logic;
+        for (let cell of excuteCells) {
+            // 数组长度大于1代表是循环
+            if (cell['step'].length > 1) {
+                let flag = true;
+                while (flag) {
+                    for (let index = 0; index < cell['step'].length; index++) {
+                        logic = logicUnits[cell['step'][index]];
+                        let res = this._realCalResult(logic['name'], logic['calUnit'], tplName);
+                        if (index == 0) {
+                            flag = res;
+                        }
+                    }
+                }
+
+            } else {
+                logic = logicUnits[cell['step'][0]];
+                this._realCalResult(logic['name'], logic['calUnit'], tplName);
+            }
         }
 
         return this._combineParamters();
@@ -109,6 +169,34 @@ let epd = {
                 this.unionParaMap[name] = inMap;
             }
         }
+    },
+
+    _initXYTableFromTemplate: function (tplObj, tplName) {
+        const xyObj = tplObj['CPARA_XYTable'];
+        const tableObj = {};
+        for (let obj of xyObj) {
+            let innerObj = {};
+            innerObj['tbNum'] = obj['TNo'];
+            innerObj['conditionArray'] = [];
+            innerObj['resultArray'] = [];
+
+            for (let conObj of obj['Condition']) {
+                let conCell = {};
+                for (let innerConObj of conObj['Conditions']) {
+                    conCell[innerConObj['Key']] = innerConObj['Value'];
+                }
+                innerObj['conditionArray'].push(conCell);
+
+                let resCell = {};
+                for (let innerResObj of conObj['Results']) {
+                    resCell[innerResObj['Key']] = innerResObj['Value'];
+                }
+                innerObj['resultArray'].push(resCell);
+            }
+
+            tableObj[innerObj['tbNum']] = innerObj;
+        }
+        this.tableCalculateMap[tplName] = tableObj;
     },
 
     _initLogicUnitFromTemplate: function (tplObj) {
@@ -167,6 +255,41 @@ let epd = {
         return logicUnits;
     },
 
+    // 依照执行单元编制执行顺序，目的是将同一个循环单元放置在一个cell中执行
+    _arrangeExcuteCell: function (logicUnits) {
+        const excuteCells = [];
+        let cell = {};
+
+        let loopFlag = false;
+        for (let index = 0; index < logicUnits.length; index++) {
+            let logic = logicUnits[index];
+
+            if (logic['name'] === '#DO WHILE') {
+                loopFlag = true;
+                cell = {
+                    'step': [index]
+                };
+
+            } else if (logic['name'] === '#LOOP') {
+                loopFlag = false;
+                excuteCells.push(cell);
+
+            } else {
+                if (loopFlag) {
+                    cell['step'].push(index);
+
+                } else {
+                    cell = {
+                        'step': [index]
+                    };
+                    excuteCells.push(cell);
+                }
+            }
+        }
+
+        return excuteCells;
+    },
+
     _setInputsValue: function (inputParameters) {
         let target, src, inputType, isNum;
         for (let obj of inputParameters) {
@@ -222,13 +345,19 @@ let epd = {
         return false;
     },
 
-    _realCalResult: function (name, calUnit) {
+    _realCalResult: function (name, calUnit, tplName) {
+        let excuteFlag = true;
+
+        // 标记是否是循环 #DO WHILE 方法
+        let loopFlag = false;
+
         // 标记是否是GetValuesFromGL方法
         let valuesFromGlFlag = false;
 
         let nameArr = [];
-        if (name === '#DO' || name === '#LOOP') {
-            // do somethings.......
+        if (name === '#DO WHILE') {
+            loopFlag = true;
+            nameArr.push(name);
 
         } else if (name.startsWith('#')) {
             valuesFromGlFlag = true;
@@ -241,7 +370,7 @@ let epd = {
             nameArr.push(name);
         }
 
-        const contextDeclareStr = this._getDeclareParamterStr();
+        const contextDeclareStr = this._getDeclareParamterStr() + " var tplName='" + tplName + "'; ";
         const conParamArr = calUnit['params'];
         const conValueArr2D = calUnit['values'];
         const formulaArr2D = calUnit['formulas'];
@@ -263,6 +392,9 @@ let epd = {
                 for (let nindex in nameArr) {
                     nindex = parseInt(nindex);
                     let paramValue = eval(contextDeclareStr + formulaArr2D[0][nindex]);
+                    if (loopFlag) {
+                        return epdtool._realValue(paramValue);
+                    }
                     this._updateValue(nameArr[nindex], paramValue);
                 }
             }
@@ -282,12 +414,17 @@ let epd = {
                     for (let nindex in nameArr) {
                         nindex = parseInt(nindex);
                         let paramValue = eval(contextDeclareStr + formulaArr2D[vindex][nindex]);
+                        if (loopFlag) {
+                            return epdtool._realValue(paramValue);
+                        }
                         this._updateValue(nameArr[nindex], paramValue);
                     }
                     break;
                 }
             }
         }
+
+        return excuteFlag;
     },
 
     _checkCondition: function (name, conStr) {
@@ -326,7 +463,7 @@ let epd = {
             } else {
                 valStr = " = '" + this.unionParaMap[name]['value'] + "'";
             }
-            paramArr.push("let " + this.unionParaMap[name]['name'] + valStr);
+            paramArr.push("var " + this.unionParaMap[name]['name'] + valStr);
         }
 
         return paramArr.join('; ') + '; ';
@@ -339,4 +476,12 @@ let epd = {
         }
         return resParamters;
     },
+
+    _queryTableFunction: function (TNo, RNo, inputParaArr) {
+        let tableObj = this.tableCalculateMap[tplName];
+        console.log("_queryTableFunction > tplName: "+tplName);
+        console.log(tableObj);
+
+
+    }
 };

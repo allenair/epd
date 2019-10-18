@@ -111,8 +111,10 @@
 
                 // 进入入口进行计算
                 let options = {
+                    "name": tlpId,
                     "template": tplMap[tlpId]['tplObj'],
-                    "inputParameters": inputObj
+                    "inputParameters": inputObj,
+                    "initialFlag": true
                 };
                 let res = epd.calResultByRule(options)
                 $('#result_id').html(JSON.stringify(res, null, 4));
@@ -132,6 +134,7 @@
                 }
 
                 let options = {
+                    "name": DNum,
                     "template": tplMap[DNum]['tplObj'],
                     "inputParameters": inputParaArr
                 };
