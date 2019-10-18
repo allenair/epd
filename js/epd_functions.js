@@ -254,6 +254,7 @@ const epdtool = {
     }
 };
 
+//======内部函数，依赖epd全局tableCalculateMap变量====================================================
 // 此函数中只能使用eval中动态声明的变量，包括当前环境的输入输出参数，和模板名称
 function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
     let tableObj = epd.tableCalculateMap[tplName];
