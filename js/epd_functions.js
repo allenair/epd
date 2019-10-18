@@ -38,7 +38,7 @@ const epdtool = {
 
     // 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断
     _checkParam: function (val, scopeStr) {
-        if (!val || val==='NA') {
+        if (!val || val === 'NA') {
             return false;
         }
 
@@ -151,11 +151,23 @@ const epdtool = {
 
         } else if (val.indexOf(',') > -1) {
             resMap['valType'] = 'D';
-            resMap['valScope'] = val.split(',');
+            let valArr = [];
+            for(let tmp of val.split(',')) {
+                if (ISLOGICAL(val)) {
+                    valArr.push(this._realValue(tmp).toString());
+                }else{
+                    valArr.push(tmp);
+                }
+            }
+            resMap['valScope'] = valArr;
 
         } else {
             resMap['valType'] = 'O';
-            resMap['valScope'] = val || '';
+            if (ISLOGICAL(val)) {
+                resMap['valScope'] = this._realValue(valStr).toString();
+            }else{
+                resMap['valScope'] = val || '';
+            }
         }
 
         return resMap;
@@ -220,6 +232,18 @@ const epdtool = {
             } else {
                 return valStr;
             }
+        }
+    },
+
+    // 处理公式问题，例如字符串拼接 & 需要修改为JS支持的 +，YES、NO转化为JS的true、false
+    _dealFormularStr: function (valStr) {
+        if (valStr == null || valStr == undefined) {
+            return '';
+        } else if (ISLOGICAL(valStr)) {
+            return this._realValue(valStr);
+
+        } else {
+            return valStr.replace(/&/g, '+');
         }
     }
 

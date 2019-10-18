@@ -143,11 +143,7 @@ let epd = {
                     let innerResultArr = innerObj['Results'];
                     let formulaArr = [];
                     for (let singleResObj of innerResultArr) {
-                        let tmpStr = singleResObj['Value'];
-                        if (tmpStr) {
-                            tmpStr = tmpStr.replace(/&/g, '+');
-                        }
-                        formulaArr.push(tmpStr);
+                        formulaArr.push(epdtool._dealFormularStr(singleResObj['Value']));
                     }
                     inMap['calUnit']['formulas'].push(formulaArr);
                 }
@@ -160,11 +156,7 @@ let epd = {
                     if (key === 'ID') {
                         continue;
                     }
-                    let tmpStr = dataObj[key];
-                    if (tmpStr) {
-                        tmpStr = tmpStr.replace(/&/g, '+');
-                    }
-                    formulaArr.push(tmpStr);
+                    formulaArr.push(epdtool._dealFormularStr(dataObj[key]));
                 }
                 inMap['calUnit']['formulas'].push(formulaArr);
             }
@@ -258,6 +250,7 @@ let epd = {
             this._updateValue(name, 'NA');
         }
 
+        // 没有条件直接根据公式计算结果
         if (conParamArr.length == 0) {
             if (valuesFromGlFlag) {
                 let paramValueArr = eval(contextDeclareStr + formulaArr2D[0][0]);
@@ -273,7 +266,8 @@ let epd = {
                     this._updateValue(nameArr[nindex], paramValue);
                 }
             }
-        } else {
+
+        } else { // 根据变量以及条件计算值
             for (let vindex in conValueArr2D) {
                 let flag = false;
                 for (let pindex in conParamArr) {
