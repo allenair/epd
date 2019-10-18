@@ -252,8 +252,23 @@ const epdtool = {
             return valStr.replace(/&/g, '+');
         }
     }
-
 };
+
+// 此函数中只能使用eval中动态声明的变量，包括当前环境的输入输出参数，和模板名称
+function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
+    let tableObj = epd.tableCalculateMap[tplName];
+    console.log("_queryTableFunction > tplName: " + tplName);
+    console.log(tableObj);
+
+    // 没有参数使用条件结果表格获取值（excel中有灰色）
+    if (inputParaArr.length == 0) {
+
+
+    } else {
+
+    }
+
+}
 
 //======4.2=get-info====================================================
 function GetValueFromGL(DNum, Para, InputParalist) {
@@ -273,7 +288,11 @@ function GetValuesFromGL(DNum, Para, InputParalist) {
 }
 
 function QueryTable(TNo, RNo, QCol) {
-    return epd._queryTableFunction(TNo, RNo, epdtool._parseGLParamter(QCol));
+    return _queryTableFunction(TNo, RNo, epdtool._parseGLParamter(QCol), false);
+}
+
+function QueryTable3D(TNo, RNo, QCol) {
+    return _queryTableFunction(TNo, RNo, epdtool._parseGLParamter(QCol), true);
 }
 
 //======4.5=logic====================================================

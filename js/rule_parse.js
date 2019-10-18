@@ -475,20 +475,5 @@ const epd = {
             resParamters[this.unionParaMap[name]['name']] = ISNA(this.unionParaMap[name]['value']) ? 'NA' : this.unionParaMap[name]['value'];
         }
         return resParamters;
-    },
-
-    _queryTableFunction: function (TNo, RNo, inputParaArr) {
-        let tableObj = this.tableCalculateMap[tplName];
-        console.log("_queryTableFunction > tplName: "+tplName);
-        console.log(tableObj);
-
-        // 没有参数使用条件结果表格获取值（excel中有灰色）
-        if(inputParaArr.length==0){
-            
-
-        }else{ 
-
-        }
-
     }
 };
