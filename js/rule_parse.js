@@ -1,7 +1,5 @@
 "use strict";
 
-// 目前（2019-10）的计算还没有实现3D变量，结构已经支持，明确计算方式后，需要修改_realCalResult函数
-
 /** 
  * 1、传入参数options结构：
  * 示例：
@@ -108,7 +106,7 @@ const epd = {
         this._initXYTableFromTemplate(options["template"], tplName);
         const logicUnits = this._initLogicUnitFromTemplate(options["template"]);
 
-        // 设置执行单元（支持循环）
+        // 设置执行单元（支持循环）,思想是将逻辑单元依照循环情况组织，如果没有循环则一个单元就为一个包，在一个循环体内的单元组成一个包
         const excuteCells = this._arrangeExcuteCell(logicUnits);
 
         // 设置传入的初始化的值
@@ -147,9 +145,9 @@ const epd = {
                 let inMap = {};
                 inMap['name'] = name;
                 inMap['scope'] = obj['ValueList'] || '';
-                inMap['type'] = 'S';
+                inMap['dataType'] = epdtool._paramType(obj['Data']['Type']);
                 inMap['value'] = '';
-                inMap['isNum'] = false;
+                // inMap['isNum'] = false;
                 inMap['from'] = 'input';
                 this.unionParaMap[name] = inMap;
             }
@@ -162,9 +160,9 @@ const epd = {
                 let inMap = {};
                 inMap['name'] = name;
                 inMap['scope'] = obj['ValueList'] || '';
-                inMap['type'] = 'S';
+                inMap['dataType'] = epdtool._paramType(obj['Data']['Type']);
                 inMap['value'] = 'NA'
-                inMap['isNum'] = false;
+                // inMap['isNum'] = false;
                 inMap['from'] = 'output';
                 this.unionParaMap[name] = inMap;
             }
@@ -205,6 +203,11 @@ const epd = {
 
         for (let obj of logicObj) {
             let inMap = {};
+            // 双斜线开头的名字，代表本单元已经被注释，后续不需要执行
+            if (obj['PropertyName'] && obj['PropertyName'].startsWith('//')) {
+                continue;
+            }
+
             inMap['name'] = obj['PropertyName'];
             inMap['calUnit'] = {
                 'params': [],
@@ -291,54 +294,34 @@ const epd = {
     },
 
     _setInputsValue: function (inputParameters) {
-        let target, src, inputType, isNum;
+        let target, src;
         for (let obj of inputParameters) {
             target = obj['target'];
-            src = epdtool._realValue(obj['src']);
-            isNum = false;
+            src = obj['src'];
 
             if (!this.unionParaMap[target]) {
                 this.unionParaMap[target] = {};
                 this.unionParaMap[target]['name'] = target;
                 this.unionParaMap[target]['scope'] = '';
+                this.unionParaMap[target]['dataType'] = 'S';
                 this.unionParaMap[target]['from'] = 'input';
             }
 
             // 此时是需要使用src代表的参数的值给target参数赋值
             if (obj['type'] && obj['type'] === 'map') {
                 this.unionParaMap[target]['value'] = this.unionParaMap[src]['value'];
-                this.unionParaMap[target]['type'] = this.unionParaMap[src]['type'];
-                this.unionParaMap[target]['isNum'] = this.unionParaMap[src]['isNum'];
+                this.unionParaMap[target]['dataType'] = this.unionParaMap[src]['dataType'];
 
             } else {
-                let inputVal = src;
-                if (inputVal.toString().indexOf(',') > -1) {
-                    inputType = 'M';
-                    if (ISNUMBER(inputVal.split(',')[0])) {
-                        isNum = true;
-                    }
-                } else {
-                    inputType = 'S';
-                    if (ISNUMBER(inputVal)) {
-                        isNum = true;
-                    }
-                }
+                let inputVal = epdtool._realValue(src, this.unionParaMap[target]['dataType']);
                 this.unionParaMap[target]['value'] = inputVal;
-                this.unionParaMap[target]['type'] = inputType;
-                this.unionParaMap[target]['isNum'] = isNum;
             }
         }
     },
 
     _updateValue: function (name, value) {
-        let isNum = false;
-        value = epdtool._realValue(value);
-        if (ISNUMBER(value)) {
-            isNum = true;
-        }
         if (this.unionParaMap[name]) {
-            this.unionParaMap[name]['value'] = value;
-            this.unionParaMap[name]['isNum'] = isNum;
+            this.unionParaMap[name]['value'] = epdtool._realValue(value, this.unionParaMap[name]['dataType']);
             return true;
         }
 
@@ -346,8 +329,6 @@ const epd = {
     },
 
     _realCalResult: function (name, calUnit, tplName) {
-        let excuteFlag = true;
-
         // 标记是否是循环 #DO WHILE 方法
         let loopFlag = false;
 
@@ -370,7 +351,7 @@ const epd = {
             nameArr.push(name);
         }
 
-        const contextDeclareStr = this._getDeclareParamterStr() + " var tplName='" + tplName + "'; ";
+        const contextDeclareStr = this._getDeclareParamterStr() + " var tableObj=" + JSON.stringify(this.tableCalculateMap[tplName]) + "; ";
         const conParamArr = calUnit['params'];
         const conValueArr2D = calUnit['values'];
         const formulaArr2D = calUnit['formulas'];
@@ -393,7 +374,7 @@ const epd = {
                     nindex = parseInt(nindex);
                     let paramValue = eval(contextDeclareStr + formulaArr2D[0][nindex]);
                     if (loopFlag) {
-                        return epdtool._realValue(paramValue);
+                        return epdtool._realValue(paramValue, 'B');
                     }
                     this._updateValue(nameArr[nindex], paramValue);
                 }
@@ -415,7 +396,7 @@ const epd = {
                         nindex = parseInt(nindex);
                         let paramValue = eval(contextDeclareStr + formulaArr2D[vindex][nindex]);
                         if (loopFlag) {
-                            return epdtool._realValue(paramValue);
+                            return epdtool._realValue(paramValue, 'B');
                         }
                         this._updateValue(nameArr[nindex], paramValue);
                     }
@@ -424,7 +405,7 @@ const epd = {
             }
         }
 
-        return excuteFlag;
+        return '';
     },
 
     _checkCondition: function (name, conStr) {

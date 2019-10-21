@@ -7,6 +7,88 @@ const epdtool = {
         return '';
     },
 
+    // 此函数中只能使用eval中动态声明的变量，包括当前环境的所有输入输出参数，和模板对应的table对象
+    _queryTableFunction: function (TNo, RNo, inputParaArr, is3DFlag) {
+        console.log(tableObj);
+        let queryRsultArr = [];
+
+        let innerTableObj = tableObj[TNo];
+        let conArr = innerTableObj['conditionArray'];
+        let resArr = innerTableObj['resultArray'];
+
+        let conParamObj = {};
+        if (conArr.length > 0) {
+            for (let pname in conArr[0]) {
+                conParamObj[pname] = eval(pname);
+            }
+        }
+
+        let flag = false;
+        // 没有参数使用条件结果表格获取值（excel中有灰色）
+        if (inputParaArr.length == 0) {
+            for (let pindex in conArr) {
+                flag = true;
+                pindex = Number.parseInt(pindex);
+                for (let pname in conArr[pindex]) {
+                    let realVal = conParamObj[pname];
+                    let scopeVal = conArr[pindex][pname];
+                    if (scopeVal.startsWith('@')) {
+                        scopeVal = eval(scopeVal.substring(1));
+                    }
+
+                    flag = this._checkParam(realVal, scopeVal);
+                    if (!flag) {
+                        break;
+                    }
+                }
+
+                if (flag) {
+                    if (is3DFlag) {
+                        queryRsultArr.push(resArr[pindex][RNo]);
+                    } else {
+                        return resArr[pindex][RNo];
+                    }
+                }
+            }
+
+        } else {
+            for (let conObj of conArr) {
+                flag = true;
+                for (let inputObj of inputParaArr) {
+                    let pname = inputObj['target'];
+                    let realVal = inputObj['src'];
+                    if (inputObj['type'] && inputObj['type'] === 'map') {
+                        realVal = eval(realVal);
+                    }
+
+                    let scopeVal = conObj[pname];
+                    if (scopeVal && scopeVal.startsWith('@')) {
+                        scopeVal = eval(scopeVal.substring(1));
+                    }
+
+                    flag = this._checkParam(realVal, scopeVal);
+                    if (!flag) {
+                        break;
+                    }
+                }
+
+                if (flag) {
+                    if (is3DFlag) {
+                        queryRsultArr.push(conObj[RNo]);
+                    } else {
+                        return conObj[RNo];
+                    }
+                }
+
+            }
+        }
+
+        if (is3DFlag) {
+            return queryRsultArr;
+        }
+        return NaN;
+    },
+
     _isString: function (str) {
         return (typeof str == 'string') && str.constructor == String;
     },
@@ -20,6 +102,34 @@ const epdtool = {
             return true;
         }
         return false;
+    },
+
+    // 根据模板指定，标定参数的所属类型，对照关系是：
+    // Text --> S   Number --> N   Yes/No --> B
+    // 3DText --> 3DS   3DNumber --> 3DN  3DYes/No --> 3DB
+    _paramType: function (typeName) {
+        if (!typeName) {
+            return 'S';
+        }
+        if (typeName.toUpperCase() === 'TEXT') {
+            return 'S';
+        }
+        if (typeName.toUpperCase() === 'NUMBER') {
+            return 'N';
+        }
+        if (typeName.toUpperCase() === 'YES/NO') {
+            return 'B';
+        }
+        if (typeName.toUpperCase() === '3DTEXT') {
+            return '3DS';
+        }
+        if (typeName.toUpperCase() === '3DNUMBER') {
+            return '3DN';
+        }
+        if (typeName.toUpperCase() === '3DYES/NO') {
+            return '3DB';
+        }
+        return 'S';
     },
 
     // 计算小数位数，目的是解决准确计算问题，一般需要将浮点转换为整数计算，例如1.5, 0.15, 0.00015这三个数都需要转换为15，
@@ -154,7 +264,7 @@ const epdtool = {
             let valArr = [];
             for (let tmp of val.split(',')) {
                 if (ISLOGICAL(val)) {
-                    valArr.push(this._realValue(tmp).toString());
+                    valArr.push(this._realValue(tmp, 'B').toString());
                 } else {
                     valArr.push(tmp);
                 }
@@ -164,7 +274,7 @@ const epdtool = {
         } else {
             resMap['valType'] = 'O';
             if (ISLOGICAL(val)) {
-                resMap['valScope'] = this._realValue(valStr).toString();
+                resMap['valScope'] = this._realValue(valStr, 'B').toString();
             } else {
                 resMap['valScope'] = val || '';
             }
@@ -217,28 +327,50 @@ const epdtool = {
     },
 
     // 依据传入的字符串得到真正的数值
-    _realValue: function (valStr) {
-        if (valStr == null || valStr == undefined) {
+    _realValue: function (valStr, dataType) {
+        if (valStr == null || valStr == undefined || valStr.toString() === "NaN") {
             return 'NA';
+        }
 
-        } else if (valStr.toString() === "NaN") {
-            return 'NA';
-
-        } else if (ISLOGICAL(valStr)) {
-            if (valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE') {
-                return true;
-            } else {
-                return false;
+        if (dataType || dataType.startsWith('3D')) {
+            let valArr = valStr.split(',');
+            let resArr = [];
+            for (let val of valArr) {
+                if (dataType === '3DB') {
+                    resArr.push(this._realValue(val, 'B'));
+                } else if (dataType === '3DN') {
+                    resArr.push(this._realValue(val, 'N'));
+                } else {
+                    resArr.push(this._realValue(val, 'S'));
+                }
             }
-        } else {
-            if (ISNUMBER(valStr)) {
+            return resArr;
+
+        } else if (dataType) {
+            if (dataType === 'B') {
+                return valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE';
+            }
+            if (dataType === 'N') {
                 return parseFloat(valStr);
-            } else if (!valStr) {
-                return '';
+            }
+            return valStr;
+
+        } else {
+            if (ISLOGICAL(valStr)) {
+                return valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE';
+
             } else {
-                return valStr;
+                if (ISNUMBER(valStr)) {
+                    return parseFloat(valStr);
+                } else if (!valStr) {
+                    return '';
+                } else {
+                    return valStr;
+                }
             }
         }
+
+
     },
 
     // 处理公式问题，例如字符串拼接 & 需要修改为JS支持的 +，YES、NO转化为JS的true、false
@@ -246,30 +378,13 @@ const epdtool = {
         if (valStr == null || valStr == undefined) {
             return '';
         } else if (ISLOGICAL(valStr)) {
-            return this._realValue(valStr);
+            return this._realValue(valStr, 'B');
 
         } else {
             return valStr.replace(/&/g, '+');
         }
     }
 };
-
-//======内部函数，依赖epd全局tableCalculateMap变量====================================================
-// 此函数中只能使用eval中动态声明的变量，包括当前环境的输入输出参数，和模板名称
-function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
-    let tableObj = epd.tableCalculateMap[tplName];
-    console.log("_queryTableFunction > tplName: " + tplName);
-    console.log(tableObj);
-
-    // 没有参数使用条件结果表格获取值（excel中有灰色）
-    if (inputParaArr.length == 0) {
-
-
-    } else {
-
-    }
-
-}
 
 //======4.2=get-info====================================================
 function GetValueFromGL(DNum, Para, InputParalist) {
@@ -289,11 +404,32 @@ function GetValuesFromGL(DNum, Para, InputParalist) {
 }
 
 function QueryTable(TNo, RNo, QCol) {
-    return _queryTableFunction(TNo, RNo, epdtool._parseGLParamter(QCol), false);
+    return epdtool._queryTableFunction(TNo, RNo, epdtool._parseGLParamter(QCol), false);
 }
 
 function QueryTable3D(TNo, RNo, QCol) {
-    return _queryTableFunction(TNo, RNo, epdtool._parseGLParamter(QCol), true);
+    return epdtool._queryTableFunction(TNo, RNo, epdtool._parseGLParamter(QCol), true);
+}
+
+//======4.3=Array====================================================
+function ConvertTo3D(...values) {
+    let resArr = [];
+    for (let val of values) {
+        if (ISNUMBER(val)) {
+            resArr.push(parseFloat(val));
+
+        } else if (ISLOGICAL(val)) {
+            if (val.toUpperCase() == 'YES' || val.toUpperCase() == 'TRUE') {
+                resArr.push(true);
+            } else {
+                resArr.push(false);
+            }
+
+        } else {
+            resArr.push(val);
+        }
+    }
+    return resArr;
 }
 
 //======4.5=logic====================================================
