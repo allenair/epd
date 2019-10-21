@@ -332,16 +332,21 @@ const epdtool = {
             return 'NA';
         }
 
-        if (dataType || dataType.startsWith('3D')) {
+        if (dataType && dataType.startsWith('3D')) {
+            // 如果传入的就是数组，则说明是已经完成处理，可直接返回
+            if (valStr.length > 1) {
+                return valStr;
+            }
+
             let valArr = valStr.split(',');
             let resArr = [];
             for (let val of valArr) {
                 if (dataType === '3DB') {
-                    resArr.push(this._realValue(val, 'B'));
+                    resArr.push(val.toUpperCase() === 'YES' || val.toUpperCase() === 'TRUE');
                 } else if (dataType === '3DN') {
-                    resArr.push(this._realValue(val, 'N'));
+                    resArr.push(parseFloat(val));
                 } else {
-                    resArr.push(this._realValue(val, 'S'));
+                    resArr.push(val);
                 }
             }
             return resArr;

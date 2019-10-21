@@ -381,26 +381,56 @@ const epd = {
             }
 
         } else { // 根据变量以及条件计算值
-            for (let vindex in conValueArr2D) {
-                let flag = false;
-                for (let pindex in conParamArr) {
-                    pindex = parseInt(pindex);
-                    flag = this._checkCondition(conParamArr[pindex], conValueArr2D[vindex][pindex]);
-                    if (!flag) {
+            let maxLen = this._max3dConditionCount(conParamArr);
+            if (maxLen == 1) {
+                for (let vindex in conValueArr2D) {
+                    let flag = false;
+                    for (let pindex in conParamArr) {
+                        pindex = parseInt(pindex);
+                        flag = this._checkCondition(conParamArr[pindex], conValueArr2D[vindex][pindex], null);
+                        if (!flag) {
+                            break;
+                        }
+                    }
+
+                    if (flag) {
+                        for (let nindex in nameArr) {
+                            nindex = parseInt(nindex);
+                            let paramValue = eval(contextDeclareStr + formulaArr2D[vindex][nindex]);
+                            if (loopFlag) {
+                                return epdtool._realValue(paramValue, 'B');
+                            }
+                            this._updateValue(nameArr[nindex], paramValue);
+                        }
                         break;
                     }
                 }
 
-                if (flag) {
-                    for (let nindex in nameArr) {
-                        nindex = parseInt(nindex);
-                        let paramValue = eval(contextDeclareStr + formulaArr2D[vindex][nindex]);
-                        if (loopFlag) {
-                            return epdtool._realValue(paramValue, 'B');
+            } else { // 如果是3D变量判断, 此时不应该存在多重赋值（有逻辑矛盾）
+                let valArr = [];
+                let flag = false;
+                for (let pos = 1; pos <= maxLen; pos++) {
+                    flag = false;
+                    for (let vindex in conValueArr2D) {
+                        flag = false;
+                        for (let pindex in conParamArr) {
+                            pindex = parseInt(pindex);
+                            flag = this._checkCondition(conParamArr[pindex], conValueArr2D[vindex][pindex], pos);
+                            if (!flag) {
+                                break;
+                            }
                         }
-                        this._updateValue(nameArr[nindex], paramValue);
+
+                        if (flag) {
+                            let paramValue = eval(contextDeclareStr + formulaArr2D[vindex][0]);
+                            valArr.push(paramValue);
+                            break;
+                        }
                     }
-                    break;
+
+                    if(!flag){
+                        valArr.push(undefined);
+                    }
                 }
             }
         }
@@ -408,9 +438,24 @@ const epd = {
         return '';
     },
 
-    _checkCondition: function (name, conStr) {
+    _max3dConditionCount: function (conParamArr) {
+        let maxCount = 1;
+        for (let pname of conParamArr) {
+            if (this.unionParaMap[pname]['dataType'].startsWith('3D')) {
+                maxCount = Math.max(maxCount, this.unionParaMap[name]['value'].length);
+            }
+        }
+        return maxCount;
+    },
+
+    _checkCondition: function (name, conStr, pos) {
+        let realVal = this.unionParaMap[name]['value'];
+        if (pos) {
+            realVal = realVal[pos - 1];
+        }
+
         if (conStr === 'ELSE' || conStr === 'ANY') {
-            if (this.unionParaMap[name]['value'] === 'NA') {
+            if (realVal === 'NA') {
                 return false;
             } else {
                 return true;
@@ -418,16 +463,16 @@ const epd = {
 
         } else if (conStr === 'ALL') {
             if (this.unionParaMap[name] && this.unionParaMap[name]['from'] === 'input') {
-                return epdtool._checkParam(this.unionParaMap[name]['value'], this.unionParaMap[name]['scope']);
+                return epdtool._checkParam(realVal, this.unionParaMap[name]['scope']);
             }
 
         } else if (conStr.startsWith('@')) {
             let paraName = conStr.substring(1);
-            return epdtool._checkParam(this.unionParaMap[name]['value'], this.unionParaMap[paraName]['value']);
+            return epdtool._checkParam(realVal, this.unionParaMap[paraName]['value']);
 
         } else {
             if (this.unionParaMap[name]) {
-                return epdtool._checkParam(this.unionParaMap[name]['value'], conStr);
+                return epdtool._checkParam(realVal, conStr);
             }
         }
 
