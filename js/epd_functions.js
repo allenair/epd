@@ -388,8 +388,52 @@ const epdtool = {
         } else {
             return valStr.replace(/&/g, '+');
         }
+    },
+
+    _extractParamArr: function (formularExpress) {
+        if (!formularExpress) {
+            return [];
+        }
+
+        let resArr = new Set();
+
+        // 此处正则表达式存在奇怪的问题，replace(/[()*+-\/,&]/g, " ")执行正确 但  replace(/[()+-*\/,&]/g, " ")错误
+        let specialChars = new Set(['(', ')', '+', '-', '*', '/', '&', ',']);
+        let charArr = [];
+        for (let c of formularExpress) {
+            if (specialChars.has(c)) {
+                charArr.push(' ');
+            } else {
+                charArr.push(c);
+            }
+        }
+
+        let innerFunctionNames = new Set(['GetValueFromGL', 'GetValuesFromGL', 'QueryTable', 'QueryTable3D', 'ConvertTo3D', 'CTo3D', 'E_AND', 'E_OR', 'E_NOT', 'E_IF', 'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'SIN', 'TAN', 'PI', 'DEGREES', 'RADIANS', 'ROUND', 'ROUNDUP', 'ROUNDDOWN', 'INT', 'LN', 'LOG', 'MAX', 'MIN', 'POWER', 'SQRT', 'EMOD', 'CEILING', 'FLOOR', 'ISNUMBER', 'ISLOGICAL', 'ISTEXT', 'ISNA', 'CSTR', 'CNUM', 'CBOOL']);
+        let expressArr = charArr.join('').split(' ');
+        for (let word of expressArr) {
+            // 空字符串
+            if (word.length == 0) {
+                continue;
+            }
+            // 原生字符串，被引号圈定
+            if (word.charAt(0) === '"' || word.charAt(0) === "'") {
+                continue;
+            }
+            // 数字
+            if (!isNaN(word)) {
+                continue;
+            }
+            // 内部函数名
+            if (innerFunctionNames.has(word)) {
+                continue;
+            }
+            resArr.add(word);
+        }
+        return [...resArr];
     }
 };
+
+
 
 //======4.2=get-info====================================================
 function GetValueFromGL(DNum, Para, InputParalist) {
@@ -435,6 +479,23 @@ function ConvertTo3D(...values) {
         }
     }
     return resArr;
+}
+
+function CTo3D(valArr, separator) {
+    if (separator == undefined || ISNUMBER(val)) {
+        return [];
+    }
+
+    let charArr = [];
+    for (let c of valArr) {
+        if (separator === c) {
+            charArr.push(' ');
+        } else {
+            charArr.push(c);
+        }
+    }
+
+    return charArr.join('').split(' ');
 }
 
 //======4.5=logic====================================================

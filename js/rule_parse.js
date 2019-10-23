@@ -406,8 +406,8 @@ const epd = {
                     }
                 }
 
-            } else { // 如果是3D变量判断, 此时不应该存在多重赋值（有逻辑矛盾）
-                let valArr = [];
+            } else { // 是否3D变量判断
+                let valArr = {};
                 let flag = false;
                 for (let pos = 1; pos <= maxLen; pos++) {
                     flag = false;
@@ -422,14 +422,27 @@ const epd = {
                         }
 
                         if (flag) {
-                            let paramValue = eval(contextDeclareStr + formulaArr2D[vindex][0]);
-                            valArr.push(paramValue);
+                            for (let nindex in nameArr) {
+                                nindex = parseInt(nindex);
+
+                                if(!valArr[nameArr[nindex]]) {
+                                    valArr[nameArr[nindex]] = [];
+                                }
+                                let paramValue = eval(contextDeclareStr + formulaArr2D[vindex][nindex]);
+                                valArr[nameArr[nindex]].push(paramValue);
+                            }
                             break;
                         }
                     }
 
                     if(!flag){
-                        valArr.push(undefined);
+                        break;
+                    }
+                }
+
+                if(flag){
+                    for (let pname of nameArr) {
+                        this._updateValue(pname, valArr[pname]);
                     }
                 }
             }
@@ -448,6 +461,7 @@ const epd = {
         return maxCount;
     },
 
+    // 传入的pos是应对3D型变量（数组）的比较，值是位置（数组下标+1，例如位置1代表下标0）
     _checkCondition: function (name, conStr, pos) {
         let realVal = this.unionParaMap[name]['value'];
         if (pos) {
