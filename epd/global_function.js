@@ -19,7 +19,7 @@ function _isString(str) {
     return (typeof str == 'string') && str.constructor == String;
 }
 
-// 解析模板中的变量，并生成内部对象返回
+/* 解析模板中的变量，并生成内部对象返回 */
 function _parseTemplateParamters(tplObj) {
     let resObj = {};
 
@@ -48,7 +48,7 @@ function _parseTemplateParamters(tplObj) {
     return resObj;
 }
 
-// 解析模板中的XY表，并生成内部对象返回
+/* 解析模板中的XY表，并生成内部对象返回 */
 function _parseTemplateXYTable(tplObj) {
     let resObj = {};
 
@@ -80,7 +80,7 @@ function _parseTemplateXYTable(tplObj) {
     return resObj;
 }
 
-// 解析模板中的判断逻辑，并生成内部对象返回
+/* 解析模板中的判断逻辑，并生成内部对象返回 */
 function _parseTemplateLogicUnit(tplObj) {
     let resArr = [];
     const logicObj = tplObj['CPARA_FormulaLinkup'];
@@ -143,8 +143,9 @@ function _parseTemplateLogicUnit(tplObj) {
     return resArr;
 }
 
-// 依照模板的执行单元循环情况，编制执行顺序，目的是将同一个循环单元放置在一个cell中执行，同一个执行单元所需执行的步骤存储在step中，
-// 内容是模板执行单元的数组序号
+/* 依照模板的执行单元循环情况，编制执行顺序，目的是将同一个循环单元放置在一个cell中执行，同一个执行单元所需执行的步骤存储在step中，
+ *  内容是模板执行单元的数组序号
+ */
 function _arrangeTemplateLogicOrder(logicUnits) {
     const excuteCells = [];
     let cell = {};
@@ -179,7 +180,7 @@ function _arrangeTemplateLogicOrder(logicUnits) {
     return excuteCells;
 }
 
-// 解析GetValueFromGL的第三个特殊参数格式
+/* 解析GetValueFromGL的第三个特殊参数格式 */
 function _parseGLParamter(paramStr) {
     if (!paramStr) {
         return [];
@@ -220,9 +221,11 @@ function _parseGLParamter(paramStr) {
     return resArr;
 }
 
-// 根据模板指定，标定参数的所属类型，对照关系是：
-// Text --> S   Number --> N   Yes/No --> B
-// 3DText --> 3DS   3DNumber --> 3DN  3DYes/No --> 3DB
+/*
+ * 根据模板指定，标定参数的所属类型，对照关系是：
+ * Text --> S   Number --> N   Yes/No --> B
+ * 3DText --> 3DS   3DNumber --> 3DN  3DYes/No --> 3DB
+ */
 function _paramType(typeName) {
     if (!typeName) {
         return 'S';
@@ -248,8 +251,10 @@ function _paramType(typeName) {
     return 'S';
 }
 
-// 计算小数位数，目的是解决准确计算问题，一般需要将浮点转换为整数计算，例如1.5, 0.15, 0.00015这三个数都需要转换为15，
-// 此函数就是得到转换到15，三个数都需要乘以几个10（10的幂数），以便与其同时计算的其他数字扩大相同倍数
+/*
+ * 计算小数位数，目的是解决准确计算问题，一般需要将浮点转换为整数计算，例如1.5, 0.15, 0.00015这三个数都需要转换为15，
+ * 此函数就是得到转换到15，三个数都需要乘以几个10（10的幂数），以便与其同时计算的其他数字扩大相同倍数
+ */
 function _calFloatDigitsCount(val) {
     if (!val) {
         return 0;
@@ -276,7 +281,7 @@ function _checkParamValueEqual(val1, val2) {
     return false;
 }
 
-// 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断
+/* 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断 */
 function _checkParam(val, scopeStr) {
     if (!val || _isUnStandard(val)) {
         return false;
@@ -339,7 +344,7 @@ function _checkParam(val, scopeStr) {
     return false;
 }
 
-// 将scope的值进行解析，为空标记为N, 单个值标记为O，范围值标记为S（并处理上下界以及步长问题），离散值标记为D（并解析为数组，以英文逗号分隔）
+/* 将scope的值进行解析，为空标记为N, 单个值标记为O，范围值标记为S（并处理上下界以及步长问题），离散值标记为D（并解析为数组，以英文逗号分隔） */
 function _parseValueScope(scopeStr) {
     const resMap = {};
     if (!scopeStr || scopeStr === 'ANY') {
@@ -410,10 +415,14 @@ function _parseValueScope(scopeStr) {
     return resMap;
 }
 
-// 依据传入的字符串得到真正的数值
+/* 依据传入的字符串得到真正的数值  */
 function _realValue(valStr, dataType) {
-    if (valStr == null || valStr == undefined || valStr.toString() === "NaN") {
+    if (valStr == null || valStr == undefined || valStr.toString() === "NaN" || _isUnStandard(valStr)) {
         return UNSTANDARDFLAG;
+    }
+
+    if (valStr === 'NA') {
+        return 'NA';
     }
 
     if (dataType && dataType.startsWith('3D')) {
@@ -464,7 +473,7 @@ function _realValue(valStr, dataType) {
     }
 }
 
-// 处理公式问题，例如字符串拼接 & 需要修改为JS支持的 +，YES、NO转化为JS的true、false
+/* 处理公式问题，例如字符串拼接 & 需要修改为JS支持的 +，YES、NO转化为JS的true、false   */
 function _dealFormularStr(valStr) {
     if (valStr == null || valStr == undefined) {
         return '';
@@ -477,7 +486,7 @@ function _dealFormularStr(valStr) {
     }
 }
 
-// 从表达式中抽取出涉及到的全部变量，方法是使用计算符号分隔，并去除函数名、数字、字符串常量，剩余的可认为是公式中的变量
+/* 从表达式中抽取出涉及到的全部变量，方法是使用计算符号分隔，并去除函数名、数字、字符串常量，剩余的可认为是公式中的变量   */
 function _extractParamArr(formularExpress) {
     if (!formularExpress || formularExpress.length == 0) {
         return [];
@@ -520,18 +529,24 @@ function _extractParamArr(formularExpress) {
     return [...resArr];
 }
 
-// 判断公式中所有参数是否存在非标值或NA，存在则该公式值直接为非标或NA
-function _isUnStandardExpress(paramValMap, formularExpress) {
+/* 判断公式中所有参数是否存在非标值或NA，存在则该公式值直接为非标或NA */
+function _checkExpress(childParamValMap, paramValMap, formularExpress) {
     let params = _extractParamArr(formularExpress);
 
     for (let pname of params) {
-        if (_isUnStandard(paramValMap[pname]['value'])) {
+        if (childParamValMap[pname] && _isUnStandard(childParamValMap[pname]['value'])) {
+            return UNSTANDARDFLAG;
+        }
+        if (paramValMap[pname] && _isUnStandard(paramValMap[pname]['value'])) {
             return UNSTANDARDFLAG;
         }
     }
 
     for (let pname of params) {
-        if (paramValMap[pname]['value'] === 'NA') {
+        if (childParamValMap[pname] && childParamValMap[pname]['value'] === 'NA') {
+            return 'NA';
+        }
+        if (paramValMap[pname] && paramValMap[pname]['value'] === 'NA') {
             return 'NA';
         }
     }
@@ -539,8 +554,10 @@ function _isUnStandardExpress(paramValMap, formularExpress) {
     return '';
 }
 
-// 此函数中只能使用eval中动态声明的变量，包括当前环境的所有输入输出参数，和模板对应的table对象
-// tableObj需要eval调用此函数之前赋值（此处使用的全部非传入变量都认为是全局变量）
+/*
+ * 此函数中只能使用eval中动态声明的变量，包括当前环境的所有输入输出参数，和模板对应的table对象
+ * tableObj需要eval调用此函数之前赋值（此处使用的全部非传入变量都认为是全局变量）
+ */
 function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
     let queryRsultArr = [];
 
@@ -624,6 +641,7 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
         }
 
     } catch (err) {
+        console.log("Error at --> TNo: " + TNo + "; RNo: " + RNo + "; inputParaArr: " + inputParaArr);
         console.log(err);
         return UNSTANDARDFLAG;
     }
@@ -634,40 +652,49 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
 // _outerFunction
 // 此处需要能访问到全局的模板
 function _callInnerChildTemplate(DNum, Para, inputParaArr) {
+    let options = {
+        "tplName": DNum,
+        "inputParameters": inputParaArr,
+        "childFlag": true,
+        "outParameters": Para
+    };
 
+    // 没有传入Para则返回非标
+    if (!Para) {
+        return UNSTANDARDFLAG;
+    }
 
+    let resMap = calResultByRule(options);
 
+    if (Para.indexOf(',') > -1) {
+        let paraArr = Para.split(',');
+        let resArr = [];
 
+        for (let pname of paraArr) {
+            if (resMap[pname] == null) {
+                resArr.push(UNSTANDARDFLAG);
+            } else {
+                resArr.push(resMap[pname]);
+            }
+        }
+        return resArr;
 
-
-
-
-
-
-
-
-
-
-
-    return '';
+    } else {
+        if (resMap[Para] == null) {
+            return UNSTANDARDFLAG;
+        }
+        return resMap[Para];
+    }
 }
 
 
 //======4.2=get-info====================================================
 function GetValueFromGL(DNum, Para, InputParalist) {
-    const innerCalMap = _callInnerChildTemplate(DNum, Para, _parseGLParamter(InputParalist));
-    return innerCalMap[Para];
+    return _callInnerChildTemplate(DNum, Para, _parseGLParamter(InputParalist));
 }
 
 function GetValuesFromGL(DNum, Para, InputParalist) {
-    const resArr = [];
-    const innerCalMap = _callInnerChildTemplate(DNum, Para, _parseGLParamter(InputParalist));
-
-    const paraArr = Para.split(',');
-    for (let pName of paraArr) {
-        resArr.push(innerCalMap[pName]);
-    }
-    return resArr;
+    return _callInnerChildTemplate(DNum, Para, _parseGLParamter(InputParalist));
 }
 
 function QueryTable(TNo, RNo, QCol) {

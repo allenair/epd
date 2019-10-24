@@ -455,7 +455,7 @@ const epd = {
         let maxCount = 1;
         for (let pname of conParamArr) {
             if (this.unionParaMap[pname]['dataType'].startsWith('3D')) {
-                maxCount = Math.max(maxCount, this.unionParaMap[name]['value'].length);
+                maxCount = Math.max(maxCount, this.unionParaMap[pname]['value'].length);
             }
         }
         return maxCount;
