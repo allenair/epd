@@ -136,31 +136,30 @@ function M_initGlobalTemplateMap(tplName, tplObj, isCover) {
            ...
        },
        "childFlag": false // 用于内部子模板的调用标记，默认为false，对外接口可不理会
+       "outParameters": null  // 用于子模板指定输出的参数，默认不设置为null， 对外接口可不理会
    }
+   
 * 如果没有找到模板对象返回null，正确返回全部参数的计算结果对象
  */
 function M_calResultByRule(options) {
     let tplName = options['tplName'];
 
-    // 如果存在循环调用则返回null
+    // 如果没有传入模板名称，或者该模板没有对应的模板对象，则返回{}
+    if (!tplName || !templateParamterMap[tplName] || !templateLogicUnitMap[tplName]) {
+        return {};
+    }
+
+    // 如果存在循环调用则返回{}
     if (usedTemplateNameSet.has(tplName)) {
         console.log('Template calling is LOOP!! templateName: ' + tplName);
-        return null;
+        return {};
     }
 
     usedTemplateNameSet.add(tplName);
 
-    // 如果没有传入模板名称，或者该模板没有对应的模板对象，则返回null
-    if (!tplName) {
-        return null;
-    }
-
-    if (!templateParamterMap[tplName] || !templateLogicUnitMap[tplName]) {
-        return null;
-    }
-
     if (options['childFlag']) {
         _setInputsValue(tplName, options['inputParameters'], true);
+
     } else {
         _setInputsValue(tplName, options['inputParameters'], false);
     }
@@ -176,6 +175,7 @@ function M_calResultByRule(options) {
                 for (let index = 0; index < cell['step'].length; index++) {
                     logic = logicUnits[cell['step'][index]];
                     let res = _realCalResult(tplName, logic['name'], logic['calUnit']);
+                    // index=0 代表是#DO WHILE行的循环判断语句
                     if (index == 0) {
                         flag = res;
                     }
@@ -189,7 +189,7 @@ function M_calResultByRule(options) {
     }
 
     usedTemplateNameSet.delete(tplName);
-    return _combineOutputs();
+    return _combineOutputs(tplName, options['outParameters']);
 }
 
 /** 
@@ -215,18 +215,28 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
 
     // 依照传入信息，需要将子模板的临时变量放在单独的结构中，避免模板之间的变量重名问题
     if (isFromChildTpl) {
+        let tmpMap = {};
         for (let obj of inputParamObj) {
-            let pname = obj['target'];
-            let val = obj['src'];
-            let type = obj['type'];
+            tmpMap[obj['target']] = obj;
+        }
+        inputParamObj = tmpMap;
 
-            if (templateParamterMap[tplName] && templateParamterMap[tplName][pname]) {
+        for (let pname in templateParamterMap[tplName]) {
+            if (inputParamObj[pname]) {
                 childParamValues[tplName][pname] = {
                     'name': pname,
                     'dataType': templateParamterMap[tplName][pname]['dataType'],
                     'from': templateParamterMap[tplName][pname]['from'],
                     'value': M_UNSTANDARDFLAG
                 };
+                // 此时是需要使用src代表的参数的值给target参数赋值,值为map则需要取src所代表的变量的值，否则则直接使用src的值
+                let val = inputParamObj[pname]['src'];
+                if (inputParamObj[pname]['type'] === 'map') {
+                    childParamValues[tplName][pname]['value'] = allParamsValues[val]['value'];
+
+                } else {
+                    childParamValues[tplName][pname]['value'] = M_realValue(val, childParamValues[tplName][pname]['dataType']);
+                }
 
             } else {
                 childParamValues[tplName][pname] = {
@@ -235,28 +245,21 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
                     'from': 'input',
                     'value': M_UNSTANDARDFLAG
                 };
-            }
-
-            // 此时是需要使用src代表的参数的值给target参数赋值,值为map则需要取src所代表的变量的值，否则则直接使用src的值
-            if (type === 'map') {
-                childParamValues[tplName][pname]['value'] = allParamsValues[val]['value'];
-
-            } else {
-                childParamValues[tplName][pname]['value'] = M_realValue(val, childParamValues[tplName][pname]['dataType']);
             }
         }
 
     } else {
-        for (let pname in inputParamObj) {
-            let val = inputParamObj[pname];
-
-            if (templateParamterMap[tplName] && templateParamterMap[tplName][pname]) {
+        for (let pname in templateParamterMap[tplName]) {
+            if (inputParamObj[pname]) {
                 allParamsValues[pname] = {
                     'name': pname,
                     'dataType': templateParamterMap[tplName][pname]['dataType'],
                     'from': templateParamterMap[tplName][pname]['from'],
                     'value': M_UNSTANDARDFLAG
                 };
+
+                let val = inputParamObj[pname];
+                allParamsValues[pname]['value'] = M_realValue(val, allParamsValues[pname]['dataType']);
 
             } else {
                 allParamsValues[pname] = {
@@ -266,8 +269,6 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
                     'value': M_UNSTANDARDFLAG
                 };
             }
-
-            allParamsValues[pname]['value'] = M_realValue(val, allParamsValues[pname]['dataType']);
         }
     }
 }
@@ -633,14 +634,21 @@ function _getDeclareParamterStr(tplName, expressStr) {
 
 /**
  * 将变量池中的变量及其值，整理输出
+ * outputParams 不为空代表是子模板要求，因此仅返回子模板要求的参数值即可
  */
-function _combineOutputs() {
+function _combineOutputs(tplName, outputParams) {
     let resParamters = {};
-    for (let pname in allParamsValues) {
-        resParamters[pname] = resParamters[pname]['value'];
-    }
-    for (let pname in childParamValues[tplName]) {
-        resParamters[pname] = childParamValues[tplName][pname]['value'];
+
+    if (!outputParams) {
+        let params = outputParams.split(',');
+        for (let pname of params) {
+            resParamters[pname] = childParamValues[tplName][pname]['value'];
+        }
+
+    } else {
+        for (let pname in allParamsValues) {
+            resParamters[pname] = resParamters[pname]['value'];
+        }
     }
 
     return resParamters;
