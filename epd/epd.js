@@ -138,7 +138,7 @@ function M_initGlobalTemplateMap(tplName, tplObj, isCover) {
        "childFlag": false // 用于内部子模板的调用标记，默认为false，对外接口可不理会
        "outParameters": null  // 用于子模板指定输出的参数，默认不设置为null， 对外接口可不理会
    }
-   
+
 * 如果没有找到模板对象返回null，正确返回全部参数的计算结果对象
  */
 function M_calResultByRule(options) {
@@ -291,7 +291,7 @@ function _updateValue(tplName, name, value) {
 }
 
 /**
- * 获取变量的值，先获取子模板的变量，找不到后再从变量池的变量中寻找
+ * 获取变量的对象，先获取子模板的变量，找不到后再从变量池的变量中寻找
  * 因此重复变量的取值仅从本次子模板中取
  */
 function _getParamObj(tplName, name) {
@@ -324,7 +324,7 @@ function _checkCondition(tplName, name, conStr, index) {
     }
 
     if (conStr === 'ELSE' || conStr === 'ANY') {
-        if (realVal === 'NA') {
+        if (realVal == null || realVal === 'NA') {
             return false;
         } else {
             return true;
@@ -355,9 +355,10 @@ function _realCalResult(tplName, name, calUnit) {
     // 标记是否是循环 #DO WHILE 方法
     let loopFlag = false;
 
-    // 标记是否是GetValuesFromGL方法, 以#开头的变量意味着会使用子模板
+    // 标记是否是GetValuesFromGL方法, 以#开头的变量意味着会使用子模板返回多值
     let valuesFromGlFlag = false;
 
+    // 无论目标是计算多个变量还是单一变量，统一放置在数组中管理
     let nameArr = [];
     if (name === '#DO WHILE') {
         loopFlag = true;
@@ -378,13 +379,14 @@ function _realCalResult(tplName, name, calUnit) {
     const conValueArr2D = calUnit['values'];
     const formulaArr2D = calUnit['formulas'];
 
-    // 现给定默认值，如果以下计算不满足条件则取默认值
-    for (let name of nameArr) {
-        _updateValue(tplName, name, M_UNSTANDARDFLAG);
+    // 先给定非标默认值，如果以下计算不满足条件则取默认值
+    for (let pname of nameArr) {
+        _updateValue(tplName, pname, M_UNSTANDARDFLAG);
     }
 
     // 没有条件直接根据公式计算结果
     if (conParamArr.length == 0) {
+        // 此处对应GetValuesFromGL方法，此方法是会调用子模板，并返回结果对象，再依据变量顺序进行赋值
         if (valuesFromGlFlag) {
             // 预先检验表达式所包含的参数值是否存在NA和非标的情况,非标则直接退出
             let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][0]);
@@ -392,27 +394,26 @@ function _realCalResult(tplName, name, calUnit) {
                 return false;
 
             } else if (checkRes === 'NA') {
-                for (let nindex = 0; nindex < minLen; nindex++) {
-                    _updateValue(tplName, nameArr[nindex], 'NA');
+                for (let pname of nameArr) {
+                    _updateValue(tplName, pname, 'NA');
                 }
 
             } else {
-                let paramValueArr;
+                let paramValueArr = [];
                 try {
                     paramValueArr = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[0][0]));
+
+                    let minLen = Math.min(nameArr.length, paramValueArr.length);
+                    for (let nindex = 0; nindex < minLen; nindex++) {
+                        _updateValue(tplName, nameArr[nindex], paramValueArr[nindex]);
+                    }
                 } catch (err) {
                     console.log("Calculate is template name: " + tplName + "; formular: " + formulaArr2D[0][0]);
                     console.log(err);
-                    paramValueArr = [];
-                }
-
-                let minLen = Math.min(nameArr.length, paramValueArr.length);
-                for (let nindex = 0; nindex < minLen; nindex++) {
-                    _updateValue(tplName, nameArr[nindex], paramValueArr[nindex]);
                 }
             }
 
-        } else {
+        } else { // 此处对应直接计算变量值的情况，每一个变量对应excel一行中的公式区的一个公式
             for (let nindex in nameArr) {
                 nindex = parseInt(nindex);
                 let paramValue;
@@ -427,6 +428,7 @@ function _realCalResult(tplName, name, calUnit) {
                 } else {
                     try {
                         paramValue = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[0][nindex]));
+
                     } catch (err) {
                         console.log("Calculate is template name: " + tplName + "; formular: " + formulaArr2D[0][nindex]);
                         console.log(err);
@@ -435,7 +437,7 @@ function _realCalResult(tplName, name, calUnit) {
                 }
 
                 if (loopFlag) {
-                    if (M_isUnStandard(paramValue)) {
+                    if (M_isUnStandard(paramValue) || paramValue === 'NA') {
                         return false;
                     }
                     return M_realValue(paramValue, 'B');
@@ -446,11 +448,12 @@ function _realCalResult(tplName, name, calUnit) {
 
 
 
-        // 根据变量以及条件计算值 conParamArr.length>0
-    } else {
-        let maxLen = _max3dConditionCount(conParamArr);
 
-        // 不含3D变量
+    } else { // 根据变量以及条件计算值 conParamArr.length>0，此时代表是标注的excel查表对条件的模式
+        // 此处判定一下条件中的变量是否有3D变量
+        let maxLen = _max3dConditionCount(tplName, conParamArr);
+
+        // 不含3D变量，按照excel中一行行进行比对并取公式进行计算
         if (maxLen == 1) {
             // 如果条件参数中没有值，或存在非标值，则直接将结果参数赋值为非标
             for (let cname of conParamArr) {
@@ -463,6 +466,8 @@ function _realCalResult(tplName, name, calUnit) {
                 }
             }
 
+            // 按照行、列的顺序进行条件判定，先取定一行，再在此行中依次取条件变量进行条件判断，一行中遇到不满足的条件变量则直接跳到下一行进行判断，
+            // 此行全部条件变量的值都符合条件，则寻找到，此时计算该行对应的公示区的公式，并将结果分别赋值
             for (let vindex in conValueArr2D) {
                 let flag = false;
                 for (let pindex in conParamArr) {
@@ -497,7 +502,7 @@ function _realCalResult(tplName, name, calUnit) {
                         }
 
                         if (loopFlag) {
-                            if (M_isUnStandard(paramValue)) {
+                            if (M_isUnStandard(paramValue) || paramValue === 'NA') {
                                 return false;
                             }
                             return M_realValue(paramValue, 'B');
@@ -509,8 +514,8 @@ function _realCalResult(tplName, name, calUnit) {
             }
 
 
-            // maxLen>1，包含3D变量
-        } else {
+
+        } else { // maxLen>1，包含3D变量
             for (let cname of conParamArr) {
                 let pobj = _getParamObj(tplName, cname);
                 if (!pobj || M_isUnStandard(pobj['value'])) {
@@ -521,8 +526,8 @@ function _realCalResult(tplName, name, calUnit) {
                 }
             }
 
-            let valArr = {},
-                flag;
+            let valArr = {};
+            let flag = false;
             for (let pos = 0; pos < maxLen; pos++) {
                 flag = false;
                 for (let vindex in conValueArr2D) {
@@ -538,8 +543,9 @@ function _realCalResult(tplName, name, calUnit) {
                     if (flag) {
                         for (let nindex in nameArr) {
                             nindex = parseInt(nindex);
-                            if (!valArr[nameArr[nindex]]) {
-                                valArr[nameArr[nindex]] = [];
+                            let pname = nameArr[nindex];
+                            if (!valArr[pname]) {
+                                valArr[pname] = [];
                             }
 
                             let paramValue;
@@ -564,7 +570,7 @@ function _realCalResult(tplName, name, calUnit) {
                             if (M_isUnStandard(paramValue)) {
                                 return false;
                             } else {
-                                valArr[nameArr[nindex]].push(paramValue);
+                                valArr[pname].push(paramValue);
                             }
                         }
                         break;
@@ -596,22 +602,13 @@ function _realCalResult(tplName, name, calUnit) {
 function _getDeclareParamterStr(tplName, expressStr) {
     const paramArr = [];
     let resStr = '';
-
-    for (let pname in allParamsValues) {
-        let dataType = allParamsValues[pname]['dataType'];
-        let value = allParamsValues[pname]['value'];
-        let valStr;
-
-        if (dataType === 'S') {
-            valStr = " = '" + value + "'";
-
-        } else {
-            valStr = " = " + value + "";
-        }
-        paramArr.push("var " + pname + valStr);
-    }
+    // 保存已经包含的变脸名，避免由于名称相同重复声明，并且当前模板的变量值的优先级较高
+    let paramSet = new Set();
 
     for (let pname in childParamValues[tplName]) {
+        if (paramSet.has(pname)) {
+            continue;
+        }
         let dataType = childParamValues[tplName][pname]['dataType'];
         let value = childParamValues[tplName][pname]['value'];
         let valStr;
@@ -623,6 +620,25 @@ function _getDeclareParamterStr(tplName, expressStr) {
             valStr = " = " + value + "";
         }
         paramArr.push("var " + pname + valStr);
+        paramSet.add(pname);
+    }
+
+    for (let pname in allParamsValues) {
+        if (paramSet.has(pname)) {
+            continue;
+        }
+        let dataType = allParamsValues[pname]['dataType'];
+        let value = allParamsValues[pname]['value'];
+        let valStr;
+
+        if (dataType === 'S') {
+            valStr = " = '" + value + "'";
+
+        } else {
+            valStr = " = " + value + "";
+        }
+        paramArr.push("var " + pname + valStr);
+        paramSet.add(pname);
     }
 
     resStr = paramArr.join('; ') + '; ';
@@ -639,7 +655,7 @@ function _getDeclareParamterStr(tplName, expressStr) {
 function _combineOutputs(tplName, outputParams) {
     let resParamters = {};
 
-    if (!outputParams) {
+    if (outputParams) {
         let params = outputParams.split(',');
         for (let pname of params) {
             resParamters[pname] = childParamValues[tplName][pname]['value'];
@@ -657,11 +673,12 @@ function _combineOutputs(tplName, outputParams) {
 /**
  * 获取给定变量列表中变量的最大长度值，如果是单一变量长度为1，如果是3D变量则为数组长度
  */
-function _max3dConditionCount(conParamArr) {
+function _max3dConditionCount(tplName, conParamArr) {
     let maxCount = 1;
     for (let pname of conParamArr) {
-        if (resParamters[pname]['dataType'].startsWith('3D')) {
-            maxCount = Math.max(maxCount, resParamters[pname]['value'].length);
+        let obj = _getParamObj(tplName, pname);
+        if (obj['dataType'].startsWith('3D')) {
+            maxCount = Math.max(maxCount, obj['value'].length);
         }
     }
     return maxCount;

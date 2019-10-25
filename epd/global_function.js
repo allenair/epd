@@ -306,8 +306,15 @@ function M_realValue(valStr, dataType) {
 }
 
 
-/* 判断公式中所有参数是否存在非标值或NA，存在则该公式值直接为非标或NA */
+/* 
+判断公式中所有参数是否存在非标值或NA，存在则该公式值直接为非标或NA 
+如果公式为null或空字符串，则认为没有合适的公式，该值返回非标
+*/
 function M_checkExpress(childParamValMap, paramValMap, formularExpress) {
+    if(formularExpress==null || formularExpress===''){
+        return M_UNSTANDARDFLAG;
+    }
+
     let params = _extractParamArr(formularExpress);
 
     for (let pname of params) {
