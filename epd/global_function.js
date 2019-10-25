@@ -1,26 +1,19 @@
 "use strict";
 
-const UNSTANDARDFLAG = '_';
+const M_UNSTANDARDFLAG = '_';
 const GLOBALFUNCTIONS = ['GetValueFromGL', 'GetValuesFromGL', 'QueryTable', 'QueryTable3D', 'ConvertTo3D', 'CTo3D', 'E_AND', 'E_OR', 'E_NOT', 'E_IF', 'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'SIN', 'TAN', 'PI', 'DEGREES', 'RADIANS', 'ROUND', 'ROUNDUP', 'ROUNDDOWN', 'INT', 'LN', 'LOG', 'MAX', 'MIN', 'POWER', 'SQRT', 'EMOD', 'CEILING', 'FLOOR', 'ISNUMBER', 'ISLOGICAL', 'ISTEXT', 'ISNA', 'CSTR', 'CNUM', 'CBOOL'];
 
-//======Inner Function====================================================
-function _isUnStandard(val) {
-    return val == UNSTANDARDFLAG;
+//======Modular Function====================================================
+function M_evalExpress(expressStr){
+    return eval(expressStr);
 }
 
-function _isEqual(val1, val2) {
-    if (Math.abs(val1 - val2) < 1e-7) {
-        return true;
-    }
-    return false;
-}
-
-function _isString(str) {
-    return (typeof str == 'string') && str.constructor == String;
+function M_isUnStandard(val) {
+    return val === M_UNSTANDARDFLAG;
 }
 
 /* 解析模板中的变量，并生成内部对象返回 */
-function _parseTemplateParamters(tplObj) {
+function M_parseTemplateParamters(tplObj) {
     let resObj = {};
 
     const inputObj = tplObj['CPARA_InputParameterValueList'];
@@ -29,7 +22,7 @@ function _parseTemplateParamters(tplObj) {
             'name': obj['PropertyName'],
             'scope': obj['ValueList'] || '',
             'dataType': _paramType(obj['Data']['Type']),
-            'value': UNSTANDARDFLAG,
+            'value': M_UNSTANDARDFLAG,
             'from': 'input'
         };
     }
@@ -40,7 +33,7 @@ function _parseTemplateParamters(tplObj) {
             'name': obj['PropertyName'],
             'scope': obj['ValueList'] || '',
             'dataType': _paramType(obj['Data']['Type']),
-            'value': UNSTANDARDFLAG,
+            'value': M_UNSTANDARDFLAG,
             'from': 'output'
         };
     }
@@ -49,7 +42,7 @@ function _parseTemplateParamters(tplObj) {
 }
 
 /* 解析模板中的XY表，并生成内部对象返回 */
-function _parseTemplateXYTable(tplObj) {
+function M_parseTemplateXYTable(tplObj) {
     let resObj = {};
 
     const xyObj = tplObj['CPARA_XYTable'];
@@ -81,7 +74,7 @@ function _parseTemplateXYTable(tplObj) {
 }
 
 /* 解析模板中的判断逻辑，并生成内部对象返回 */
-function _parseTemplateLogicUnit(tplObj) {
+function M_parseTemplateLogicUnit(tplObj) {
     let resArr = [];
     const logicObj = tplObj['CPARA_FormulaLinkup'];
 
@@ -146,7 +139,7 @@ function _parseTemplateLogicUnit(tplObj) {
 /* 依照模板的执行单元循环情况，编制执行顺序，目的是将同一个循环单元放置在一个cell中执行，同一个执行单元所需执行的步骤存储在step中，
  *  内容是模板执行单元的数组序号
  */
-function _arrangeTemplateLogicOrder(logicUnits) {
+function M_arrangeTemplateLogicOrder(logicUnits) {
     const excuteCells = [];
     let cell = {};
 
@@ -180,6 +173,179 @@ function _arrangeTemplateLogicOrder(logicUnits) {
     return excuteCells;
 }
 
+
+/* 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断 */
+function M_checkParam(val, scopeStr) {
+    if (!val || M_isUnStandard(val)) {
+        return false;
+    }
+
+    const scopeMap = _parseValueScope(scopeStr);
+    // 没有指定范围
+    if (scopeMap['valType'] === 'N') {
+        return true;
+    }
+
+    // 只有一个取值
+    if (scopeMap['valType'] === 'O') {
+        return _checkParamValueEqual(val, scopeMap['valScope']);
+
+    } else if (scopeMap['valType'] === 'D') { // 离散取值
+        let varArr = scopeMap['valScope'];
+        for (let s of varArr) {
+            if (_checkParamValueEqual(val, s)) {
+                return true;
+            }
+        }
+
+    } else { // 范围取值, 此处只可能是数值型
+        const varMap = scopeMap['valScope'];
+        const startFlag = varMap['startFlag'];
+        const endFlag = varMap['endFlag'];
+        let startNum = varMap['startNum'];
+        let endNum = varMap['endNum'];
+        let step = varMap['step'];
+
+        let realVal = parseFloat(val);
+
+        if (isNaN(realVal) || startFlag && realVal < startNum || !startFlag && realVal <= startNum || endFlag && realVal > endNum || !endFlag && realVal >= endNum) {
+            return false;
+        }
+
+        if (step === '1') {
+            return true;
+
+        } else {
+            let stepDigits = _calFloatDigitsCount(step);
+            realVal = parseInt(realVal * Math.pow(10, stepDigits));
+            step = parseInt(step * Math.pow(10, stepDigits));
+
+            if (startNum > -Infinity) {
+                startNum = parseInt(startNum * Math.pow(10, stepDigits));
+                if ((realVal - startNum) % step == 0) {
+                    return true;
+                }
+            } else if (endNum < Infinity) {
+                endNum = parseInt(endNum * Math.pow(10, stepDigits));
+                if ((endNum - realVal) % step == 0) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+
+/* 依据传入的字符串得到真正的数值  */
+function M_realValue(valStr, dataType) {
+    if (valStr == null || valStr == undefined || valStr.toString() === "NaN" || M_isUnStandard(valStr)) {
+        return M_UNSTANDARDFLAG;
+    }
+
+    if (valStr === 'NA') {
+        return 'NA';
+    }
+
+    if (dataType && dataType.startsWith('3D')) {
+        // 如果传入的就是数组，则说明是已经完成处理，可直接返回
+        if (valStr.length > 1) {
+            return valStr;
+        }
+
+        let valArr = valStr.split(',');
+        let resArr = [];
+        for (let val of valArr) {
+            if (M_isUnStandard(val)) {
+                return M_UNSTANDARDFLAG;
+            }
+            if (dataType === '3DB') {
+                resArr.push(val.toUpperCase() === 'YES' || val.toUpperCase() === 'TRUE');
+
+            } else if (dataType === '3DN') {
+                resArr.push(parseFloat(val));
+
+            } else {
+                resArr.push(val);
+            }
+        }
+        return resArr;
+
+    } else if (dataType) {
+        if (M_isUnStandard(valStr)) {
+            return M_UNSTANDARDFLAG;
+        }
+        if (dataType === 'B') {
+            return valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE';
+        }
+        if (dataType === 'N') {
+            return parseFloat(valStr);
+        }
+        return valStr;
+
+    } else {
+        if (M_isUnStandard(valStr)) {
+            return M_UNSTANDARDFLAG;
+        }
+        if (ISLOGICAL(valStr)) {
+            return valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE';
+
+        } else {
+            if (ISNUMBER(valStr)) {
+                return parseFloat(valStr);
+
+            } else if (!valStr) {
+                return '';
+
+            } else {
+                return valStr;
+            }
+        }
+    }
+}
+
+
+/* 判断公式中所有参数是否存在非标值或NA，存在则该公式值直接为非标或NA */
+function M_checkExpress(childParamValMap, paramValMap, formularExpress) {
+    let params = _extractParamArr(formularExpress);
+
+    for (let pname of params) {
+        if (childParamValMap[pname] && M_isUnStandard(childParamValMap[pname]['value'])) {
+            return M_UNSTANDARDFLAG;
+        }
+        if (childParamValMap[pname] && childParamValMap[pname]['value'] === 'NA') {
+            return 'NA';
+        }
+
+        if (paramValMap[pname] && M_isUnStandard(paramValMap[pname]['value'])) {
+            return M_UNSTANDARDFLAG;
+        }
+        if (paramValMap[pname] && paramValMap[pname]['value'] === 'NA') {
+            return 'NA';
+        }
+    }
+
+    return 'OK';
+}
+
+
+
+
+//======Inner Function====================================================
+
+function _isEqual(val1, val2) {
+    if (Math.abs(val1 - val2) < 1e-7) {
+        return true;
+    }
+    return false;
+}
+
+function _isString(str) {
+    return (typeof str == 'string') && str.constructor == String;
+}
+
+
 /* 解析GetValueFromGL的第三个特殊参数格式 */
 function _parseGLParamter(paramStr) {
     if (!paramStr) {
@@ -208,8 +374,7 @@ function _parseGLParamter(paramStr) {
         innerMap = {};
         innerMap['target'] = targetParamName;
         if (srcParamName.startsWith('V:')) {
-            srcParamName = srcParamName.substring(2);
-            innerMap['src'] = _realValue(srcParamName);
+            innerMap['src'] = M_realValue(srcParamName.substring(2));
             innerMap['type'] = 'value';
 
         } else {
@@ -281,70 +446,22 @@ function _checkParamValueEqual(val1, val2) {
     return false;
 }
 
-/* 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断 */
-function _checkParam(val, scopeStr) {
-    if (!val || _isUnStandard(val)) {
-        return false;
-    }
-
-    const scopeMap = _parseValueScope(scopeStr);
-    // 没有指定范围
-    if (scopeMap['valType'] === 'N') {
-        return true;
-    }
-
-    // 只有一个取值
-    if (scopeMap['valType'] === 'O') {
-        return _checkParamValueEqual(val, scopeMap['valScope']);
-
-    } else if (scopeMap['valType'] === 'D') { // 离散取值
-        let varArr = scopeMap['valScope'];
-        for (let s of varArr) {
-            if (_checkParamValueEqual(val, s)) {
-                return true;
-            }
-        }
-
-    } else { // 范围取值, 此处只可能是数值型
-        const varMap = scopeMap['valScope'];
-        const startFlag = varMap['startFlag'];
-        const endFlag = varMap['endFlag'];
-        let startNum = varMap['startNum'];
-        let endNum = varMap['endNum'];
-        let step = varMap['step'];
-
-        let realVal = parseFloat(val);
-
-        if (isNaN(realVal) || startFlag && realVal < startNum || !startFlag && realVal <= startNum || endFlag && realVal > endNum || !endFlag && realVal >= endNum) {
-            return false;
-        }
-
-        if (step === '1') {
-            return true;
-
-        } else {
-            let stepDigits = _calFloatDigitsCount(step);
-            realVal = parseInt(realVal * Math.pow(10, stepDigits));
-            step = parseInt(step * Math.pow(10, stepDigits));
-
-            if (startNum > -Infinity) {
-                startNum = parseInt(startNum * Math.pow(10, stepDigits));
-                if ((realVal - startNum) % step == 0) {
-                    return true;
-                }
-            } else if (endNum < Infinity) {
-                endNum = parseInt(endNum * Math.pow(10, stepDigits));
-                if ((endNum - realVal) % step == 0) {
-                    return true;
-                }
-            }
-        }
-    }
-
-    return false;
-}
-
-/* 将scope的值进行解析，为空标记为N, 单个值标记为O，范围值标记为S（并处理上下界以及步长问题），离散值标记为D（并解析为数组，以英文逗号分隔） */
+/**
+ * 将scope的值进行解析，为空标记为N, 单个值标记为O，范围值标记为S（并处理上下界以及步长问题），离散值标记为D（并解析为数组，以英文逗号分隔）
+ * 解析后返回值结构：
+ {
+     'valType': ***,
+     'valScope': {       // valType==S
+        'step': ***,
+        'startFlag': true/false,
+        'endFlag': true/false,
+        'startNum': ***,
+        'endNum': ***
+     },
+     //'valScope': [],   // valType==D
+     // 'valScope': ***,   // valType==O
+ }
+ */
 function _parseValueScope(scopeStr) {
     const resMap = {};
     if (!scopeStr || scopeStr === 'ANY') {
@@ -352,7 +469,7 @@ function _parseValueScope(scopeStr) {
         return resMap;
     }
 
-    const val = scopeStr.toString();
+    const val = scopeStr.toString().trim();
     const startChar = val.charAt(0);
     let endChar = val.charAt(val.length - 1);
 
@@ -396,7 +513,7 @@ function _parseValueScope(scopeStr) {
         let valArr = [];
         for (let tmp of val.split(',')) {
             if (ISLOGICAL(val)) {
-                valArr.push(_realValue(tmp, 'B').toString());
+                valArr.push(M_realValue(tmp, 'B').toString());
             } else {
                 valArr.push(tmp);
             }
@@ -406,7 +523,7 @@ function _parseValueScope(scopeStr) {
     } else {
         resMap['valType'] = 'O';
         if (ISLOGICAL(val)) {
-            resMap['valScope'] = _realValue(valStr, 'B').toString();
+            resMap['valScope'] = M_realValue(valStr, 'B').toString();
         } else {
             resMap['valScope'] = val || '';
         }
@@ -415,71 +532,13 @@ function _parseValueScope(scopeStr) {
     return resMap;
 }
 
-/* 依据传入的字符串得到真正的数值  */
-function _realValue(valStr, dataType) {
-    if (valStr == null || valStr == undefined || valStr.toString() === "NaN" || _isUnStandard(valStr)) {
-        return UNSTANDARDFLAG;
-    }
-
-    if (valStr === 'NA') {
-        return 'NA';
-    }
-
-    if (dataType && dataType.startsWith('3D')) {
-        // 如果传入的就是数组，则说明是已经完成处理，可直接返回
-        if (valStr.length > 1) {
-            return valStr;
-        }
-
-        let valArr = valStr.split(',');
-        let resArr = [];
-        for (let val of valArr) {
-            if (_isUnStandard(val)) {
-                return UNSTANDARDFLAG;
-            }
-
-            if (dataType === '3DB') {
-                resArr.push(val.toUpperCase() === 'YES' || val.toUpperCase() === 'TRUE');
-            } else if (dataType === '3DN') {
-                resArr.push(parseFloat(val));
-            } else {
-                resArr.push(val);
-            }
-        }
-        return resArr;
-
-    } else if (dataType) {
-        if (dataType === 'B') {
-            return valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE';
-        }
-        if (dataType === 'N') {
-            return parseFloat(valStr);
-        }
-        return valStr;
-
-    } else {
-        if (ISLOGICAL(valStr)) {
-            return valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE';
-
-        } else {
-            if (ISNUMBER(valStr)) {
-                return parseFloat(valStr);
-            } else if (!valStr) {
-                return '';
-            } else {
-                return valStr;
-            }
-        }
-    }
-}
-
 /* 处理公式问题，例如字符串拼接 & 需要修改为JS支持的 +，YES、NO转化为JS的true、false   */
 function _dealFormularStr(valStr) {
     if (valStr == null || valStr == undefined) {
         return '';
 
     } else if (ISLOGICAL(valStr)) {
-        return _realValue(valStr, 'B');
+        return M_realValue(valStr, 'B');
 
     } else {
         return valStr.replace(/&/g, '+');
@@ -529,31 +588,8 @@ function _extractParamArr(formularExpress) {
     return [...resArr];
 }
 
-/* 判断公式中所有参数是否存在非标值或NA，存在则该公式值直接为非标或NA */
-function _checkExpress(childParamValMap, paramValMap, formularExpress) {
-    let params = _extractParamArr(formularExpress);
-
-    for (let pname of params) {
-        if (childParamValMap[pname] && _isUnStandard(childParamValMap[pname]['value'])) {
-            return UNSTANDARDFLAG;
-        }
-        if (paramValMap[pname] && _isUnStandard(paramValMap[pname]['value'])) {
-            return UNSTANDARDFLAG;
-        }
-    }
-
-    for (let pname of params) {
-        if (childParamValMap[pname] && childParamValMap[pname]['value'] === 'NA') {
-            return 'NA';
-        }
-        if (paramValMap[pname] && paramValMap[pname]['value'] === 'NA') {
-            return 'NA';
-        }
-    }
-
-    return '';
-}
-
+//-----------------------------------------------------------
+// 以下两个函数非工具类，目的是支持公式中两个特殊的函数
 /*
  * 此函数中只能使用eval中动态声明的变量，包括当前环境的所有输入输出参数，和模板对应的table对象
  * tableObj需要eval调用此函数之前赋值（此处使用的全部非传入变量都认为是全局变量）
@@ -570,7 +606,7 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
         let conParamValObj = {};
         if (conArr.length > 0) {
             for (let pname in conArr[0]) {
-                conParamValObj[pname] = eval(pname);
+                conParamValObj[pname] = M_evalExpress(pname);
             }
         }
 
@@ -579,15 +615,15 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
         if (inputParaArr.length == 0) {
             for (let pindex in conArr) {
                 flag = true;
-                pindex = Number.parseInt(pindex);
+                pindex = parseInt(pindex);
                 for (let pname in conArr[pindex]) {
                     let realVal = conParamValObj[pname];
                     let scopeVal = conArr[pindex][pname];
                     if (scopeVal.startsWith('@')) {
-                        scopeVal = eval(scopeVal.substring(1));
+                        scopeVal = M_evalExpress(scopeVal.substring(1));
                     }
 
-                    flag = _checkParam(realVal, scopeVal);
+                    flag = M_checkParam(realVal, scopeVal);
                     if (!flag) {
                         break;
                     }
@@ -609,15 +645,15 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
                     let pname = inputObj['target'];
                     let realVal = inputObj['src'];
                     if (inputObj['type'] && inputObj['type'] === 'map') {
-                        realVal = eval(realVal);
+                        realVal = M_evalExpress(realVal);
                     }
 
                     let scopeVal = conObj[pname];
                     if (scopeVal && scopeVal.startsWith('@')) {
-                        scopeVal = eval(scopeVal.substring(1));
+                        scopeVal = M_evalExpress(scopeVal.substring(1));
                     }
 
-                    flag = _checkParam(realVal, scopeVal);
+                    flag = M_checkParam(realVal, scopeVal);
                     if (!flag) {
                         break;
                     }
@@ -635,7 +671,7 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
 
         if (is3DFlag) {
             if (queryRsultArr.length == 0) {
-                return UNSTANDARDFLAG;
+                return M_UNSTANDARDFLAG;
             }
             return queryRsultArr;
         }
@@ -643,13 +679,12 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
     } catch (err) {
         console.log("Error at --> TNo: " + TNo + "; RNo: " + RNo + "; inputParaArr: " + inputParaArr);
         console.log(err);
-        return UNSTANDARDFLAG;
+        return M_UNSTANDARDFLAG;
     }
 
-    return UNSTANDARDFLAG;
+    return M_UNSTANDARDFLAG;
 }
 
-// _outerFunction
 // 此处需要能访问到全局的模板
 function _callInnerChildTemplate(DNum, Para, inputParaArr) {
     let options = {
@@ -661,10 +696,10 @@ function _callInnerChildTemplate(DNum, Para, inputParaArr) {
 
     // 没有传入Para则返回非标
     if (!Para) {
-        return UNSTANDARDFLAG;
+        return M_UNSTANDARDFLAG;
     }
 
-    let resMap = calResultByRule(options);
+    let resMap = M_calResultByRule(options);
 
     if (Para.indexOf(',') > -1) {
         let paraArr = Para.split(',');
@@ -672,7 +707,7 @@ function _callInnerChildTemplate(DNum, Para, inputParaArr) {
 
         for (let pname of paraArr) {
             if (resMap[pname] == null) {
-                resArr.push(UNSTANDARDFLAG);
+                resArr.push(M_UNSTANDARDFLAG);
             } else {
                 resArr.push(resMap[pname]);
             }
@@ -681,7 +716,7 @@ function _callInnerChildTemplate(DNum, Para, inputParaArr) {
 
     } else {
         if (resMap[Para] == null) {
-            return UNSTANDARDFLAG;
+            return M_UNSTANDARDFLAG;
         }
         return resMap[Para];
     }
@@ -727,20 +762,20 @@ function ConvertTo3D(...values) {
 }
 
 function CTo3D(valArr, separator) {
-    if (separator == undefined || ISNUMBER(val)) {
+    if (separator == undefined || ISNUMBER(valArr)) {
         return [];
     }
 
     let charArr = [];
     for (let c of valArr) {
         if (separator === c) {
-            charArr.push(' ');
+            charArr.push('@A@');
         } else {
             charArr.push(c);
         }
     }
 
-    return charArr.join('').split(' ');
+    return charArr.join('').split('@A@');
 }
 
 //======4.5=logic====================================================
@@ -750,7 +785,7 @@ function E_AND(...conditions) {
     }
 
     for (let c of conditions) {
-        if (!c) {
+        if (!c || !ISLOGICAL(c) || c.toString().toupperCase() == 'NO' || c.toString().toupperCase() == 'FALSE') {
             return false;
         }
     }
@@ -761,8 +796,9 @@ function E_OR(...conditions) {
     if (conditions.length == 0) {
         return false;
     }
+
     for (let c of conditions) {
-        if (c) {
+        if (c && ISLOGICAL(c) && (c.toString().toupperCase() == 'YES' || c.toString().toupperCase() == 'TRUE')) {
             return true;
         }
     }
@@ -770,11 +806,18 @@ function E_OR(...conditions) {
 }
 
 function E_NOT(condition) {
-    return !condition;
+    if (!condition || !ISLOGICAL(condition) || condition.toString().toupperCase() == 'NO' || condition.toString().toupperCase() == 'FALSE') {
+        return true;
+    }
+    return false;
 }
 
 function E_IF(condition, trueVal, falseVal) {
-    return condition ? trueVal : falseVal;
+    let flag = true;
+    if (!condition || !ISLOGICAL(condition) || condition.toString().toupperCase() == 'NO' || condition.toString().toupperCase() == 'FALSE') {
+        flag = false;
+    }
+    return flag ? trueVal : falseVal;
 }
 
 //======4.6=math===================================================
@@ -1039,8 +1082,8 @@ function ISNA(val) {
 
 //======4.10=change===================================================
 function CSTR(val) {
-    if (val == undefined) {
-        return null;
+    if (val == null) {
+        return '';
     }
     return '' + val;
 }
@@ -1052,11 +1095,11 @@ function CNUM(val) {
 function CBOOL(val) {
     const realVal = val && _isString(val) ? val.toUpperCase() : val;
 
-    if (realVal === 'YES' || realVal === 'TRUE' || realVal === true) {
+    if (realVal === 'YES' || realVal === 'TRUE' || realVal) {
         return true;
     }
-    if (realVal === 'NO' || realVal === 'FALSE' || realVal === false) {
+    if (realVal === 'NO' || realVal === 'FALSE' || !realVal) {
         return false;
     }
-    return null;
+    return false;
 }

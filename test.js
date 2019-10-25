@@ -20,11 +20,14 @@ function test() {
     return false;
 }
 
+let tt2 = test;
 
 // console.log(_isNumber(12))
 // console.log(_isNumber('12'))
 // console.log(JSON.stringify({aa:"123",bb:456}))
-
-let res = eval('var innerObj={aa:"asd",bb:123}; test();')
+let res;
+res = eval('var innerObj={aa:"asd",bb:123}; test();')
+console.log(res)
+res = eval('var innerObj={aa:"asd",bb:765}; tt2();')
 console.log(res)
 // 

@@ -9,7 +9,7 @@
             "name": "Es_Angle",
             "scope": "30,35",
             "dataType": "N", 
-            "value": UNSTANDARDFLAG,
+            "value": M_UNSTANDARDFLAG,
             "from": "input" // 取值input，output
         },
         "Es_BBB": {...}
@@ -83,7 +83,6 @@ const templateLogicUnitMap = {}; // 模板所有逻辑判断与执行单元
 const templateXYTableMap = {}; // 模板XY表格内容
 const templateExcuteStep = {}; // 模板执行单元的执行方式（应对循环的情况）
 
-
 /**
  * 存储全部用户输入的变量（作为本次计算的变量池，可能属于多个模板）,最终将此变量池输出
  * 示例：
@@ -91,7 +90,7 @@ const templateExcuteStep = {}; // 模板执行单元的执行方式（应对循�
      "Es_Angle": {
         "name": "Es_Angle",
         "dataType": "N", 
-        "value": UNSTANDARDFLAG,
+        "value": M_UNSTANDARDFLAG,
         "from": "input" // 取值input，output
     },
     "Es_BBB": {...}
@@ -110,7 +109,7 @@ let usedTemplateNameSet = new Set();
  * tplObj：模板对象
  * isCover：是否覆盖，默认为false，如果为true则依据传入重新解析并覆盖，如果为false则如果全局变量中存在此模板则跳过若不存在则解析
  */
-function initGlobalTemplateMap(tplName, tplObj, isCover) {
+function M_initGlobalTemplateMap(tplName, tplObj, isCover) {
     if (!tplName || !tplObj) {
         return 'EMPTY';
     }
@@ -118,16 +117,16 @@ function initGlobalTemplateMap(tplName, tplObj, isCover) {
         return 'OVER';
     }
 
-    templateParamterMap[tplName] = _parseTemplateParamters(tplObj);
-    templateXYTableMap[tplName] = _parseTemplateXYTable(tplObj);
-    templateLogicUnitMap[tplName] = _parseTemplateLogicUnit(tplObj);
-    templateExcuteStep[tplName] = _arrangeTemplateLogicOrder(templateLogicUnitMap[tplName]);
+    templateParamterMap[tplName] = M_parseTemplateParamters(tplObj);
+    templateXYTableMap[tplName] = M_parseTemplateXYTable(tplObj);
+    templateLogicUnitMap[tplName] = M_parseTemplateLogicUnit(tplObj);
+    templateExcuteStep[tplName] = M_arrangeTemplateLogicOrder(templateLogicUnitMap[tplName]);
 
     return 'OK';
 }
 
 /**
- * 计算入口函数，调用此函数前请先调用 initGlobalTemplateMap，完成模板对象的初始化
+ * 计算入口函数，调用此函数前请先调用 M_initGlobalTemplateMap，完成模板对象的初始化
  * options 示例: 
    {
        "tplName": "DN1", // 模板名称
@@ -140,7 +139,7 @@ function initGlobalTemplateMap(tplName, tplObj, isCover) {
    }
 * 如果没有找到模板对象返回null，正确返回全部参数的计算结果对象
  */
-function calResultByRule(options) {
+function M_calResultByRule(options) {
     let tplName = options['tplName'];
 
     // 如果存在循环调用则返回null
@@ -226,7 +225,7 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
                     'name': pname,
                     'dataType': templateParamterMap[tplName][pname]['dataType'],
                     'from': templateParamterMap[tplName][pname]['from'],
-                    'value': UNSTANDARDFLAG
+                    'value': M_UNSTANDARDFLAG
                 };
 
             } else {
@@ -234,7 +233,7 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
                     'name': pname,
                     'dataType': 'S',
                     'from': 'input',
-                    'value': UNSTANDARDFLAG
+                    'value': M_UNSTANDARDFLAG
                 };
             }
 
@@ -243,7 +242,7 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
                 childParamValues[tplName][pname]['value'] = allParamsValues[val]['value'];
 
             } else {
-                childParamValues[tplName][pname]['value'] = _realValue(val, childParamValues[tplName][pname]['dataType']);
+                childParamValues[tplName][pname]['value'] = M_realValue(val, childParamValues[tplName][pname]['dataType']);
             }
         }
 
@@ -256,7 +255,7 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
                     'name': pname,
                     'dataType': templateParamterMap[tplName][pname]['dataType'],
                     'from': templateParamterMap[tplName][pname]['from'],
-                    'value': UNSTANDARDFLAG
+                    'value': M_UNSTANDARDFLAG
                 };
 
             } else {
@@ -264,11 +263,11 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
                     'name': pname,
                     'dataType': 'S',
                     'from': 'input',
-                    'value': UNSTANDARDFLAG
+                    'value': M_UNSTANDARDFLAG
                 };
             }
 
-            allParamsValues[pname]['value'] = _realValue(val, allParamsValues[pname]['dataType']);
+            allParamsValues[pname]['value'] = M_realValue(val, allParamsValues[pname]['dataType']);
         }
     }
 }
@@ -279,11 +278,11 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
  */
 function _updateValue(tplName, name, value) {
     if (childParamValues[tplName][name]) {
-        childParamValues[tplName][name]['value'] = _realValue(value, childParamValues[tplName][name]['dataType']);
+        childParamValues[tplName][name]['value'] = M_realValue(value, childParamValues[tplName][name]['dataType']);
         return true;
     }
     if (allParamsValues[name]) {
-        allParamsValues[name]['value'] = _realValue(value, allParamsValues[name]['dataType']);
+        allParamsValues[name]['value'] = M_realValue(value, allParamsValues[name]['dataType']);
         return true;
     }
 
@@ -331,17 +330,17 @@ function _checkCondition(tplName, name, conStr, index) {
         }
 
     } else if (conStr === 'ALL') {
-        return _checkParam(realVal, templateParamterMap[tplName][name]['scope']);
+        return M_checkParam(realVal, templateParamterMap[tplName][name]['scope']);
 
     } else if (conStr.startsWith('@')) {
         let pobj = _getParamObj(tplName, conStr.substring(1));
         if (pobj == null) {
             return false;
         }
-        return _checkParam(realVal, pobj['value']);
+        return M_checkParam(realVal, pobj['value']);
 
     } else {
-        return _checkParam(realVal, conStr);
+        return M_checkParam(realVal, conStr);
     }
 }
 
@@ -380,15 +379,15 @@ function _realCalResult(tplName, name, calUnit) {
 
     // 现给定默认值，如果以下计算不满足条件则取默认值
     for (let name of nameArr) {
-        _updateValue(tplName, name, UNSTANDARDFLAG);
+        _updateValue(tplName, name, M_UNSTANDARDFLAG);
     }
 
     // 没有条件直接根据公式计算结果
     if (conParamArr.length == 0) {
         if (valuesFromGlFlag) {
             // 预先检验表达式所包含的参数值是否存在NA和非标的情况,非标则直接退出
-            let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][0]);
-            if (_isUnStandard(checkRes)) {
+            let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][0]);
+            if (M_isUnStandard(checkRes)) {
                 return false;
 
             } else if (checkRes === 'NA') {
@@ -399,7 +398,7 @@ function _realCalResult(tplName, name, calUnit) {
             } else {
                 let paramValueArr;
                 try {
-                    paramValueArr = eval(_getDeclareParamterStr(tplName, formulaArr2D[0][0]));
+                    paramValueArr = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[0][0]));
                 } catch (err) {
                     console.log("Calculate is template name: " + tplName + "; formular: " + formulaArr2D[0][0]);
                     console.log(err);
@@ -417,28 +416,28 @@ function _realCalResult(tplName, name, calUnit) {
                 nindex = parseInt(nindex);
                 let paramValue;
 
-                let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][nindex]);
-                if (_isUnStandard(checkRes)) {
-                    paramValue = UNSTANDARDFLAG;
+                let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][nindex]);
+                if (M_isUnStandard(checkRes)) {
+                    paramValue = M_UNSTANDARDFLAG;
 
                 } else if (checkRes === 'NA') {
                     paramValue = 'NA';
 
                 } else {
                     try {
-                        paramValue = eval(_getDeclareParamterStr(tplName, formulaArr2D[0][nindex]));
+                        paramValue = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[0][nindex]));
                     } catch (err) {
                         console.log("Calculate is template name: " + tplName + "; formular: " + formulaArr2D[0][nindex]);
                         console.log(err);
-                        paramValue = UNSTANDARDFLAG;
+                        paramValue = M_UNSTANDARDFLAG;
                     }
                 }
 
                 if (loopFlag) {
-                    if (_isUnStandard(paramValue)) {
+                    if (M_isUnStandard(paramValue)) {
                         return false;
                     }
-                    return _realValue(paramValue, 'B');
+                    return M_realValue(paramValue, 'B');
                 }
                 _updateValue(tplName, nameArr[nindex], paramValue);
             }
@@ -455,9 +454,9 @@ function _realCalResult(tplName, name, calUnit) {
             // 如果条件参数中没有值，或存在非标值，则直接将结果参数赋值为非标
             for (let cname of conParamArr) {
                 let pobj = _getParamObj(tplName, cname);
-                if (!pobj || _isUnStandard(pobj['value'])) {
+                if (!pobj || M_isUnStandard(pobj['value'])) {
                     for (let pname of nameArr) {
-                        _updateValue(tplName, pname, UNSTANDARDFLAG);
+                        _updateValue(tplName, pname, M_UNSTANDARDFLAG);
                     }
                     return false;
                 }
@@ -478,29 +477,29 @@ function _realCalResult(tplName, name, calUnit) {
                         nindex = parseInt(nindex);
                         let paramValue;
 
-                        let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
-                        if (_isUnStandard(checkRes)) {
-                            paramValue = UNSTANDARDFLAG;
+                        let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
+                        if (M_isUnStandard(checkRes)) {
+                            paramValue = M_UNSTANDARDFLAG;
 
                         } else if (checkRes === 'NA') {
                             paramValue = 'NA';
 
                         } else {
                             try {
-                                paramValue = eval(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
+                                paramValue = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
 
                             } catch (err) {
                                 console.log("Calculate is template name: " + tplName + "; formular: " + formulaArr2D[vindex][nindex]);
                                 console.log(err);
-                                paramValue = UNSTANDARDFLAG;
+                                paramValue = M_UNSTANDARDFLAG;
                             }
                         }
 
                         if (loopFlag) {
-                            if (_isUnStandard(paramValue)) {
+                            if (M_isUnStandard(paramValue)) {
                                 return false;
                             }
-                            return _realValue(paramValue, 'B');
+                            return M_realValue(paramValue, 'B');
                         }
                         _updateValue(tplName, nameArr[nindex], paramValue);
                     }
@@ -513,9 +512,9 @@ function _realCalResult(tplName, name, calUnit) {
         } else {
             for (let cname of conParamArr) {
                 let pobj = _getParamObj(tplName, cname);
-                if (!pobj || _isUnStandard(pobj['value'])) {
+                if (!pobj || M_isUnStandard(pobj['value'])) {
                     for (let pname of nameArr) {
-                        _updateValue(tplName, pname, UNSTANDARDFLAG);
+                        _updateValue(tplName, pname, M_UNSTANDARDFLAG);
                     }
                     return false;
                 }
@@ -543,25 +542,25 @@ function _realCalResult(tplName, name, calUnit) {
                             }
 
                             let paramValue;
-                            let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
-                            if (_isUnStandard(checkRes)) {
-                                paramValue = UNSTANDARDFLAG;
+                            let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
+                            if (M_isUnStandard(checkRes)) {
+                                paramValue = M_UNSTANDARDFLAG;
 
                             } else if (checkRes === 'NA') {
                                 paramValue = 'NA';
 
                             } else {
                                 try {
-                                    paramValue = eval(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
+                                    paramValue = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
 
                                 } catch (err) {
                                     console.log("Calculate is template name: " + tplName + "; formular: " + formulaArr2D[vindex][nindex]);
                                     console.log(err);
-                                    paramValue = UNSTANDARDFLAG;
+                                    paramValue = M_UNSTANDARDFLAG;
                                 }
                             }
 
-                            if (_isUnStandard(paramValue)) {
+                            if (M_isUnStandard(paramValue)) {
                                 return false;
                             } else {
                                 valArr[nameArr[nindex]].push(paramValue);
