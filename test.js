@@ -1,33 +1,19 @@
-function _isNumber(obj) {
-    return (typeof obj == 'number') && obj.constructor == Number;
+class Test{
+	constructor(para1){
+		this.para1 = para1;
+	}
+	myMethod(aa){
+		console.log(`You input is ${aa}, inner has ${this.para1}`);
+	}
 }
 
-function test() {
-    if (innerObj == undefined) {
-        console.log(111111)
-    }
-    let obj = {};
-    try {
+let tt = new Test('Hello');
+tt.myMethod('world');
 
-        obj['name'] = eval(innerObj);
-        obj['aa'] = eval(aa);
+let arr = ['a','b','c'];
+arr.forEach((val, index)=>{
+	console.log(index + '  '+val);
+});
 
-    } catch (err) {
-        // console.log(err);
-        // return false;
-    }
-    // console.log(obj['name']);
-    return false;
-}
-
-let tt2 = test;
-
-// console.log(_isNumber(12))
-// console.log(_isNumber('12'))
-// console.log(JSON.stringify({aa:"123",bb:456}))
-let res;
-res = eval('var innerObj={aa:"asd",bb:123}; test();')
-console.log(res)
-res = eval('var innerObj={aa:"asd",bb:765}; tt2();')
-console.log(res)
-// 
+let str = "asdfg   "
+console.log(`ss=${str.trim().toUpperCase()}`)
