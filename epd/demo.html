@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        textarea {
+            width: 1000px;
+            height: 300px;
+        }
+
+        div {
+            width: 1000px;
+            height: 200px;
+            border: 1px solid;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    模板文件内容：<br /><textarea id="content_id" value=""></textarea>
+    <p></p>
+
+    输入参数：<br /><textarea id="input_id" value=""></textarea>
+    <p></p>
+
+    <button id="cal_bn" value="">计算</button>
+    <p></p>
+
+    计算结果：<br />
+    <div id="result_id"></div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./epd_engine.js"></script>
+
+    <script type="text/javascript">
+        const inputValue = `{
+ "Es_Angle": "30",
+ "Es_TH": "1000",
+ "Es_HD": "7000",
+ "Es_SW": "800",
+ "Es_TBS": "10",
+ "Es_BBS": "20",
+ "Es_PIT_L": "30",
+ "System_lang": "CN"
+}`;
+
+        const tplMap = {
+            "TEST": "test.json",
+            "STANDART": "standart.json",
+            "DN1": "dn1.json",
+            "DN2": "dn2.json"
+        };
+
+        function myAjax(tplName, urlStr) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    "url": `../template/${urlStr}`,
+                    "dataType": 'json',
+                    "success": data => {
+                        M_initGlobalTemplateMap(tplName, data);
+                        resovle(data);
+                    },
+                    "error": err => {
+                        reject(err);
+                    }
+                });
+            });
+        }
+
+
+        // 为按钮装载计算事件
+        function initHtmlContent() {
+            $('#input_id').val(inputValue);
+
+            $('#cal_bn').click(() => {
+                let contentObj = JSON.parse($('#content_id').val());
+                let inputObj = JSON.parse($('#input_id').val());
+
+                // 进入入口进行计算
+                let options = {
+                    "tplName": "TEST",
+                    "inputParameters": inputObj
+                };
+                
+                let res = M_calResultByRule(options)
+                $('#result_id').html(JSON.stringify(res, null, 4));
+            });
+        }
+
+
+        (async () => {
+            try {
+                for (let tplName in tplMap) {
+                    let data = await myAjax(tplName, tplMap[tplName]);
+                }
+            } catch (ex) {
+                console.log(ex);
+            }
+
+            initHtmlContent();
+        })();
+    </script>
+</body>
+
+</html>

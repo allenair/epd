@@ -323,7 +323,7 @@ function _realCalResult(tplName, name, calUnit) {
             }
 
         } else { // 此处对应直接计算变量值的情况，每一个变量对应excel一行中的公式区的一个公式
-            nameArr.forEach((pname, nindex)=>{
+            nameArr.forEach((pname, nindex) => {
                 let paramValue;
                 let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][nindex]);
                 if (_isUnStandard(checkRes)) {
@@ -372,10 +372,10 @@ function _realCalResult(tplName, name, calUnit) {
 
             // 按照行、列的顺序进行条件判定，先取定一行，再在此行中依次取条件变量进行条件判断，一行中遇到不满足的条件变量则直接跳到下一行进行判断，
             // 此行全部条件变量的值都符合条件，则寻找到，此时计算该行对应的公示区的公式，并将结果分别赋值
-            conValueArr2D.forEach((conValObj, vindex)=>{
+            conValueArr2D.forEach((conValObj, vindex) => {
 
                 let flag = false;
-                conParamArr.forEach((paramObj, pindex)=>{
+                conParamArr.forEach((paramObj, pindex) => {
                     flag = _checkCondition(tplName, paramObj, conValObj[pindex], null);
                     if (!flag) {
                         break;
@@ -383,7 +383,7 @@ function _realCalResult(tplName, name, calUnit) {
                 });
 
                 if (flag) {
-                    nameArr.forEach((pname, nindex)=>{
+                    nameArr.forEach((pname, nindex) => {
                         let paramValue;
                         let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
                         if (_isUnStandard(checkRes)) {
@@ -414,7 +414,7 @@ function _realCalResult(tplName, name, calUnit) {
                     break;
                 }
             });
-           
+
         } else { // maxLen>1，包含3D变量
             for (let cname of conParamArr) {
                 let pobj = _getParamObj(tplName, cname);
@@ -430,9 +430,9 @@ function _realCalResult(tplName, name, calUnit) {
             let flag = false;
             for (let pos = 0; pos < maxLen; pos++) {
                 flag = false;
-                conValueArr2D.forEach((conValObj,vindex)=>{
+                conValueArr2D.forEach((conValObj, vindex) => {
                     flag = false;
-                    conParamArr.forEach((paramObj, pindex)=>{
+                    conParamArr.forEach((paramObj, pindex) => {
                         flag = _checkCondition(tplName, paramObj, conValObj[pindex], pos);
                         if (!flag) {
                             break;
@@ -440,7 +440,7 @@ function _realCalResult(tplName, name, calUnit) {
                     });
 
                     if (flag) {
-                        nameArr.forEach((pname, nindex)=>{
+                        nameArr.forEach((pname, nindex) => {
                             if (!valArr[pname]) {
                                 valArr[pname] = [];
                             }
