@@ -1247,7 +1247,7 @@
 			"Condition": null,
 			"Data": {
 				"ID": "9",
-				"Formula1": "Math.sqrt(20+80)*GetValueFromGL('DN1','DNTN9', 'TN3>DNTN3,V:1>DNTN7')",
+				"Formula1": "TN3+TN7-Es_BBS",
 				"Formula2": null,
 				"Formula3": null,
 				"Formula4": null,
@@ -2357,92 +2357,158 @@
 	"CPARA_XYTable": [],
 	"CPARA_InternalParameterValueList": [
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "TN1",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "TN2",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "TN3",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "TN4",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "TN5",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "TN6",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "TN7",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "TN8",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "TN9",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "TN10",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Text"
+			  },
 			"PropertyName": "TS1",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Text"
+			  },
 			"PropertyName": "TS2",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Text"
+			  },
 			"PropertyName": "TS3",
 			"ValueList": null
 		},
 		{
+			"Data": {
+				"Type": "Text"
+			  },
 			"PropertyName": "TS4",
 			"ValueList": null
 		}
 	],
 	"CPARA_InputParameterValueList": [
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "Es_Angle",
 			"ValueList": "30,35"
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "Es_TH",
 			"ValueList": "(0,$)"
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "Es_HD",
 			"ValueList": "(0,$)"
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "Es_SW",
 			"ValueList": "600,800,1000"
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "Es_TBS",
 			"ValueList": "(0,$)"
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "Es_BBS",
 			"ValueList": "(0,$)"
 		},
 		{
+			"Data": {
+				"Type": "Number"
+			  },
 			"PropertyName": "Es_PIT_L",
 			"ValueList": "(0,$)"
 		},
 		{
+			"Data": {
+				"Type": "Text"
+			  },
 			"PropertyName": "System_lang",
 			"ValueList": "CN,EN"
 		}

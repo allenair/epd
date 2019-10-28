@@ -131,13 +131,16 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
         inputParamObj = tmpMap;
 
         for (let pname in templateParamterMap[tplName]) {
-            if (inputParamObj[pname]) {
-                childParamValues[tplName][pname] = {
-                    'name': pname,
-                    'dataType': templateParamterMap[tplName][pname]['dataType'],
-                    'from': templateParamterMap[tplName][pname]['from'],
-                    'value': UNSTANDARDFLAG
-                };
+            childParamValues[tplName][pname] = {
+                'name': pname,
+                'dataType': templateParamterMap[tplName][pname]['dataType'],
+                'from': templateParamterMap[tplName][pname]['from'],
+                'value': UNSTANDARDFLAG
+            };
+        }
+
+        for(let pname in inputParamObj){
+            if(childParamValues[tplName][pname]){
                 // 此时是需要使用src代表的参数的值给target参数赋值,值为map则需要取src所代表的变量的值，否则则直接使用src的值
                 let val = inputParamObj[pname]['src'];
                 if (inputParamObj[pname]['type'] === 'map') {
@@ -146,36 +149,31 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
                 } else {
                     childParamValues[tplName][pname]['value'] = _realValue(val, childParamValues[tplName][pname]['dataType']);
                 }
-
-            } else {
-                childParamValues[tplName][pname] = {
-                    'name': pname,
-                    'dataType': 'S',
-                    'from': 'input',
-                    'value': UNSTANDARDFLAG
-                };
             }
         }
 
+
     } else {
         for (let pname in templateParamterMap[tplName]) {
-            if (inputParamObj[pname]) {
-                allParamsValues[pname] = {
-                    'name': pname,
-                    'dataType': templateParamterMap[tplName][pname]['dataType'],
-                    'from': templateParamterMap[tplName][pname]['from'],
-                    'value': UNSTANDARDFLAG
-                };
+            allParamsValues[pname] = {
+                'name': pname,
+                'dataType': templateParamterMap[tplName][pname]['dataType'],
+                'from': templateParamterMap[tplName][pname]['from'],
+                'value': UNSTANDARDFLAG
+            };
+        }
 
-                let val = inputParamObj[pname];
+        for(let pname in inputParamObj){
+            let val = inputParamObj[pname];
+            if(allParamsValues[pname]){
                 allParamsValues[pname]['value'] = _realValue(val, allParamsValues[pname]['dataType']);
 
-            } else {
+            }else{
                 allParamsValues[pname] = {
                     'name': pname,
                     'dataType': 'S',
                     'from': 'input',
-                    'value': UNSTANDARDFLAG
+                    'value': val
                 };
             }
         }
@@ -326,29 +324,29 @@ function _realCalResult(tplName, name, calUnit) {
             for (let nindex = 0; nindex < nameArr.length; nindex++) {
                 let paramValue;
 
-                let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][nindex]);
-                if (M_isUnStandard(checkRes)) {
-                    paramValue = M_UNSTANDARDFLAG;
+                let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][nindex]);
+                if (_isUnStandard(checkRes)) {
+                    paramValue = UNSTANDARDFLAG;
 
                 } else if (checkRes === 'NA') {
                     paramValue = 'NA';
 
                 } else {
                     try {
-                        paramValue = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[0][nindex]));
+                        paramValue = _evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[0][nindex]));
 
                     } catch (err) {
                         console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[0][nindex]}`);
                         console.log(err);
-                        paramValue = M_UNSTANDARDFLAG;
+                        paramValue = UNSTANDARDFLAG;
                     }
                 }
 
                 if (loopFlag) {
-                    if (M_isUnStandard(paramValue) || paramValue === 'NA') {
+                    if (_isUnStandard(paramValue) || paramValue === 'NA') {
                         return false;
                     }
-                    return M_realValue(paramValue, 'B');
+                    return _realValue(paramValue, 'B');
                 }
                 _updateValue(tplName, nameArr[nindex], paramValue);
             }
@@ -386,29 +384,29 @@ function _realCalResult(tplName, name, calUnit) {
                     for (let nindex = 0; nindex < nameArr.length; nindex++) {
                         let paramValue;
 
-                        let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
-                        if (M_isUnStandard(checkRes)) {
-                            paramValue = M_UNSTANDARDFLAG;
+                        let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
+                        if (_isUnStandard(checkRes)) {
+                            paramValue = UNSTANDARDFLAG;
 
                         } else if (checkRes === 'NA') {
                             paramValue = 'NA';
 
                         } else {
                             try {
-                                paramValue = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
+                                paramValue = _evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
 
                             } catch (err) {
                                 console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[vindex][nindex]}`);
                                 console.log(err);
-                                paramValue = M_UNSTANDARDFLAG;
+                                paramValue = UNSTANDARDFLAG;
                             }
                         }
 
                         if (loopFlag) {
-                            if (M_isUnStandard(paramValue) || paramValue === 'NA') {
+                            if (_isUnStandard(paramValue) || paramValue === 'NA') {
                                 return false;
                             }
-                            return M_realValue(paramValue, 'B');
+                            return _realValue(paramValue, 'B');
                         }
                         _updateValue(tplName, nameArr[nindex], paramValue);
                     }
@@ -452,25 +450,25 @@ function _realCalResult(tplName, name, calUnit) {
                             }
 
                             let paramValue;
-                            let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
-                            if (M_isUnStandard(checkRes)) {
-                                paramValue = M_UNSTANDARDFLAG;
+                            let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
+                            if (_isUnStandard(checkRes)) {
+                                paramValue = UNSTANDARDFLAG;
 
                             } else if (checkRes === 'NA') {
                                 paramValue = 'NA';
 
                             } else {
                                 try {
-                                    paramValue = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
+                                    paramValue = _evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
 
                                 } catch (err) {
                                     console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[vindex][nindex]}`);
                                     console.log(err);
-                                    paramValue = M_UNSTANDARDFLAG;
+                                    paramValue = UNSTANDARDFLAG;
                                 }
                             }
 
-                            if (M_isUnStandard(paramValue)) {
+                            if (_isUnStandard(paramValue)) {
                                 return false;
                             } else {
                                 valArr[pname].push(paramValue);
@@ -516,7 +514,10 @@ function _getDeclareParamterStr(tplName, expressStr) {
         let value = childParamValues[tplName][pname]['value'];
         let valStr;
 
-        if (dataType === 'S') {
+        if(_isUnStandard(value)){
+            valStr = ` = null`;
+
+        }else if (dataType === 'S') {
             valStr = ` = '${value}'`;
 
         } else {
@@ -534,7 +535,10 @@ function _getDeclareParamterStr(tplName, expressStr) {
         let value = allParamsValues[pname]['value'];
         let valStr;
 
-        if (dataType === 'S') {
+        if(_isUnStandard(value)){
+            valStr = ` = null`;
+            
+        }else if (dataType === 'S') {
             valStr = ` = '${value}'`;
 
         } else {
@@ -566,7 +570,7 @@ function _combineOutputs(tplName, outputParams) {
 
     } else {
         for (let pname in allParamsValues) {
-            resParamters[pname] = resParamters[pname]['value'];
+            resParamters[pname] = allParamsValues[pname]['value'];
         }
     }
 
@@ -1209,10 +1213,10 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
                     let realVal = conParamValObj[pname];
                     let scopeVal = conArr[pindex][pname];
                     if (scopeVal.startsWith('@')) {
-                        scopeVal = M_evalExpress(scopeVal.substring(1));
+                        scopeVal = _evalExpress(scopeVal.substring(1));
                     }
 
-                    flag = M_checkParam(realVal, scopeVal);
+                    flag = _checkParam(realVal, scopeVal);
                     if (!flag) {
                         break;
                     }
