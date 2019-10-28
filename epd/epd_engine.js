@@ -323,34 +323,35 @@ function _realCalResult(tplName, name, calUnit) {
             }
 
         } else { // 此处对应直接计算变量值的情况，每一个变量对应excel一行中的公式区的一个公式
-            nameArr.forEach((pname, nindex) => {
+            for (let nindex = 0; nindex < nameArr.length; nindex++) {
                 let paramValue;
-                let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][nindex]);
-                if (_isUnStandard(checkRes)) {
-                    paramValue = UNSTANDARDFLAG;
+
+                let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][nindex]);
+                if (M_isUnStandard(checkRes)) {
+                    paramValue = M_UNSTANDARDFLAG;
 
                 } else if (checkRes === 'NA') {
                     paramValue = 'NA';
 
                 } else {
                     try {
-                        paramValue = _evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[0][nindex]));
+                        paramValue = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[0][nindex]));
 
                     } catch (err) {
                         console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[0][nindex]}`);
                         console.log(err);
-                        paramValue = UNSTANDARDFLAG;
+                        paramValue = M_UNSTANDARDFLAG;
                     }
                 }
 
                 if (loopFlag) {
-                    if (_isUnStandard(paramValue) || paramValue === 'NA') {
+                    if (M_isUnStandard(paramValue) || paramValue === 'NA') {
                         return false;
                     }
-                    return _realValue(paramValue, 'B');
+                    return M_realValue(paramValue, 'B');
                 }
-                _updateValue(tplName, pname, paramValue);
-            });
+                _updateValue(tplName, nameArr[nindex], paramValue);
+            }
         }
 
     } else { // 根据变量以及条件计算值 conParamArr.length>0，此时代表是标注的excel查表对条件的模式
@@ -372,48 +373,51 @@ function _realCalResult(tplName, name, calUnit) {
 
             // 按照行、列的顺序进行条件判定，先取定一行，再在此行中依次取条件变量进行条件判断，一行中遇到不满足的条件变量则直接跳到下一行进行判断，
             // 此行全部条件变量的值都符合条件，则寻找到，此时计算该行对应的公示区的公式，并将结果分别赋值
-            conValueArr2D.forEach((conValObj, vindex) => {
-
+            for (let vindex = 0; vindex < conValueArr2D.length; vindex++) {
                 let flag = false;
-                conParamArr.forEach((paramObj, pindex) => {
-                    flag = _checkCondition(tplName, paramObj, conValObj[pindex], null);
+                for (let pindex = 0; pindex < conParamArr.length; pindex++) {
+                    flag = _checkCondition(tplName, conParamArr[pindex], conValueArr2D[vindex][pindex], null);
                     if (!flag) {
                         break;
                     }
-                });
+                }
 
                 if (flag) {
-                    nameArr.forEach((pname, nindex) => {
+                    for (let nindex = 0; nindex < nameArr.length; nindex++) {
                         let paramValue;
-                        let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
-                        if (_isUnStandard(checkRes)) {
-                            paramValue = UNSTANDARDFLAG;
+
+                        let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
+                        if (M_isUnStandard(checkRes)) {
+                            paramValue = M_UNSTANDARDFLAG;
 
                         } else if (checkRes === 'NA') {
                             paramValue = 'NA';
 
                         } else {
                             try {
-                                paramValue = _evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
+                                paramValue = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
 
                             } catch (err) {
                                 console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[vindex][nindex]}`);
                                 console.log(err);
-                                paramValue = UNSTANDARDFLAG;
+                                paramValue = M_UNSTANDARDFLAG;
                             }
                         }
+
                         if (loopFlag) {
-                            if (_isUnStandard(paramValue) || paramValue === 'NA') {
+                            if (M_isUnStandard(paramValue) || paramValue === 'NA') {
                                 return false;
                             }
-                            return _realValue(paramValue, 'B');
+                            return M_realValue(paramValue, 'B');
                         }
-                        _updateValue(tplName, pname, paramValue);
-                    });
-
+                        _updateValue(tplName, nameArr[nindex], paramValue);
+                    }
                     break;
                 }
-            });
+            }
+
+
+
 
         } else { // maxLen>1，包含3D变量
             for (let cname of conParamArr) {
@@ -430,51 +434,51 @@ function _realCalResult(tplName, name, calUnit) {
             let flag = false;
             for (let pos = 0; pos < maxLen; pos++) {
                 flag = false;
-                conValueArr2D.forEach((conValObj, vindex) => {
+                for (let vindex = 0; vindex < conValueArr2D.length; vindex++) {
                     flag = false;
-                    conParamArr.forEach((paramObj, pindex) => {
-                        flag = _checkCondition(tplName, paramObj, conValObj[pindex], pos);
+                    for (let pindex = 0; pindex < conParamArr.length; pindex++) {
+                        flag = _checkCondition(tplName, conParamArr[pindex], conValueArr2D[vindex][pindex], pos);
                         if (!flag) {
                             break;
                         }
-                    });
+                    }
 
                     if (flag) {
-                        nameArr.forEach((pname, nindex) => {
+                        // for (let nindex in nameArr) {
+                        for (let nindex = 0; nindex < namearr.length; nindex++) {
+                            let pname = nameArr[nindex];
                             if (!valArr[pname]) {
                                 valArr[pname] = [];
                             }
 
                             let paramValue;
-                            let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
-                            if (_isUnStandard(checkRes)) {
-                                paramValue = UNSTANDARDFLAG;
+                            let checkRes = M_checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[vindex][nindex]);
+                            if (M_isUnStandard(checkRes)) {
+                                paramValue = M_UNSTANDARDFLAG;
 
                             } else if (checkRes === 'NA') {
                                 paramValue = 'NA';
 
                             } else {
                                 try {
-                                    paramValue = _evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
+                                    paramValue = M_evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
 
                                 } catch (err) {
                                     console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[vindex][nindex]}`);
                                     console.log(err);
-                                    paramValue = UNSTANDARDFLAG;
+                                    paramValue = M_UNSTANDARDFLAG;
                                 }
                             }
 
-                            if (_isUnStandard(paramValue)) {
+                            if (M_isUnStandard(paramValue)) {
                                 return false;
                             } else {
                                 valArr[pname].push(paramValue);
                             }
-
-                        });
-
+                        }
                         break;
                     }
-                });
+                }
 
                 // 如果所有3D变量数组第pos位置取值后，没有符合条件，则认为结果的pos位置值为非标，此时可认为整体非标
                 if (!flag) {
@@ -1199,20 +1203,21 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
         let flag = false;
         // 没有参数使用条件结果表格获取值（excel中有灰色）
         if (inputParaArr.length == 0) {
-            conArr.forEach((conObj, pindex) => {
+            for (let pindex = 0; pindex < conArr.length; pindex++) {
                 flag = true;
-                for (let pname in conObj) {
+                for (let pname in conArr[pindex]) {
                     let realVal = conParamValObj[pname];
-                    let scopeVal = conObj[pname];
+                    let scopeVal = conArr[pindex][pname];
                     if (scopeVal.startsWith('@')) {
-                        scopeVal = _evalExpress(scopeVal.substring(1));
+                        scopeVal = M_evalExpress(scopeVal.substring(1));
                     }
 
-                    flag = _checkParam(realVal, scopeVal);
+                    flag = M_checkParam(realVal, scopeVal);
                     if (!flag) {
                         break;
                     }
                 }
+
                 if (flag) {
                     if (is3DFlag) {
                         queryRsultArr.push(resArr[pindex][RNo]);
@@ -1220,7 +1225,8 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
                         return resArr[pindex][RNo];
                     }
                 }
-            });
+            }
+
 
         } else {
             for (let conObj of conArr) {

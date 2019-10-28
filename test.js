@@ -12,6 +12,9 @@ tt.myMethod('world');
 
 let arr = ['a','b','c'];
 arr.forEach((val, index)=>{
+	if(index==1){
+		break;
+	}
 	console.log(index + '  '+val);
 });
 
