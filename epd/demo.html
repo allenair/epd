@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    模板文件内容：<br /><textarea id="content_id" value=""></textarea>
+    模板名称：<br /><input type="text" id="content_id" value=""></textarea>
     <p></p>
 
     输入参数：<br /><textarea id="input_id" value=""></textarea>
@@ -78,12 +78,12 @@
             $('#input_id').val(inputValue);
 
             $('#cal_bn').click(() => {
-                let contentObj = JSON.parse($('#content_id').val());
+                let tplName = $('#content_id').val();
                 let inputObj = JSON.parse($('#input_id').val());
 
                 // 进入入口进行计算
                 let options = {
-                    "tplName": "TEST",
+                    "tplName": tplName,
                     "inputParameters": inputObj
                 };
                 
