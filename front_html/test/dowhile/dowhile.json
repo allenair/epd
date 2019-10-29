@@ -1,0 +1,316 @@
+{
+  "CPARA_ChangeRecord": [],
+  "CPARA_FormulaLinkup": [
+    {
+      "Data": {
+        "Formula1": "M_PRJ_TYPE & \"!!!\"",
+        "ID": "1"
+      },
+      "PropertyName": "TS30"
+    },
+    {
+      "Data": {
+        "Formula1": "ZZ088*140",
+        "ID": "2"
+      },
+      "PropertyName": "N301"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "N301",
+              "Value": "(0,10]"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "200"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "YES"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "N301",
+              "Value": "ELSE"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "NO"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "4"
+      },
+      "PropertyName": "TB123"
+    },
+    {
+      "Data": {
+        "Formula1": "1",
+        "ID": "5"
+      },
+      "PropertyName": "TM14"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "TM14",
+              "Value": "[1,6)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "Yes"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TM14",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "No"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "6"
+      },
+      "PropertyName": "#DO WHILE"
+    },
+	{
+      "Data": {
+        "Formula1": "TM14*1000",
+        "ID": "9"
+      },
+      "PropertyName": "NTA014"
+    },
+    {
+      "Data": {
+        "Formula1": "TM14+1",
+        "ID": "10"
+      },
+      "PropertyName": "TM14"
+    },
+    {
+      "Data": {
+        "ID": "11"
+      },
+      "PropertyName": "#LOOP"
+    }
+  ],
+  "CPARA_InputParameterValueList": [
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "M_PRJ_TYPE",
+      "ValueList": "ANY"
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "ZZ088",
+      "ValueList": "ANY"
+    },
+    {
+      "Data": {
+        "Type": "Yes/No"
+      },
+      "PropertyName": "RZZ043",
+      "ValueList": "ANY"
+    }
+  ],
+  "CPARA_InternalParameterValueList": [
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "TS30"
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "N301",
+      "ValueList": "1"
+    },
+    {
+      "Data": {
+        "Type": "Yes/No"
+      },
+      "PropertyName": "TB123"
+    },
+	{
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "NTA014"
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "TM14"
+    }
+  ],
+  "CPARA_Script": [],
+  "CPARA_XYTable": []
+}

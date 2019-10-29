@@ -106,6 +106,9 @@ let allParamsValues = {};
 let childParamValues = {}; // 结构与全局相同，主要目的是存储子模板调用中的子模板的变量，单独出来的原因是避免两个模板变量名称相同的问题
 let usedTemplateNameSet = new Set(); // 此变量避免循环调用
 
+let usedTemplateNameStack = []; // 此处使用栈存储所有使用的模板名称
+
+
 /**
  * 得到当前已经装载的模板名列表
  */
@@ -183,6 +186,7 @@ function M_calResultByRule(options) {
         return {};
     }
 
+    usedTemplateNameStack.push(tplName);
     usedTemplateNameSet.add(tplName);
 
     if (options['childFlag']) {
@@ -206,6 +210,9 @@ function M_calResultByRule(options) {
                     // index=0 代表是#DO WHILE行的循环判断语句
                     if (index == 0) {
                         flag = res;
+                        if (!flag) {
+                            break;
+                        }
                     }
                 }
             }
@@ -216,8 +223,43 @@ function M_calResultByRule(options) {
         }
     }
 
+    usedTemplateNameStack.pop();
     usedTemplateNameSet.delete(tplName);
-    return _combineOutputs(tplName, options['outParameters']);
+
+    let resMap = _combineOutputs(tplName, options['outParameters']);
+    if (options['childFlag']) {
+        return resMap;
+    }
+
+    return _dealResultBoolType(resMap);
+}
+
+/**
+ * 将最终结果的true、false转换为YES、NO
+ */
+function _dealResultBoolType(resMap) {
+    resMap = resMap || {};
+    for (let pname in resMap) {
+        if (resMap[pname] === true) {
+            resMap[pname] = 'YES';
+        }
+        if (resMap[pname] === false) {
+            resMap[pname] = 'NO';
+        }
+        if (resMap[pname].length > 1) {
+            for (let index = 0; index < resMap[pname].length; index++) {
+                if (resMap[pname][index] === true) {
+                    resMap[pname][index] = 'YES';
+                } else if (resMap[pname][index] === false) {
+                    resMap[pname][index] = 'NO';
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
+    return resMap;
 }
 
 /** 
@@ -407,11 +449,6 @@ function _realCalResult(tplName, name, calUnit) {
     const conValueArr2D = calUnit['values'];
     const formulaArr2D = calUnit['formulas'];
 
-    // 先给定非标默认值，如果以下计算不满足条件则取默认值
-    for (let pname of nameArr) {
-        _updateValue(tplName, pname, UNSTANDARDFLAG);
-    }
-
     // 没有条件直接根据公式计算结果
     if (conParamArr.length == 0) {
         // 此处对应GetValuesFromGL方法，此方法是会调用子模板，并返回结果对象，再依据变量顺序进行赋值
@@ -419,12 +456,16 @@ function _realCalResult(tplName, name, calUnit) {
             // 预先检验表达式所包含的参数值是否存在NA和非标的情况,非标则直接退出
             let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][0]);
             if (_isUnStandard(checkRes)) {
+                for (let pname of nameArr) {
+                    _updateValue(tplName, pname, UNSTANDARDFLAG);
+                }
                 return false;
 
             } else if (checkRes === 'NA') {
                 for (let pname of nameArr) {
                     _updateValue(tplName, pname, 'NA');
                 }
+                return false;
 
             } else {
                 let paramValueArr = [];
@@ -435,7 +476,11 @@ function _realCalResult(tplName, name, calUnit) {
                     for (let nindex = 0; nindex < minLen; nindex++) {
                         _updateValue(tplName, nameArr[nindex], paramValueArr[nindex]);
                     }
+
                 } catch (err) {
+                    for (let pname of nameArr) {
+                        _updateValue(tplName, pname, UNSTANDARDFLAG);
+                    }
                     console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[0][0]}`);
                     console.log(err);
                 }
@@ -590,7 +635,11 @@ function _realCalResult(tplName, name, calUnit) {
                             }
 
                             if (_isUnStandard(paramValue)) {
+                                for (let pname of nameArr) {
+                                    _updateValue(tplName, pname, UNSTANDARDFLAG);
+                                }
                                 return false;
+
                             } else {
                                 valArr[pname].push(paramValue);
                             }
@@ -670,7 +719,6 @@ function _getDeclareParamterStr(tplName, expressStr) {
     }
 
     resStr = paramArr.join('; ') + '; ';
-    resStr = resStr + ` var tableObj=${JSON.stringify(templateXYTableMap[tplName])}; `;
     resStr = resStr + expressStr;
 
     return resStr;
@@ -885,10 +933,19 @@ function _arrangeTemplateLogicOrder(logicUnits) {
     return excuteCells;
 }
 
+function _isNull(val){
+    if(val==null || val==undefined){
+        return true;
+    }
+    if(val.toString()=='NaN'){
+        return true;
+    }
+    return false;
+}
 
 /* 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断 */
 function _checkParam(val, scopeStr) {
-    if (!val || _isUnStandard(val)) {
+    if (_isNull(val) || _isUnStandard(val)) {
         return false;
     }
 
@@ -989,7 +1046,7 @@ function _realValue(valStr, dataType) {
             return UNSTANDARDFLAG;
         }
         if (dataType === 'B') {
-            return valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE';
+            return valStr.toString().toUpperCase() === 'YES' || valStr.toString().toUpperCase() === 'TRUE';
         }
         if (dataType === 'N') {
             return parseFloat(valStr);
@@ -1148,7 +1205,18 @@ function _calFloatDigitsCount(val) {
 }
 
 function _checkParamValueEqual(val1, val2) {
-    if (val1 && val2 && val1.toString() === val2.toString()) {
+    if(_isNull(val1) || _isNull(val2)){
+        return false;
+    }
+
+    if (ISLOGICAL(val1)) {
+        val1 = _realValue(val1, 'B');
+    }
+    if (ISLOGICAL(val2)) {
+        val2 = _realValue(val2, 'B');
+    }
+    
+    if (val1.toString() === val2.toString()) {
         return true;
     }
     if (val1.toString() === 'NA' && val2.toString() === 'NA') {
@@ -1238,7 +1306,7 @@ function _parseValueScope(scopeStr) {
     } else {
         resMap['valType'] = 'O';
         if (ISLOGICAL(val)) {
-            resMap['valScope'] = _realValue(valStr, 'B').toString();
+            resMap['valScope'] = _realValue(val, 'B').toString();
 
         } else {
             resMap['valScope'] = val || '';
@@ -1266,6 +1334,8 @@ function _extractParamArr(formularExpress) {
     if (!formularExpress || formularExpress.length == 0) {
         return [];
     }
+
+    formularExpress = formularExpress.toString();
 
     let resArr = new Set();
 
@@ -1313,6 +1383,9 @@ function _extractParamArr(formularExpress) {
 function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
     let queryRsultArr = [];
 
+    let tplName = usedTemplateNameStack[usedTemplateNameStack.length-1];
+    let tableObj = templateXYTableMap[tplName];
+
     let innerTableObj = tableObj[TNo];
     let conArr = innerTableObj['conditionArray'];
     let resArr = innerTableObj['resultArray'];
@@ -1322,7 +1395,11 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
         let conParamValObj = {};
         if (conArr.length > 0) {
             for (let pname in conArr[0]) {
-                conParamValObj[pname] = _evalExpress(pname);
+                let tmpObj = _getParamObj(tplName, pname);
+                if(tmpObj==null){
+                    continue;
+                }
+                conParamValObj[pname] = tmpObj['value'];
             }
         }
 
@@ -1335,7 +1412,8 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
                     let realVal = conParamValObj[pname];
                     let scopeVal = conArr[pindex][pname];
                     if (scopeVal.startsWith('@')) {
-                        scopeVal = _evalExpress(scopeVal.substring(1));
+                        let tmpObj = _getParamObj(tplName, scopeVal.substring(1));
+                        scopeVal = tmpObj['value'];
                     }
 
                     flag = _checkParam(realVal, scopeVal);
@@ -1361,12 +1439,14 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
                     let pname = inputObj['target'];
                     let realVal = inputObj['src'];
                     if (inputObj['type'] && inputObj['type'] === 'map') {
-                        realVal = _evalExpress(realVal);
+                        let tmpObj = _getParamObj(tplName, realVal);
+                        realVal = tmpObj['value'];
                     }
 
                     let scopeVal = conObj[pname];
                     if (scopeVal && scopeVal.startsWith('@')) {
-                        scopeVal = _evalExpress(scopeVal.substring(1));
+                        let tmpObj = _getParamObj(tplName, scopeVal.substring(1));
+                        scopeVal = tmpObj['value'];
                     }
 
                     flag = _checkParam(realVal, scopeVal);
@@ -1489,7 +1569,7 @@ function CTo3D(valArr, separator) {
     for (let c of valArr) {
         if (separator === c) {
             charArr.push('@A@');
-            
+
         } else {
             charArr.push(c);
         }
@@ -1773,7 +1853,7 @@ function ISNUMBER(val) {
 }
 
 function ISLOGICAL(val) {
-    if (!val) {
+    if (_isNull(val)) {
         return false;
     }
 

@@ -1,0 +1,20 @@
+【input】
+{
+ "M_PRJ_TYPE": "ZXEPD",
+ "ZZ088": "200",
+ "RZZ043": "YES"
+}
+
+
+【Should output】
+{
+    "M_PRJ_TYPE": "ZXEPD",
+    "ZZ088": 200,
+    "RZZ043": "YES",
+    "TS30": "ZXEPD!!!",
+    "N301": 28000,
+    "TB123": "NO",
+    "NTA014": 5000,
+    "TM14": 6
+}
+

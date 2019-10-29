@@ -1,0 +1,18 @@
+【input】
+{
+ "M_PRJ_TYPE": "FSA",
+ "ZZ088": "200",
+ "RZZ043": "YES"
+}
+
+【Should output】
+{
+    "M_PRJ_TYPE": "FSA",
+    "ZZ088": 200,
+    "RZZ043": "YES",
+    "TS30": "FSA",
+    "N301": 28000,
+    "TB123": "NO",
+    "OT4": 7,
+    "OT2": 11
+}
