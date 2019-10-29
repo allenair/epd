@@ -302,8 +302,8 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
         }
 
         // 依据传入的变量对所有已经装载的参数进行赋值，重点是确定参数的value，如果参数没有传入值，则保持非标UNSTANDARDFLAG
-        for (let pname in inputParamObj) {
-            if (childParamValues[tplName][pname]) {
+        for (let pname in childParamValues[tplName]) {
+            if (inputParamObj[pname]) {
                 // 此时是需要使用src代表的参数的值给target参数赋值,值为map则需要取src所代表的变量的值，否则则直接使用src的值
                 let val = inputParamObj[pname]['src'];
                 if (inputParamObj[pname]['type'] === 'map') {
@@ -312,9 +312,11 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
                 } else {
                     childParamValues[tplName][pname]['value'] = _realValue(val, childParamValues[tplName][pname]['dataType']);
                 }
+
+            } else if (allParamsValues[pname]) {
+                childParamValues[tplName][pname]['value'] = allParamsValues[pname]['value'];
             }
         }
-
 
     } else {
         for (let pname in templateParamterMap[tplName]) {
@@ -712,13 +714,13 @@ function _getDeclareParamterStr(tplName, expressStr) {
             valStr = ` = '${value}'`;
 
         } else if (dataType === '3DS') {
-            if(Array.isArray(value)){
+            if (Array.isArray(value)) {
                 valStr = "= [";
-                for(let val of value){
+                for (let val of value) {
                     valStr = valStr + `'${val}',`;
                 }
-                valStr = valStr.substring(0, valStr.length-1) + "]";
-            }else{
+                valStr = valStr.substring(0, valStr.length - 1) + "]";
+            } else {
                 valStr = '= null';
             }
 
@@ -950,11 +952,11 @@ function _arrangeTemplateLogicOrder(logicUnits) {
     return excuteCells;
 }
 
-function _isNull(val){
-    if(val==null || val==undefined){
+function _isNull(val) {
+    if (val == null || val == undefined) {
         return true;
     }
-    if(val.toString()=='NaN'){
+    if (val.toString() == 'NaN') {
         return true;
     }
     return false;
@@ -1222,7 +1224,7 @@ function _calFloatDigitsCount(val) {
 }
 
 function _checkParamValueEqual(val1, val2) {
-    if(_isNull(val1) || _isNull(val2)){
+    if (_isNull(val1) || _isNull(val2)) {
         return false;
     }
 
@@ -1232,7 +1234,7 @@ function _checkParamValueEqual(val1, val2) {
     if (ISLOGICAL(val2)) {
         val2 = _realValue(val2, 'B');
     }
-    
+
     if (val1.toString() === val2.toString()) {
         return true;
     }
@@ -1400,7 +1402,7 @@ function _extractParamArr(formularExpress) {
 function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
     let queryRsultArr = [];
 
-    let tplName = usedTemplateNameStack[usedTemplateNameStack.length-1];
+    let tplName = usedTemplateNameStack[usedTemplateNameStack.length - 1];
     let tableObj = templateXYTableMap[tplName];
 
     let innerTableObj = tableObj[TNo];
@@ -1413,7 +1415,7 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
         if (conArr.length > 0) {
             for (let pname in conArr[0]) {
                 let tmpObj = _getParamObj(tplName, pname);
-                if(tmpObj==null){
+                if (tmpObj == null) {
                     continue;
                 }
                 conParamValObj[pname] = tmpObj['value'];

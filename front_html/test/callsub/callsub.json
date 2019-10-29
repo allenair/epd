@@ -1,0 +1,187 @@
+{
+	"CPARA_ChangeRecord": [],
+	"CPARA_FormulaLinkup": [
+		{
+			"PropertyName": "TN3",
+			"Condition": [
+				{
+					"Conditions": [
+						{
+							"Key": "Es_Angle",
+							"Value": "30"
+						}
+					],
+					"Results": [
+						{
+							"Key": "Formula1",
+							"Value": "2015"
+						},
+						{
+							"Key": "Formula2",
+							"Value": null
+						},
+						{
+							"Key": "Formula3",
+							"Value": null
+						},
+						{
+							"Key": "Formula4",
+							"Value": null
+						},
+						{
+							"Key": "Formula5",
+							"Value": null
+						},
+						{
+							"Key": "Formula6",
+							"Value": null
+						},
+						{
+							"Key": "Formula7",
+							"Value": null
+						},
+						{
+							"Key": "Formula8",
+							"Value": null
+						},
+						{
+							"Key": "Formula9",
+							"Value": null
+						},
+						{
+							"Key": "Formula10",
+							"Value": null
+						},
+						{
+							"Key": "Formula11",
+							"Value": null
+						},
+						{
+							"Key": "Formula12",
+							"Value": null
+						}
+					]
+				},
+				{
+					"Conditions": [
+						{
+							"Key": "Es_Angle",
+							"Value": "35"
+						}
+					],
+					"Results": [
+						{
+							"Key": "Formula1",
+							"Value": "2125"
+						},
+						{
+							"Key": "Formula2",
+							"Value": null
+						},
+						{
+							"Key": "Formula3",
+							"Value": null
+						},
+						{
+							"Key": "Formula4",
+							"Value": null
+						},
+						{
+							"Key": "Formula5",
+							"Value": null
+						},
+						{
+							"Key": "Formula6",
+							"Value": null
+						},
+						{
+							"Key": "Formula7",
+							"Value": null
+						},
+						{
+							"Key": "Formula8",
+							"Value": null
+						},
+						{
+							"Key": "Formula9",
+							"Value": null
+						},
+						{
+							"Key": "Formula10",
+							"Value": null
+						},
+						{
+							"Key": "Formula11",
+							"Value": null
+						},
+						{
+							"Key": "Formula12",
+							"Value": null
+						}
+					]
+				}
+			],
+			"Data": {
+				"ID": "3",
+				"Formula1": null,
+				"Formula2": null,
+				"Formula3": null,
+				"Formula4": null,
+				"Formula5": null,
+				"Formula6": null,
+				"Formula7": null,
+				"Formula8": null,
+				"Formula9": null,
+				"Formula10": null,
+				"Formula11": null,
+				"Formula12": null
+			}
+		},
+		{
+			"PropertyName": "TN9",
+			"Condition": null,
+			"Data": {
+				"ID": "9",
+				"Formula1": "Math.sqrt(20+80)*GetValueFromGL('sub1','DNTN9', 'TN3>DNTN3,V:1>DNTN7')",
+				"Formula2": null,
+				"Formula3": null,
+				"Formula4": null,
+				"Formula5": null,
+				"Formula6": null,
+				"Formula7": null,
+				"Formula8": null,
+				"Formula9": null,
+				"Formula10": null,
+				"Formula11": null,
+				"Formula12": null
+			}
+		}
+	],
+	"CPARA_Script": [],
+	"CPARA_XYTable": [],
+	"CPARA_InternalParameterValueList": [
+		{
+			"Data": {
+				"Type": "Number"
+			  },
+			"PropertyName": "TN3",
+			"ValueList": null
+		},
+		{
+			"Data": {
+				"Type": "Number"
+			  },
+			"PropertyName": "TN9",
+			"ValueList": null
+		}
+	],
+	"CPARA_InputParameterValueList": [
+		{
+			"Data": {
+				"Type": "Number"
+			  },
+			"PropertyName": "Es_Angle",
+			"ValueList": "30,35"
+		}
+	]
+}

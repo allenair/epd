@@ -1,0 +1,58 @@
+{
+  "CPARA_ChangeRecord": [],
+  "CPARA_FormulaLinkup": [
+    {
+      "Condition": null,
+      "Data": {
+        "Formula1": "DNTN3+DNTN7-Sub_Param",
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "9"
+      },
+      "PropertyName": "DNTN9"
+    }
+  ],
+  "CPARA_InputParameterValueList": [
+    {
+	  "Data": {
+		"Type": "Number"
+	   },
+      "PropertyName": "DNTN3",
+      "ValueList": "30,35"
+    },
+    {
+	  "Data": {
+		"Type": "Number"
+	   },
+      "PropertyName": "DNTN7",
+      "ValueList": "(0,$)"
+    },
+    {
+	  "Data": {
+		"Type": "Number"
+	   },
+      "PropertyName": "Sub_Param",
+      "ValueList": "(0,$)"
+    }
+  ],
+  "CPARA_InternalParameterValueList": [
+    {
+	  "Data": {
+		"Type": "Number"
+	   },
+      "PropertyName": "DNTN9",
+      "ValueList": null
+    }
+  ],
+  "CPARA_Script": [],
+  "CPARA_XYTable": []
+}

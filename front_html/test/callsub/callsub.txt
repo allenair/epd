@@ -1,0 +1,14 @@
+【input】
+{
+ "Es_Angle": "30",
+ "Sub_Param": "5"
+}
+
+
+【Should output】
+{
+    "Es_Angle": 30,
+    "TN3": 2015,
+    "TN9": 20110,
+    "Sub_Param": "5"
+}
