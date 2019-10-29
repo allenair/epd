@@ -1,13 +1,107 @@
 "use strict";
 
+/**
+ * 这三个是全局变量，按照模板名称作为key将模板解析后分别存储，多次计算可不用重复初始化
+ * templateParamterMap示例
+ {
+     "tplName1": {
+        "Es_Angle": {
+            "name": "Es_Angle",
+            "scope": "30,35",
+            "dataType": "N", 
+            "value": M_UNSTANDARDFLAG,
+            "from": "input" // 取值input，output
+        },
+        "Es_BBB": {...}
+        ...
+     }, 
+
+     "tplName2": {...}
+     ...
+ }
+ * 
+ * templateLogicUnitMap示例
+ {
+     "tplName1": [
+        {
+            "name": "TN1", // 此处一般与output的值相对应，此处允许同时为多个值赋值，例如“TN1,TN2,TN9”以英文逗号分隔
+            "calUnit": {
+                "params": ["Es_SW", "Es_Angle"], // 一维数组，值是计算依赖的变量名，此处的值应该存在于input或output的变量中
+                "values": [                      // 二维数组，每一个内部数组代表此条件的要求值，内部数组的长度需要与条件参数的个数一样（params数组长度）
+                    [“600”, "30"], ["800,1000", "30"]
+                    ...
+                ],
+                "formulas": [                    // 二维数组，此数组一维的长度应该与values数组的一维长度相同，内部二维的长度应该不小于name指定的参数个数（逗号分隔后），此处中的计算使用eval进行
+                    ["ROUND(Es_TH*1.732+5185,0)", null, null, ...],
+                    ...
+                ]
+            }
+        },
+        ...
+     ],
+
+     "tplName2": [...]
+     ...
+ }
+ * 
+ * templateXYTableMap示例
+ {
+     "tplName1": {
+        "T1": {
+            "tbNum": "T1",
+            "conditionArray": [
+                {
+                    "M_PRJ_TYPE": "fds", 
+                    "N301": "10",
+                    "RZZ043": "YES",
+                    "ZZ088": "(10,20]",
+                    "TB123": "YES",
+                    "TS30": "SDAF"
+                },
+                ...
+            ],
+            "resultArray": [
+                {
+                    "R:1": 1, 
+                    "R:2": 2
+                },
+                ...
+            ]
+        },
+
+        "T2": {...},
+        ...
+     },
+
+     "tplName2": {...}
+     ...
+ }
+ * 
+ */
 const templateParamterMap = {}; // 模板所有input与output
 const templateLogicUnitMap = {}; // 模板所有逻辑判断与执行单元
 const templateXYTableMap = {}; // 模板XY表格内容
 const templateExcuteStep = {}; // 模板执行单元的执行方式（应对循环的情况）
 
+// 标识非标的特殊字符
 const UNSTANDARDFLAG = '_';
+// 所有可能在公式中出现的函数名称
 const GLOBALFUNCTIONS = ['GetValueFromGL', 'GetValuesFromGL', 'QueryTable', 'QueryTable3D', 'ConvertTo3D', 'CTo3D', 'E_AND', 'E_OR', 'E_NOT', 'E_IF', 'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'SIN', 'TAN', 'PI', 'DEGREES', 'RADIANS', 'ROUND', 'ROUNDUP', 'ROUNDDOWN', 'INT', 'LN', 'LOG', 'MAX', 'MIN', 'POWER', 'SQRT', 'EMOD', 'CEILING', 'FLOOR', 'ISNUMBER', 'ISLOGICAL', 'ISTEXT', 'ISNA', 'CSTR', 'CNUM', 'CBOOL'];
 
+/**
+ * 存储全部用户输入的变量（作为本次计算的变量池，可能属于多个模板）,最终将此变量池输出
+ * 示例：
+ {
+     "Es_Angle": {
+        "name": "Es_Angle",
+        "dataType": "N", 
+        "value": M_UNSTANDARDFLAG,
+        "from": "input" // 取值input，output
+    },
+    "Es_BBB": {...}
+    ...
+ }
+ */
 let allParamsValues = {};
 let childParamValues = {}; // 结构与全局相同，主要目的是存储子模板调用中的子模板的变量，单独出来的原因是避免两个模板变量名称相同的问题
 let usedTemplateNameSet = new Set(); // 此变量避免循环调用
@@ -15,9 +109,9 @@ let usedTemplateNameSet = new Set(); // 此变量避免循环调用
 /**
  * 得到当前已经装载的模板名列表
  */
-function M_getAllTemplateNames(){
+function M_getAllTemplateNames() {
     let tplNameArr = [];
-    for(let tplName in templateLogicUnitMap){
+    for (let tplName in templateLogicUnitMap) {
         tplNameArr.push(tplName);
     }
 
@@ -27,7 +121,7 @@ function M_getAllTemplateNames(){
 /**
  * 依据模板名得到模板数据
  */
-function M_getTemplateDataByName(tplName){
+function M_getTemplateDataByName(tplName) {
     let tplDataObj = {
         "paramters": templateParamterMap[tplName],
         "logics": templateLogicUnitMap[tplName],
@@ -100,8 +194,8 @@ function M_calResultByRule(options) {
 
     // 进行实际计算
     let logicUnits = templateLogicUnitMap[tplName];
-    let logic;
     for (let cell of templateExcuteStep[tplName]) {
+        let logic;
         // 数组长度大于1代表是循环
         if (cell['step'].length > 1) {
             let flag = true;
@@ -155,6 +249,7 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
         }
         inputParamObj = tmpMap;
 
+        // 依据模板将所有模板中定义的参数进行转载，重点是确定参数的dataType
         for (let pname in templateParamterMap[tplName]) {
             childParamValues[tplName][pname] = {
                 'name': pname,
@@ -164,8 +259,9 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
             };
         }
 
-        for(let pname in inputParamObj){
-            if(childParamValues[tplName][pname]){
+        // 依据传入的变量对所有已经装载的参数进行赋值，重点是确定参数的value，如果参数没有传入值，则保持非标UNSTANDARDFLAG
+        for (let pname in inputParamObj) {
+            if (childParamValues[tplName][pname]) {
                 // 此时是需要使用src代表的参数的值给target参数赋值,值为map则需要取src所代表的变量的值，否则则直接使用src的值
                 let val = inputParamObj[pname]['src'];
                 if (inputParamObj[pname]['type'] === 'map') {
@@ -188,12 +284,12 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
             };
         }
 
-        for(let pname in inputParamObj){
+        for (let pname in inputParamObj) {
             let val = inputParamObj[pname];
-            if(allParamsValues[pname]){
+            if (allParamsValues[pname]) {
                 allParamsValues[pname]['value'] = _realValue(val, allParamsValues[pname]['dataType']);
 
-            }else{
+            } else {
                 allParamsValues[pname] = {
                     'name': pname,
                     'dataType': 'S',
@@ -539,10 +635,10 @@ function _getDeclareParamterStr(tplName, expressStr) {
         let value = childParamValues[tplName][pname]['value'];
         let valStr;
 
-        if(_isUnStandard(value)){
+        if (_isUnStandard(value)) {
             valStr = ` = null`;
 
-        }else if (dataType === 'S') {
+        } else if (dataType === 'S') {
             valStr = ` = '${value}'`;
 
         } else {
@@ -560,10 +656,10 @@ function _getDeclareParamterStr(tplName, expressStr) {
         let value = allParamsValues[pname]['value'];
         let valStr;
 
-        if(_isUnStandard(value)){
+        if (_isUnStandard(value)) {
             valStr = ` = null`;
-            
-        }else if (dataType === 'S') {
+
+        } else if (dataType === 'S') {
             valStr = ` = '${value}'`;
 
         } else {
@@ -1372,6 +1468,7 @@ function ConvertTo3D(...values) {
         } else if (ISLOGICAL(val)) {
             if (val.toUpperCase() == 'YES' || val.toUpperCase() == 'TRUE') {
                 resArr.push(true);
+
             } else {
                 resArr.push(false);
             }
@@ -1392,6 +1489,7 @@ function CTo3D(valArr, separator) {
     for (let c of valArr) {
         if (separator === c) {
             charArr.push('@A@');
+            
         } else {
             charArr.push(c);
         }
@@ -1732,4 +1830,4 @@ module.exports = {
     M_getTemplateDataByName,
     M_initGlobalTemplateMap,
     M_calResultByRule
-}
+};
