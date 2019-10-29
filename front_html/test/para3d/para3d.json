@@ -1,0 +1,379 @@
+{
+  "CPARA_ChangeRecord": [],
+  "CPARA_FormulaLinkup": [
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "NO"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "NO"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "YES"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[10,$)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "NO"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[10,$)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "NO"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "YES"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "3"
+      },
+      "PropertyName": "TB3D4"
+    },
+    {
+      "Data": {
+        "Formula1": "9",
+        "ID": "5"
+      },
+      "PropertyName": "TM14"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "ZZ088",
+              "Value": "[0,10)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ConvertTo3D(10 + TM14,10 + TM14,10 + TM14,10 + TM14,10 + TM14)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "ZZ088",
+              "Value": "[10,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ConvertTo3D(20 + TM14,20 + TM14,20 + TM14)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "8"
+      },
+      "PropertyName": "TN3D3"
+    }
+  ],
+  "CPARA_InputParameterValueList": [
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "M_PRJ_TYPE",
+      "ValueList": "ANY"
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "ZZ088",
+      "ValueList": "ANY"
+    },
+    {
+      "Data": {
+        "Type": "Yes/No"
+      },
+      "PropertyName": "RZZ043",
+      "ValueList": "ANY"
+    },
+    {
+      "Data": {
+        "Type": "3DNumber"
+      },
+      "PropertyName": "YFZ3DNUMBER",
+      "ValueList": "ANY"
+    }
+  ],
+  "CPARA_InternalParameterValueList": [
+    {
+      "Data": {
+        "Type": "3DYes/No"
+      },
+      "PropertyName": "TB3D4",
+      "ValueList": "No,Yes"
+    },
+    {
+      "Data": {
+        "Type": "3DNumber"
+      },
+      "PropertyName": "TN3D3"
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "TM14"
+    }
+  ],
+  "CPARA_Script": [],
+  "CPARA_XYTable": []
+}

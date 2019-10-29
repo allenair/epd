@@ -1,0 +1,33 @@
+【input】
+{
+ "M_PRJ_TYPE": "ZXEPD",
+ "ZZ088": "200",
+ "RZZ043": "YES",
+ "YFZ3DNUMBER": "5,8,15,25"
+}
+
+
+【Should output】
+{
+    "M_PRJ_TYPE": "ZXEPD",
+    "ZZ088": 200,
+    "RZZ043": "YES",
+    "YFZ3DNUMBER": [
+        5,
+        8,
+        15,
+        25
+    ],
+    "TB3D4": [
+        "NO",
+        "NO",
+        "NO",
+        "NO"
+    ],
+    "TN3D3": [
+        29,
+        29,
+        29
+    ],
+    "TM14": 9
+}

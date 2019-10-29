@@ -609,7 +609,7 @@ function _realCalResult(tplName, name, calUnit) {
 
                     if (flag) {
                         // for (let nindex in nameArr) {
-                        for (let nindex = 0; nindex < namearr.length; nindex++) {
+                        for (let nindex = 0; nindex < nameArr.length; nindex++) {
                             let pname = nameArr[nindex];
                             if (!valArr[pname]) {
                                 valArr[pname] = [];
@@ -685,15 +685,15 @@ function _getDeclareParamterStr(tplName, expressStr) {
         let valStr;
 
         if (_isUnStandard(value)) {
-            valStr = ` = null`;
+            valStr = `= null`;
 
         } else if (dataType === 'S') {
-            valStr = ` = '${value}'`;
+            valStr = `= '${value}'`;
 
         } else {
-            valStr = ` = ${value}`;
+            valStr = `= ${value}`;
         }
-        paramArr.push(`var  ${pname}  ${valStr}`);
+        paramArr.push(`var ${pname} ${valStr}`);
         paramSet.add(pname);
     }
 
@@ -710,6 +710,23 @@ function _getDeclareParamterStr(tplName, expressStr) {
 
         } else if (dataType === 'S') {
             valStr = ` = '${value}'`;
+
+        } else if (dataType === '3DS') {
+            if(Array.isArray(value)){
+                valStr = "= [";
+                for(let val of value){
+                    valStr = valStr + `'${val}',`;
+                }
+                valStr = valStr.substring(0, valStr.length-1) + "]";
+            }else{
+                valStr = '= null';
+            }
+
+        } else if (dataType === '3DN') {
+            valStr = ` = [${value}]`;
+
+        } else if (dataType === '3DB') {
+            valStr = ` = [${value}]`;
 
         } else {
             valStr = ` = ${value}`;
@@ -1019,7 +1036,7 @@ function _realValue(valStr, dataType) {
 
     if (dataType && dataType.startsWith('3D')) {
         // 如果传入的就是数组，则说明是已经完成处理，可直接返回
-        if (valStr.length > 1) {
+        if (Array.isArray(valStr)) {
             return valStr;
         }
 
