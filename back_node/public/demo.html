@@ -38,7 +38,7 @@
 
     <!-- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> -->
     <script type="text/javascript" src="./javascripts/jquery.min.js"></script>
-    <script type="text/javascript" src="./javascripts/epd_engine.min.js"></script>
+    <script type="text/javascript" src="./javascripts/epd_engine_front.min.js"></script>
 
     <script type="text/javascript">
         const inputValue = `{
@@ -83,7 +83,8 @@
         (async () => {
             try {
                 for (let tplName in tplMap) {
-                    let data = await myAjax(tplName, tplMap[tplName]);
+                    // let data = await myAjax(tplName, tplMap[tplName]);
+                    let data = await $.ajax({"url": `./rules/${tplName}.json`, "dataType": 'json', "success": data => M_initGlobalTemplateMap(tplName, data)});
                 }
             } catch (ex) {
                 console.log(ex);
