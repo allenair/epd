@@ -107,4 +107,4 @@ function simplifyRuleTemplate(jsonObj) {
 
 module.exports = {
     simplifyRuleTemplate
-}
+};

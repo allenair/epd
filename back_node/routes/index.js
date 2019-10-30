@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const epd = require('../modules/epd_engine');
 const epd_tool = require('../modules/app_tools');
@@ -44,7 +44,7 @@ router.post('/epd/:tplName', (req, res) => {
 /**
  * 将模板进行简化
  */
-router.post('/simplify', (req, res)=>{
+router.post('/simplify', (req, res) => {
   let simplifedObj = epd_tool.simplifyRuleTemplate(req.body);
   res.json(simplifedObj);
 });

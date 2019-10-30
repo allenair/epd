@@ -1393,8 +1393,7 @@ function _extractParamArr(formularExpress) {
 //-----------------------------------------------------------
 // 以下两个函数非工具类，目的是支持公式中两个特殊的函数
 /*
- * 此函数中只能使用eval中动态声明的变量，包括当前环境的所有输入输出参数，和模板对应的table对象
- * tableObj需要eval调用此函数之前赋值（此处使用的全部非传入变量都认为是全局变量）
+ * 此函数中用于查询XY表，tableObj数据来源于全局的XY表存储，模板名称tplName来源于当前正在起作用的模板（usedTemplateNameStack中最后一个）
  */
 function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
     let queryRsultArr = [];
@@ -1407,7 +1406,6 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
     let resArr = innerTableObj['resultArray'];
 
     try {
-        // 获取table所需参数，并依据eval传入的参数进行赋值
         let conParamValObj = {};
         if (conArr.length > 0) {
             for (let pname in conArr[0]) {

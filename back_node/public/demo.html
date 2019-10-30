@@ -23,7 +23,7 @@
 
 <body>
     测试模板名称：<br /><input type="text" id="content_id" value="simple"></textarea>
-    <br/>
+    <br />
     可用测试模板：simple、common、callsub、dowhile、para3d、xytable
     <p></p>
 
@@ -63,28 +63,15 @@
             "xytable": "xytable.json"
         };
 
-        function myAjax(tplName, urlStr) {
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    "url": `./rules/${urlStr}`,
-                    "dataType": 'json',
-                    "success": data => {
-                        M_initGlobalTemplateMap(tplName, data);
-                        resovle(data);
-                    },
-                    "error": err => {
-                        reject(err);
-                    }
-                });
-            });
-        }
-
         // 声明并调用，用于同步初始化数据
         (async () => {
             try {
                 for (let tplName in tplMap) {
-                    // let data = await myAjax(tplName, tplMap[tplName]);
-                    let data = await $.ajax({"url": `./rules/${tplName}.json`, "dataType": 'json', "success": data => M_initGlobalTemplateMap(tplName, data)});
+                    let data = await $.ajax({
+                        "url": `./rules/${tplName}.json`,
+                        "dataType": 'json',
+                        "success": data => M_initGlobalTemplateMap(tplName, data)
+                    });
                 }
             } catch (ex) {
                 console.log(ex);
@@ -93,7 +80,7 @@
             initHtmlContent();
         })();
 
-        
+
         // 为按钮装载计算事件
         function initHtmlContent() {
             $('#input_id').val(inputValue);
@@ -107,7 +94,7 @@
                     "tplName": tplName,
                     "inputParameters": inputObj
                 };
-                
+
                 let res = M_calResultByRule(options)
                 $('#result_id').html(JSON.stringify(res, null, 4));
             });
