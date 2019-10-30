@@ -1,23 +1,119 @@
 "use strict";
 
+/**
+ * 这三个是全局变量，按照模板名称作为key将模板解析后分别存储，多次计算可不用重复初始化
+ * templateParamterMap示例
+ {
+     "tplName1": {
+        "Es_Angle": {
+            "name": "Es_Angle",
+            "scope": "30,35",
+            "dataType": "N", 
+            "value": M_UNSTANDARDFLAG,
+            "from": "input" // 取值input，output
+        },
+        "Es_BBB": {...}
+        ...
+     }, 
+
+     "tplName2": {...}
+     ...
+ }
+ * 
+ * templateLogicUnitMap示例
+ {
+     "tplName1": [
+        {
+            "name": "TN1", // 此处一般与output的值相对应，此处允许同时为多个值赋值，例如“TN1,TN2,TN9”以英文逗号分隔
+            "calUnit": {
+                "params": ["Es_SW", "Es_Angle"], // 一维数组，值是计算依赖的变量名，此处的值应该存在于input或output的变量中
+                "values": [                      // 二维数组，每一个内部数组代表此条件的要求值，内部数组的长度需要与条件参数的个数一样（params数组长度）
+                    [“600”, "30"], ["800,1000", "30"]
+                    ...
+                ],
+                "formulas": [                    // 二维数组，此数组一维的长度应该与values数组的一维长度相同，内部二维的长度应该不小于name指定的参数个数（逗号分隔后），此处中的计算使用eval进行
+                    ["ROUND(Es_TH*1.732+5185,0)", null, null, ...],
+                    ...
+                ]
+            }
+        },
+        ...
+     ],
+
+     "tplName2": [...]
+     ...
+ }
+ * 
+ * templateXYTableMap示例
+ {
+     "tplName1": {
+        "T1": {
+            "tbNum": "T1",
+            "conditionArray": [
+                {
+                    "M_PRJ_TYPE": "fds", 
+                    "N301": "10",
+                    "RZZ043": "YES",
+                    "ZZ088": "(10,20]",
+                    "TB123": "YES",
+                    "TS30": "SDAF"
+                },
+                ...
+            ],
+            "resultArray": [
+                {
+                    "R:1": 1, 
+                    "R:2": 2
+                },
+                ...
+            ]
+        },
+
+        "T2": {...},
+        ...
+     },
+
+     "tplName2": {...}
+     ...
+ }
+ * 
+ */
 const templateParamterMap = {}; // 模板所有input与output
 const templateLogicUnitMap = {}; // 模板所有逻辑判断与执行单元
 const templateXYTableMap = {}; // 模板XY表格内容
 const templateExcuteStep = {}; // 模板执行单元的执行方式（应对循环的情况）
 
+// 标识非标的特殊字符
 const UNSTANDARDFLAG = '_';
+// 所有可能在公式中出现的函数名称
 const GLOBALFUNCTIONS = ['GetValueFromGL', 'GetValuesFromGL', 'QueryTable', 'QueryTable3D', 'ConvertTo3D', 'CTo3D', 'E_AND', 'E_OR', 'E_NOT', 'E_IF', 'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'SIN', 'TAN', 'PI', 'DEGREES', 'RADIANS', 'ROUND', 'ROUNDUP', 'ROUNDDOWN', 'INT', 'LN', 'LOG', 'MAX', 'MIN', 'POWER', 'SQRT', 'EMOD', 'CEILING', 'FLOOR', 'ISNUMBER', 'ISLOGICAL', 'ISTEXT', 'ISNA', 'CSTR', 'CNUM', 'CBOOL'];
 
+/**
+ * 存储全部用户输入的变量（作为本次计算的变量池，可能属于多个模板）,最终将此变量池输出
+ * 示例：
+ {
+     "Es_Angle": {
+        "name": "Es_Angle",
+        "dataType": "N", 
+        "value": M_UNSTANDARDFLAG,
+        "from": "input" // 取值input，output
+    },
+    "Es_BBB": {...}
+    ...
+ }
+ */
 let allParamsValues = {};
 let childParamValues = {}; // 结构与全局相同，主要目的是存储子模板调用中的子模板的变量，单独出来的原因是避免两个模板变量名称相同的问题
-let usedTemplateNameSet = new Set(); // 此变量避免循环调用
+
+let usedTemplateNameStack = []; // 此处使用栈存储所有使用的模板名称, 避免循环调用
+
 
 /**
  * 得到当前已经装载的模板名列表
  */
-function M_getAllTemplateNames(){
+function M_getAllTemplateNames() {
     let tplNameArr = [];
-    for(let tplName in templateLogicUnitMap){
+    for (let tplName in templateLogicUnitMap) {
         tplNameArr.push(tplName);
     }
 
@@ -27,7 +123,7 @@ function M_getAllTemplateNames(){
 /**
  * 依据模板名得到模板数据
  */
-function M_getTemplateDataByName(tplName){
+function M_getTemplateDataByName(tplName) {
     let tplDataObj = {
         "paramters": templateParamterMap[tplName],
         "logics": templateLogicUnitMap[tplName],
@@ -84,12 +180,12 @@ function M_calResultByRule(options) {
     }
 
     // 如果存在循环调用则返回{}
-    if (usedTemplateNameSet.has(tplName)) {
+    if (usedTemplateNameStack.includes(tplName)) {
         console.log('Template calling is LOOP!! templateName: ' + tplName);
         return {};
     }
 
-    usedTemplateNameSet.add(tplName);
+    usedTemplateNameStack.push(tplName);
 
     if (options['childFlag']) {
         _setInputsValue(tplName, options['inputParameters'], true);
@@ -100,8 +196,8 @@ function M_calResultByRule(options) {
 
     // 进行实际计算
     let logicUnits = templateLogicUnitMap[tplName];
-    let logic;
     for (let cell of templateExcuteStep[tplName]) {
+        let logic;
         // 数组长度大于1代表是循环
         if (cell['step'].length > 1) {
             let flag = true;
@@ -112,6 +208,9 @@ function M_calResultByRule(options) {
                     // index=0 代表是#DO WHILE行的循环判断语句
                     if (index == 0) {
                         flag = res;
+                        if (!flag) {
+                            break;
+                        }
                     }
                 }
             }
@@ -122,8 +221,42 @@ function M_calResultByRule(options) {
         }
     }
 
-    usedTemplateNameSet.delete(tplName);
-    return _combineOutputs(tplName, options['outParameters']);
+    usedTemplateNameStack.pop();
+
+    let resMap = _combineOutputs(tplName, options['outParameters']);
+    if (options['childFlag']) {
+        return resMap;
+    }
+
+    return _dealResultBoolType(resMap);
+}
+
+/**
+ * 将最终结果的true、false转换为YES、NO
+ */
+function _dealResultBoolType(resMap) {
+    resMap = resMap || {};
+    for (let pname in resMap) {
+        if (resMap[pname] === true) {
+            resMap[pname] = 'YES';
+        }
+        if (resMap[pname] === false) {
+            resMap[pname] = 'NO';
+        }
+        if (resMap[pname].length > 1) {
+            for (let index = 0; index < resMap[pname].length; index++) {
+                if (resMap[pname][index] === true) {
+                    resMap[pname][index] = 'YES';
+                } else if (resMap[pname][index] === false) {
+                    resMap[pname][index] = 'NO';
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
+    return resMap;
 }
 
 /** 
@@ -155,6 +288,7 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
         }
         inputParamObj = tmpMap;
 
+        // 依据模板将所有模板中定义的参数进行转载，重点是确定参数的dataType
         for (let pname in templateParamterMap[tplName]) {
             childParamValues[tplName][pname] = {
                 'name': pname,
@@ -164,8 +298,9 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
             };
         }
 
-        for(let pname in inputParamObj){
-            if(childParamValues[tplName][pname]){
+        // 依据传入的变量对所有已经装载的参数进行赋值，重点是确定参数的value，如果参数没有传入值，则保持非标UNSTANDARDFLAG
+        for (let pname in childParamValues[tplName]) {
+            if (inputParamObj[pname]) {
                 // 此时是需要使用src代表的参数的值给target参数赋值,值为map则需要取src所代表的变量的值，否则则直接使用src的值
                 let val = inputParamObj[pname]['src'];
                 if (inputParamObj[pname]['type'] === 'map') {
@@ -174,9 +309,11 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
                 } else {
                     childParamValues[tplName][pname]['value'] = _realValue(val, childParamValues[tplName][pname]['dataType']);
                 }
+
+            } else if (allParamsValues[pname]) {
+                childParamValues[tplName][pname]['value'] = allParamsValues[pname]['value'];
             }
         }
-
 
     } else {
         for (let pname in templateParamterMap[tplName]) {
@@ -188,12 +325,12 @@ function _setInputsValue(tplName, inputParamObj, isFromChildTpl) {
             };
         }
 
-        for(let pname in inputParamObj){
+        for (let pname in inputParamObj) {
             let val = inputParamObj[pname];
-            if(allParamsValues[pname]){
+            if (allParamsValues[pname]) {
                 allParamsValues[pname]['value'] = _realValue(val, allParamsValues[pname]['dataType']);
 
-            }else{
+            } else {
                 allParamsValues[pname] = {
                     'name': pname,
                     'dataType': 'S',
@@ -311,11 +448,6 @@ function _realCalResult(tplName, name, calUnit) {
     const conValueArr2D = calUnit['values'];
     const formulaArr2D = calUnit['formulas'];
 
-    // 先给定非标默认值，如果以下计算不满足条件则取默认值
-    for (let pname of nameArr) {
-        _updateValue(tplName, pname, UNSTANDARDFLAG);
-    }
-
     // 没有条件直接根据公式计算结果
     if (conParamArr.length == 0) {
         // 此处对应GetValuesFromGL方法，此方法是会调用子模板，并返回结果对象，再依据变量顺序进行赋值
@@ -323,12 +455,16 @@ function _realCalResult(tplName, name, calUnit) {
             // 预先检验表达式所包含的参数值是否存在NA和非标的情况,非标则直接退出
             let checkRes = _checkExpress(childParamValues[tplName], allParamsValues, formulaArr2D[0][0]);
             if (_isUnStandard(checkRes)) {
+                for (let pname of nameArr) {
+                    _updateValue(tplName, pname, UNSTANDARDFLAG);
+                }
                 return false;
 
             } else if (checkRes === 'NA') {
                 for (let pname of nameArr) {
                     _updateValue(tplName, pname, 'NA');
                 }
+                return false;
 
             } else {
                 let paramValueArr = [];
@@ -339,7 +475,11 @@ function _realCalResult(tplName, name, calUnit) {
                     for (let nindex = 0; nindex < minLen; nindex++) {
                         _updateValue(tplName, nameArr[nindex], paramValueArr[nindex]);
                     }
+
                 } catch (err) {
+                    for (let pname of nameArr) {
+                        _updateValue(tplName, pname, UNSTANDARDFLAG);
+                    }
                     console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[0][0]}`);
                     console.log(err);
                 }
@@ -468,7 +608,7 @@ function _realCalResult(tplName, name, calUnit) {
 
                     if (flag) {
                         // for (let nindex in nameArr) {
-                        for (let nindex = 0; nindex < namearr.length; nindex++) {
+                        for (let nindex = 0; nindex < nameArr.length; nindex++) {
                             let pname = nameArr[nindex];
                             if (!valArr[pname]) {
                                 valArr[pname] = [];
@@ -494,7 +634,11 @@ function _realCalResult(tplName, name, calUnit) {
                             }
 
                             if (_isUnStandard(paramValue)) {
+                                for (let pname of nameArr) {
+                                    _updateValue(tplName, pname, UNSTANDARDFLAG);
+                                }
                                 return false;
+
                             } else {
                                 valArr[pname].push(paramValue);
                             }
@@ -539,16 +683,16 @@ function _getDeclareParamterStr(tplName, expressStr) {
         let value = childParamValues[tplName][pname]['value'];
         let valStr;
 
-        if(_isUnStandard(value)){
-            valStr = ` = null`;
+        if (_isUnStandard(value)) {
+            valStr = `= null`;
 
-        }else if (dataType === 'S') {
-            valStr = ` = '${value}'`;
+        } else if (dataType === 'S') {
+            valStr = `= '${value}'`;
 
         } else {
-            valStr = ` = ${value}`;
+            valStr = `= ${value}`;
         }
-        paramArr.push(`var  ${pname}  ${valStr}`);
+        paramArr.push(`var ${pname} ${valStr}`);
         paramSet.add(pname);
     }
 
@@ -560,11 +704,28 @@ function _getDeclareParamterStr(tplName, expressStr) {
         let value = allParamsValues[pname]['value'];
         let valStr;
 
-        if(_isUnStandard(value)){
+        if (_isUnStandard(value)) {
             valStr = ` = null`;
-            
-        }else if (dataType === 'S') {
+
+        } else if (dataType === 'S') {
             valStr = ` = '${value}'`;
+
+        } else if (dataType === '3DS') {
+            if (Array.isArray(value)) {
+                valStr = "= [";
+                for (let val of value) {
+                    valStr = valStr + `'${val}',`;
+                }
+                valStr = valStr.substring(0, valStr.length - 1) + "]";
+            } else {
+                valStr = '= null';
+            }
+
+        } else if (dataType === '3DN') {
+            valStr = ` = [${value}]`;
+
+        } else if (dataType === '3DB') {
+            valStr = ` = [${value}]`;
 
         } else {
             valStr = ` = ${value}`;
@@ -574,7 +735,6 @@ function _getDeclareParamterStr(tplName, expressStr) {
     }
 
     resStr = paramArr.join('; ') + '; ';
-    resStr = resStr + ` var tableObj=${JSON.stringify(templateXYTableMap[tplName])}; `;
     resStr = resStr + expressStr;
 
     return resStr;
@@ -789,10 +949,19 @@ function _arrangeTemplateLogicOrder(logicUnits) {
     return excuteCells;
 }
 
+function _isNull(val) {
+    if (val == null || val == undefined) {
+        return true;
+    }
+    if (val.toString() == 'NaN') {
+        return true;
+    }
+    return false;
+}
 
 /* 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断 */
 function _checkParam(val, scopeStr) {
-    if (!val || _isUnStandard(val)) {
+    if (_isNull(val) || _isUnStandard(val)) {
         return false;
     }
 
@@ -866,7 +1035,7 @@ function _realValue(valStr, dataType) {
 
     if (dataType && dataType.startsWith('3D')) {
         // 如果传入的就是数组，则说明是已经完成处理，可直接返回
-        if (valStr.length > 1) {
+        if (Array.isArray(valStr)) {
             return valStr;
         }
 
@@ -893,7 +1062,7 @@ function _realValue(valStr, dataType) {
             return UNSTANDARDFLAG;
         }
         if (dataType === 'B') {
-            return valStr.toUpperCase() === 'YES' || valStr.toUpperCase() === 'TRUE';
+            return valStr.toString().toUpperCase() === 'YES' || valStr.toString().toUpperCase() === 'TRUE';
         }
         if (dataType === 'N') {
             return parseFloat(valStr);
@@ -1052,7 +1221,18 @@ function _calFloatDigitsCount(val) {
 }
 
 function _checkParamValueEqual(val1, val2) {
-    if (val1 && val2 && val1.toString() === val2.toString()) {
+    if (_isNull(val1) || _isNull(val2)) {
+        return false;
+    }
+
+    if (ISLOGICAL(val1)) {
+        val1 = _realValue(val1, 'B');
+    }
+    if (ISLOGICAL(val2)) {
+        val2 = _realValue(val2, 'B');
+    }
+
+    if (val1.toString() === val2.toString()) {
         return true;
     }
     if (val1.toString() === 'NA' && val2.toString() === 'NA') {
@@ -1142,7 +1322,7 @@ function _parseValueScope(scopeStr) {
     } else {
         resMap['valType'] = 'O';
         if (ISLOGICAL(val)) {
-            resMap['valScope'] = _realValue(valStr, 'B').toString();
+            resMap['valScope'] = _realValue(val, 'B').toString();
 
         } else {
             resMap['valScope'] = val || '';
@@ -1170,6 +1350,8 @@ function _extractParamArr(formularExpress) {
     if (!formularExpress || formularExpress.length == 0) {
         return [];
     }
+
+    formularExpress = formularExpress.toString();
 
     let resArr = new Set();
 
@@ -1217,6 +1399,9 @@ function _extractParamArr(formularExpress) {
 function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
     let queryRsultArr = [];
 
+    let tplName = usedTemplateNameStack[usedTemplateNameStack.length - 1];
+    let tableObj = templateXYTableMap[tplName];
+
     let innerTableObj = tableObj[TNo];
     let conArr = innerTableObj['conditionArray'];
     let resArr = innerTableObj['resultArray'];
@@ -1226,7 +1411,11 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
         let conParamValObj = {};
         if (conArr.length > 0) {
             for (let pname in conArr[0]) {
-                conParamValObj[pname] = _evalExpress(pname);
+                let tmpObj = _getParamObj(tplName, pname);
+                if (tmpObj == null) {
+                    continue;
+                }
+                conParamValObj[pname] = tmpObj['value'];
             }
         }
 
@@ -1239,7 +1428,8 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
                     let realVal = conParamValObj[pname];
                     let scopeVal = conArr[pindex][pname];
                     if (scopeVal.startsWith('@')) {
-                        scopeVal = _evalExpress(scopeVal.substring(1));
+                        let tmpObj = _getParamObj(tplName, scopeVal.substring(1));
+                        scopeVal = tmpObj['value'];
                     }
 
                     flag = _checkParam(realVal, scopeVal);
@@ -1265,12 +1455,14 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
                     let pname = inputObj['target'];
                     let realVal = inputObj['src'];
                     if (inputObj['type'] && inputObj['type'] === 'map') {
-                        realVal = _evalExpress(realVal);
+                        let tmpObj = _getParamObj(tplName, realVal);
+                        realVal = tmpObj['value'];
                     }
 
                     let scopeVal = conObj[pname];
                     if (scopeVal && scopeVal.startsWith('@')) {
-                        scopeVal = _evalExpress(scopeVal.substring(1));
+                        let tmpObj = _getParamObj(tplName, scopeVal.substring(1));
+                        scopeVal = tmpObj['value'];
                     }
 
                     flag = _checkParam(realVal, scopeVal);
@@ -1372,6 +1564,7 @@ function ConvertTo3D(...values) {
         } else if (ISLOGICAL(val)) {
             if (val.toUpperCase() == 'YES' || val.toUpperCase() == 'TRUE') {
                 resArr.push(true);
+
             } else {
                 resArr.push(false);
             }
@@ -1392,6 +1585,7 @@ function CTo3D(valArr, separator) {
     for (let c of valArr) {
         if (separator === c) {
             charArr.push('@A@');
+
         } else {
             charArr.push(c);
         }
@@ -1675,7 +1869,7 @@ function ISNUMBER(val) {
 }
 
 function ISLOGICAL(val) {
-    if (!val) {
+    if (_isNull(val)) {
         return false;
     }
 
@@ -1732,4 +1926,4 @@ module.exports = {
     M_getTemplateDataByName,
     M_initGlobalTemplateMap,
     M_calResultByRule
-}
+};

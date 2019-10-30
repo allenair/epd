@@ -1,0 +1,1664 @@
+{
+  "CPARA_ChangeRecord": [],
+  "CPARA_FormulaLinkup": [
+    {
+      "Data": {
+        "Formula1": "M_PRJ_TYPE",
+        "ID": "1"
+      },
+      "PropertyName": "TS30"
+    },
+    {
+      "Data": {
+        "Formula1": "ZZ088-190",
+        "ID": "2"
+      },
+      "PropertyName": "N301"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "NO"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "NO"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "YES"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[10,$)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "NO"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[10,$)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "NO"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "YES"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "3"
+      },
+      "PropertyName": "TB3D4"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "N301",
+              "Value": "(0,10]"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "200"
+            },
+            {
+              "Key": "FloorOP",
+              "Value": "YES"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "YES"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "N301",
+              "Value": "ELSE"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "ELSE"
+            },
+            {
+              "Key": "FloorOP",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "NO"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "4"
+      },
+      "PropertyName": "TB123"
+    },
+    {
+      "Data": {
+        "Formula1": "1",
+        "ID": "5"
+      },
+      "PropertyName": "TM14"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "TM14",
+              "Value": "[1,6)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "Yes"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "TM14",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "No"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "6"
+      },
+      "PropertyName": "#DO WHILE"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "QueryTable(\"T4\",\"VALUE1\")"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "NO"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "QueryTable(\"T1\",\"R:1\")"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[10,$)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "QueryTable(\"T2\",\"R:2\")"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "YFZ3DNUMBER",
+              "Value": "[10,$)"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "NO"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "QueryTable(\"T3\",\"R:3\")"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "7"
+      },
+      "PropertyName": "TS3D8"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "N301",
+              "Value": "[0,10)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ConvertTo3D(10 + TM14,10 + TM14,10 + TM14,10 + TM14,10 + TM14)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "N301",
+              "Value": "[10,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "ConvertTo3D(20 + TM14,20 + TM14,20 + TM14)"
+            },
+            {
+              "Key": "Formula2"
+            },
+            {
+              "Key": "Formula3"
+            },
+            {
+              "Key": "Formula4"
+            },
+            {
+              "Key": "Formula5"
+            },
+            {
+              "Key": "Formula6"
+            },
+            {
+              "Key": "Formula7"
+            },
+            {
+              "Key": "Formula8"
+            },
+            {
+              "Key": "Formula9"
+            },
+            {
+              "Key": "Formula10"
+            },
+            {
+              "Key": "Formula11"
+            },
+            {
+              "Key": "Formula12"
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "ID": "8"
+      },
+      "PropertyName": "TN3D3"
+    },
+    {
+      "Data": {
+        "Formula1": "TM14+1",
+        "ID": "10"
+      },
+      "PropertyName": "TM14"
+    },
+    {
+      "Data": {
+        "ID": "11"
+      },
+      "PropertyName": "#LOOP"
+    }
+  ],
+  "CPARA_InputParameterValueList": [
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "M_PRJ_TYPE",
+      "ValueList": "ANY"
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "ZZ088",
+      "ValueList": "ANY"
+    },
+    {
+      "Data": {
+        "Type": "Yes/No"
+      },
+      "PropertyName": "RZZ043",
+      "ValueList": "ANY"
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "FloorOP",
+      "ValueList": "ANY"
+    },
+    {
+      "Data": {
+        "Type": "3DNumber"
+      },
+      "PropertyName": "YFZ3DNUMBER",
+      "ValueList": "ANY"
+    },
+    {
+      "Data": {
+        "Type": "3DYes/No"
+      },
+      "PropertyName": "YFZ3DYESNO",
+      "ValueList": "ANY"
+    }
+  ],
+  "CPARA_InternalParameterValueList": [
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "TS30"
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "N301",
+      "ValueList": "1"
+    },
+    {
+      "Data": {
+        "Type": "Yes/No"
+      },
+      "PropertyName": "TB123"
+    },
+    {
+      "Data": {
+        "Type": "3DYes/No"
+      },
+      "PropertyName": "TB3D4",
+      "ValueList": "No,Yes"
+    },
+    {
+      "Data": {
+        "Type": "3DText"
+      },
+      "PropertyName": "TS3D8"
+    },
+    {
+      "Data": {
+        "Type": "3DNumber"
+      },
+      "PropertyName": "TN3D3"
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "TM14"
+    }
+  ],
+  "CPARA_Script": [],
+  "CPARA_XYTable": [
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "FSA"
+            },
+            {
+              "Key": "N301",
+              "Value": "10"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "(10,20]"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "SDAF"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "1"
+            },
+            {
+              "Key": "R:2",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "er"
+            },
+            {
+              "Key": "N301",
+              "Value": "20"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "(10,20]"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "SDAF"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "3"
+            },
+            {
+              "Key": "R:2",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "fdas"
+            },
+            {
+              "Key": "N301",
+              "Value": "10"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "NO"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "(10,20]"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "SDAF"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "5"
+            },
+            {
+              "Key": "R:2",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "da"
+            },
+            {
+              "Key": "N301",
+              "Value": "20"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "(10,20]"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "SDAF"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "7"
+            },
+            {
+              "Key": "R:2",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "fds"
+            },
+            {
+              "Key": "N301",
+              "Value": "10"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "@M_PRJ_TYPE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "9"
+            },
+            {
+              "Key": "R:2",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "er"
+            },
+            {
+              "Key": "N301",
+              "Value": "20"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "@M_PRJ_TYPE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "11"
+            },
+            {
+              "Key": "R:2",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "fdas"
+            },
+            {
+              "Key": "N301",
+              "Value": "10"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "NO"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "@M_PRJ_TYPE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "13"
+            },
+            {
+              "Key": "R:2",
+              "Value": "14"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "da"
+            },
+            {
+              "Key": "N301",
+              "Value": "20"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "@M_PRJ_TYPE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "15"
+            },
+            {
+              "Key": "R:2",
+              "Value": "16"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "fds"
+            },
+            {
+              "Key": "N301",
+              "Value": "10"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "(20,$)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "NO"
+            },
+            {
+              "Key": "TS30",
+              "Value": "FSA"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "17"
+            },
+            {
+              "Key": "R:2",
+              "Value": "18"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "er"
+            },
+            {
+              "Key": "N301",
+              "Value": "20"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "(20,$)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "NO"
+            },
+            {
+              "Key": "TS30",
+              "Value": "FSA"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "19"
+            },
+            {
+              "Key": "R:2",
+              "Value": "20"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "fdas"
+            },
+            {
+              "Key": "N301",
+              "Value": "10"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "NO"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "(20,$)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "NO"
+            },
+            {
+              "Key": "TS30",
+              "Value": "FSA"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "21"
+            },
+            {
+              "Key": "R:2",
+              "Value": "22"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "da"
+            },
+            {
+              "Key": "N301",
+              "Value": "20"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            },
+            {
+              "Key": "ZZ088",
+              "Value": "(20,$)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "NO"
+            },
+            {
+              "Key": "TS30",
+              "Value": "FSA"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "23"
+            },
+            {
+              "Key": "R:2",
+              "Value": "24"
+            }
+          ]
+        }
+      ],
+      "TNo": "T1"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "ZZ088",
+              "Value": "(10,20]"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "SDAF"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "1"
+            },
+            {
+              "Key": "R:2",
+              "Value": "5"
+            },
+            {
+              "Key": "R:3",
+              "Value": "9"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "ZZ088",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "@M_PRJ_TYPE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "2"
+            },
+            {
+              "Key": "R:2",
+              "Value": "6"
+            },
+            {
+              "Key": "R:3",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "ZZ088",
+              "Value": "(20,$)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "NO"
+            },
+            {
+              "Key": "TS30",
+              "Value": "FSA"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "3"
+            },
+            {
+              "Key": "R:2",
+              "Value": "7"
+            },
+            {
+              "Key": "R:3",
+              "Value": "11"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "ZZ088",
+              "Value": "(20,$)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "FSA"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "4"
+            },
+            {
+              "Key": "R:2",
+              "Value": "8"
+            },
+            {
+              "Key": "R:3",
+              "Value": "12"
+            }
+          ]
+        }
+      ],
+      "TNo": "T2"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "FSA"
+            },
+            {
+              "Key": "N301",
+              "Value": "10"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "1"
+            },
+            {
+              "Key": "R:2",
+              "Value": "4"
+            },
+            {
+              "Key": "R:3",
+              "Value": "7"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "er"
+            },
+            {
+              "Key": "N301",
+              "Value": "20"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "YES"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "2"
+            },
+            {
+              "Key": "R:2",
+              "Value": "5"
+            },
+            {
+              "Key": "R:3",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "M_PRJ_TYPE",
+              "Value": "fdas"
+            },
+            {
+              "Key": "N301",
+              "Value": "10"
+            },
+            {
+              "Key": "RZZ043",
+              "Value": "NO"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "R:1",
+              "Value": "3"
+            },
+            {
+              "Key": "R:2",
+              "Value": "6"
+            },
+            {
+              "Key": "R:3",
+              "Value": "9"
+            }
+          ]
+        }
+      ],
+      "TNo": "T3"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "ZZ088",
+              "Value": "(10,20]"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "SDAF"
+            },
+            {
+              "Key": "VALUE1",
+              "Value": "1"
+            },
+            {
+              "Key": "VALUE2",
+              "Value": "5"
+            }
+          ],
+          "Results": []
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "ZZ088",
+              "Value": "[0,10)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "@M_PRJ_TYPE"
+            },
+            {
+              "Key": "VALUE1",
+              "Value": "2"
+            },
+            {
+              "Key": "VALUE2",
+              "Value": "6"
+            }
+          ],
+          "Results": []
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "ZZ088",
+              "Value": "(20,$)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "NO"
+            },
+            {
+              "Key": "TS30",
+              "Value": "FSA"
+            },
+            {
+              "Key": "VALUE1",
+              "Value": "3"
+            },
+            {
+              "Key": "VALUE2",
+              "Value": "7"
+            }
+          ],
+          "Results": []
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "ZZ088",
+              "Value": "(20,$)"
+            },
+            {
+              "Key": "TB123",
+              "Value": "YES"
+            },
+            {
+              "Key": "TS30",
+              "Value": "FSA"
+            },
+            {
+              "Key": "VALUE1",
+              "Value": "4"
+            },
+            {
+              "Key": "VALUE2",
+              "Value": "8"
+            }
+          ],
+          "Results": []
+        }
+      ],
+      "TNo": "T4"
+    }
+  ]
+}

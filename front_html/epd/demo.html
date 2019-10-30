@@ -22,10 +22,12 @@
 </head>
 
 <body>
-    模板名称：<br /><input type="text" id="content_id" value=""></textarea>
+    测试模板名称：<br /><input type="text" id="content_id" value="simple"></textarea>
+    <br/>
+    可用测试模板：simple、common、callsub、dowhile、para3d、xytable
     <p></p>
 
-    输入参数：<br /><textarea id="input_id" value=""></textarea>
+    输入参数：<br /><textarea id="input_id" value="" placeholder="请输入模板对应输入值..."></textarea>
     <p></p>
 
     <button id="cal_bn" value="">计算</button>
@@ -34,7 +36,8 @@
     计算结果：<br />
     <div id="result_id"></div>
 
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> -->
+    <script type="text/javascript" src="./jquery.min.js"></script>
     <script type="text/javascript" src="./epd_engine.js"></script>
 
     <script type="text/javascript">
@@ -50,9 +53,14 @@
 }`;
 
         const tplMap = {
-            "SIMPLE": "simple/simple.json",
-            "DN1": "simple/simple.json",
-            "DN2": "simple/simple.json"
+            "callsub": "callsub/callsub.json",
+            "sub1": "callsub/sub1.json",
+            "sub2": "callsub/sub2.json",
+            "common": "common/common.json",
+            "dowhile": "dowhile/dowhile.json",
+            "para3d": "para3d/para3d.json",
+            "simple": "simple/simple.json",
+            "xytable": "xytable/xytable.json"
         };
 
         function myAjax(tplName, urlStr) {
@@ -71,7 +79,20 @@
             });
         }
 
+        // 声明并调用，用于同步初始化数据
+        (async () => {
+            try {
+                for (let tplName in tplMap) {
+                    let data = await myAjax(tplName, tplMap[tplName]);
+                }
+            } catch (ex) {
+                console.log(ex);
+            }
 
+            initHtmlContent();
+        })();
+
+        
         // 为按钮装载计算事件
         function initHtmlContent() {
             $('#input_id').val(inputValue);
@@ -90,19 +111,6 @@
                 $('#result_id').html(JSON.stringify(res, null, 4));
             });
         }
-
-
-        (async () => {
-            try {
-                for (let tplName in tplMap) {
-                    let data = await myAjax(tplName, tplMap[tplName]);
-                }
-            } catch (ex) {
-                console.log(ex);
-            }
-
-            initHtmlContent();
-        })();
     </script>
 </body>
 

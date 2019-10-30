@@ -1,0 +1,46 @@
+【input】
+{
+ "M_PRJ_TYPE": "FSA",
+ "ZZ088": "200",
+ "RZZ043":"YES",
+ "FloorOP":"YES",
+ "YFZ3DNUMBER":"5,8,15,20",
+ "YFZ3DYESNO":"YES,NO,YES"
+}
+
+
+【Should output】
+{
+    "M_PRJ_TYPE": "FSA",
+    "ZZ088": 200,
+    "RZZ043": "YES",
+    "FloorOP": "YES",
+    "YFZ3DNUMBER": [
+        5,
+        8,
+        15,
+        20
+    ],
+    "YFZ3DYESNO": [
+        "YES",
+        "NO",
+        "YES"
+    ],
+    "TS30": "FSA",
+    "N301": 10,
+    "TB123": "YES",
+    "TB3D4": [
+        "NO",
+        "NO",
+        "NO",
+        "NO"
+    ],
+    "TS3D8": "_",
+    "TN3D3": [
+        25,
+        25,
+        25
+    ],
+    "TM14": 6
+}
+
