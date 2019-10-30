@@ -104,9 +104,8 @@ const GLOBALFUNCTIONS = ['GetValueFromGL', 'GetValuesFromGL', 'QueryTable', 'Que
  */
 let allParamsValues = {};
 let childParamValues = {}; // 结构与全局相同，主要目的是存储子模板调用中的子模板的变量，单独出来的原因是避免两个模板变量名称相同的问题
-let usedTemplateNameSet = new Set(); // 此变量避免循环调用
 
-let usedTemplateNameStack = []; // 此处使用栈存储所有使用的模板名称
+let usedTemplateNameStack = []; // 此处使用栈存储所有使用的模板名称, 避免循环调用
 
 
 /**
@@ -181,13 +180,12 @@ function M_calResultByRule(options) {
     }
 
     // 如果存在循环调用则返回{}
-    if (usedTemplateNameSet.has(tplName)) {
+    if (usedTemplateNameStack.includes(tplName)) {
         console.log('Template calling is LOOP!! templateName: ' + tplName);
         return {};
     }
 
     usedTemplateNameStack.push(tplName);
-    usedTemplateNameSet.add(tplName);
 
     if (options['childFlag']) {
         _setInputsValue(tplName, options['inputParameters'], true);
@@ -224,7 +222,6 @@ function M_calResultByRule(options) {
     }
 
     usedTemplateNameStack.pop();
-    usedTemplateNameSet.delete(tplName);
 
     let resMap = _combineOutputs(tplName, options['outParameters']);
     if (options['childFlag']) {

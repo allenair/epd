@@ -4,26 +4,7 @@
     {
       "Condition": null,
       "Data": {
-        "Formula1": "GetValuesFromGL('sub2','D2S1,D2S2', 'V:1980>D2TMP')",
-        "Formula10": null,
-        "Formula11": null,
-        "Formula12": null,
-        "Formula2": null,
-        "Formula3": null,
-        "Formula4": null,
-        "Formula5": null,
-        "Formula6": null,
-        "Formula7": null,
-        "Formula8": null,
-        "Formula9": null,
-        "ID": "10"
-      },
-      "PropertyName": "#DNTS1,DNTS2"
-    },
-    {
-      "Condition": null,
-      "Data": {
-        "Formula1": "DNTN3+DNTN7-Sub_Param+(DNTS1+DNTS2)",
+        "Formula1": "D2TMP*100",
         "Formula10": null,
         "Formula11": null,
         "Formula12": null,
@@ -37,7 +18,45 @@
         "Formula9": null,
         "ID": "9"
       },
-      "PropertyName": "DNTN9"
+      "PropertyName": "D2S1"
+    },
+    {
+      "Condition": null,
+      "Data": {
+        "Formula1": "'111'",
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "10"
+      },
+      "PropertyName": "D2S2"
+    },
+    {
+      "Condition": null,
+      "Data": {
+        "Formula1": "12345*100+99",
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "10"
+      },
+      "PropertyName": "D2S3"
     }
   ],
   "CPARA_InputParameterValueList": [
@@ -45,21 +64,14 @@
 	  "Data": {
 		"Type": "Number"
 	   },
-      "PropertyName": "DNTN3",
-      "ValueList": "30,35"
+      "PropertyName": "D2TMP",
+      "ValueList": "ANY"
     },
     {
 	  "Data": {
 		"Type": "Number"
 	   },
-      "PropertyName": "DNTN7",
-      "ValueList": "(0,$)"
-    },
-    {
-	  "Data": {
-		"Type": "Number"
-	   },
-      "PropertyName": "Sub_Param",
+      "PropertyName": "D2AAA",
       "ValueList": "(0,$)"
     }
   ],
@@ -68,21 +80,21 @@
 	  "Data": {
 		"Type": "Number"
 	   },
-      "PropertyName": "DNTN9",
+      "PropertyName": "D2S1",
       "ValueList": null
     },
     {
 	  "Data": {
 		"Type": "Number"
 	   },
-      "PropertyName": "DNTS1",
+      "PropertyName": "D2S2",
       "ValueList": null
     },
     {
 	  "Data": {
 		"Type": "Number"
 	   },
-      "PropertyName": "DNTS2",
+      "PropertyName": "D2S3",
       "ValueList": null
     }
   ],
