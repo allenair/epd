@@ -37,8 +37,8 @@
     <div id="result_id"></div>
 
     <!-- <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> -->
-    <script type="text/javascript" src="./jquery.min.js"></script>
-    <script type="text/javascript" src="./epd_engine.js"></script>
+    <script type="text/javascript" src="./javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="./javascripts/epd_engine.min.js"></script>
 
     <script type="text/javascript">
         const inputValue = `{
@@ -53,20 +53,20 @@
 }`;
 
         const tplMap = {
-            "callsub": "callsub/callsub.json",
-            "sub1": "callsub/sub1.json",
-            "sub2": "callsub/sub2.json",
-            "common": "common/common.json",
-            "dowhile": "dowhile/dowhile.json",
-            "para3d": "para3d/para3d.json",
-            "simple": "simple/simple.json",
-            "xytable": "xytable/xytable.json"
+            "callsub": "callsub.json",
+            "sub1": "sub1.json",
+            "sub2": "sub2.json",
+            "common": "common.json",
+            "dowhile": "dowhile.json",
+            "para3d": "para3d.json",
+            "simple": "simple.json",
+            "xytable": "xytable.json"
         };
 
         function myAjax(tplName, urlStr) {
             return new Promise((resolve, reject) => {
                 $.ajax({
-                    "url": `../test/${urlStr}`,
+                    "url": `./rules/${urlStr}`,
                     "dataType": 'json',
                     "success": data => {
                         M_initGlobalTemplateMap(tplName, data);

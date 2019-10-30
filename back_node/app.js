@@ -15,9 +15,9 @@ const readAsync = util.promisify(fs.readFile);
 // 启动时加载全部模板对象
 (async () => {
     let rulesObj = {};
-    let files = await readDirAsync(path.join(__dirname, 'rules'));
+    let files = await readDirAsync(path.join(__dirname, 'public', 'rules'));
     for (let file of files) {
-        let data = await readAsync(path.join(__dirname, 'rules', file));
+        let data = await readAsync(path.join(__dirname, 'public', 'rules', file));
         rulesObj[file.replace('.json', '')] = JSON.parse(data);
     }
     console.log('=============All Templates Init Completed!!====================');
