@@ -1,4 +1,6 @@
 back_node/node_modules/
 back_node/package-lock.json
 back_node/.vscode/
+tmp/
+back_node/tmp/
 

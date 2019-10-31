@@ -1,3 +1,30 @@
+const epd = require('./epd_engine');
+
+const fs = require('fs');
+const util = require('util');
+
+// 将node的标准方法进行promise化，以便进行同步化处理
+const readDirAsync = util.promisify(fs.readdir);
+const readAsync = util.promisify(fs.readFile);
+
+// 启动时加载全部模板对象
+async function initAllTemplate(rulePath) {
+    let rulesObj = {};
+    let files = await readDirAsync(rulePath);
+    for (let file of files) {
+        let data = await readAsync(`${rulePath}/${file}`);
+        rulesObj[file.replace('.json', '')] = JSON.parse(data);
+    }
+    console.log('=============All Templates Init Completed!!====================');
+
+    for (let tplName in rulesObj) {
+        epd.M_initGlobalTemplateMap(tplName, rulesObj[tplName], true);
+    }
+}
+
+/**
+ * 简化模板函数
+ */
 function simplifyRuleTemplate(jsonObj) {
     let logicObj = [];
     let xyTableObj = [];
@@ -106,5 +133,6 @@ function simplifyRuleTemplate(jsonObj) {
 }
 
 module.exports = {
-    simplifyRuleTemplate
+    simplifyRuleTemplate,
+    initAllTemplate
 };

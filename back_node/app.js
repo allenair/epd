@@ -1,31 +1,12 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-const fs = require('fs');
-const util = require('util');
 
 const indexRouter = require('./routes/index');
-const epd = require('./modules/epd_engine');
+const epd_tool = require('./modules/app_tools');
 
-// 将node的标准方法进行promise化，以便进行同步化处理
-const readDirAsync = util.promisify(fs.readdir);
-const readAsync = util.promisify(fs.readFile);
-
-// 启动时加载全部模板对象
-(async () => {
-    let rulesObj = {};
-    let files = await readDirAsync(path.join(__dirname, 'public', 'rules'));
-    for (let file of files) {
-        let data = await readAsync(path.join(__dirname, 'public', 'rules', file));
-        rulesObj[file.replace('.json', '')] = JSON.parse(data);
-    }
-    console.log('=============All Templates Init Completed!!====================');
-
-    for (let tplName in rulesObj) {
-        epd.M_initGlobalTemplateMap(tplName, rulesObj[tplName], true);
-    }
-})();
-
+// 初始化模板
+epd_tool.initAllTemplate(path.join(__dirname, 'public', 'rules'));
 
 const app = express();
 
@@ -33,7 +14,9 @@ const app = express();
 app.use(logger('dev'));
 
 // 支持json的body
-app.use(express.json({limit: '20mb'}));
+app.use(express.json({
+    limit: '20mb'
+}));
 app.use(express.urlencoded({
     limit: '20mb',
     extended: true

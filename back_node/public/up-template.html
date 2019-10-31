@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>模板文件上传：</h3>此功能处理原始的模板json文件，后台会进行简化，并保存到模板文件夹中（请确保后缀名为.json的文本文件）
+    <p></p>
+
+    <form enctype="multipart/form-data" id="uploadForm">
+        <table border="1">
+            <tr>
+                <td>文件名：</td>
+                <td><input type="text" name="tplName" />（只写名称，例如，指定test，最终服务器会存储模板名为test.json）</td>
+            </tr>
+            <tr>
+                <td>选择文件：</td>
+                <td><input type="file" name="template" id="up-file" /></td>
+            </tr>
+        </table>
+    </form>
+    <p></p>
+
+    <input type="button" value="上传文件" onclick="" id="up-button" />
+
+    <script type="text/javascript" src="./javascripts/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("#up-button").click(function () {
+            $.ajax({
+                type: 'post',
+                url: "/upload",
+                data: new FormData($('#uploadForm')[0]),
+                processData: false,
+                contentType: false,
+                success: data => {
+                    console.log(data);
+                    if (data.status == 'ok') {
+                        alert('上传成功！！');
+                        document.getElementById("uploadForm").reset();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

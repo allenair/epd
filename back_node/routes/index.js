@@ -1,8 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
+const fs = require('fs');
+const multer = require('multer');
+
+const StringDecoder = require('string_decoder').StringDecoder;
+const decoder = new StringDecoder('utf8');
+
 const epd = require('../modules/epd_engine');
 const epd_tool = require('../modules/app_tools');
+
+const currentPath = (process.env.EPDPATH || './back_node').trim();
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -47,6 +56,98 @@ router.post('/epd/:tplName', (req, res) => {
 router.post('/simplify', (req, res) => {
   let simplifedObj = epd_tool.simplifyRuleTemplate(req.body);
   res.json(simplifedObj);
+});
+
+/**
+ * 处理文件上传需求
+ */
+var upload = multer({
+  dest: `${currentPath}/tmp`,
+  fileFilter: (req, file, cd) => {
+    if (file.mimetype == "application/json") {
+      cd(null, true);
+    } else {
+      req.error = "不允许上传" + file.mimetype + "类型的文件！";
+      cd(null, false);
+    }
+  }
+});
+
+router.post('/upload', upload.any(), (req, res) => {
+  let tplName = req.body.tplName;
+  if (!tplName) {
+    res.json({
+      status: "error",
+      message: "Template Name is NULL!!"
+    });
+    return;
+  }
+
+  let tplNameArr = epd.M_getAllTemplateNames();
+  if (tplNameArr.includes(tplName)) {
+    res.json({
+      status: "error",
+      message: "Template Name is REPEATED!!"
+    });
+    return;
+  }
+
+  if (!req.files[0]) {
+    console.log(req.error);
+    res.json({
+      status: "error",
+      message: req.error
+    });
+    return;
+  }
+
+  var des_file = `${currentPath}/public/rules/${tplName}.json`;
+  fs.readFile(req.files[0].path, function (err, data) {
+    let dataStr = decoder.write(data);
+    let simplifedObj = epd_tool.simplifyRuleTemplate(JSON.parse(dataStr));
+    let simplifedStr = JSON.stringify(simplifedObj);
+    fs.writeFile(des_file, simplifedStr, function (err) {
+      if (err) {
+        console.log(err);
+        res.json({
+          status: "error",
+          message: "Server ERROR!!"
+        });
+
+      } else {
+        epd_tool.initAllTemplate(`${currentPath}/public/rules`);
+        res.json({
+          status: "ok",
+          message: ""
+        });
+      }
+    });
+  });
+});
+
+/**
+ * 清空临时目录
+ */
+router.get('/clean', (req, res) => {
+  let desDir = `${currentPath}/tmp/`;
+  fs.readdir(desDir, function (err, files) {
+    if (err) {
+      console.log(err);
+      res.send('ERROR');
+      return;
+    }
+    for (var i = 0; i < files.length; i++) {
+      // 使用 unlink 删除
+      fs.unlink(desDir + files[i], function (err) {
+        if (err) {
+          console.log(err);
+          res.send('ERROR');
+          return;
+        }
+      });
+    }
+    res.send('OK');
+  });
 });
 
 module.exports = router;
