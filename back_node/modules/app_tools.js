@@ -24,6 +24,7 @@ async function initAllTemplate(rulePath) {
     }
 
     epd.M_cleanDeletedTemplate(allTplNames);
+    return "ok";
 }
 
 /**

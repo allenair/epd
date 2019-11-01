@@ -40,8 +40,9 @@ router.get('/template/:tplName', (req, res) => {
  * 刷新模板内容
  */
 router.get('/refresh', (req, res) => {
-  epd_tool.initAllTemplate(`${currentPath}/public/rules`);
-  res.json({status:"ok"});
+  epd_tool.initAllTemplate(`${currentPath}/public/rules`).then(reslut=>{
+    res.json({status:"ok"});
+  });
 });
 
 /**
