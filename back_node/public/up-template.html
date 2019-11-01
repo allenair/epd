@@ -27,6 +27,11 @@
     <p></p>
 
     <input type="button" value="上传文件" onclick="" id="up-button" />
+    <p></p>
+
+    服务器所有模板名称列表：<br />
+    <ul id="all-tplname">
+    </ul>
 
     <script type="text/javascript" src="./javascripts/jquery.min.js"></script>
     <script type="text/javascript">
@@ -42,10 +47,32 @@
                     if (data.status == 'ok') {
                         alert('上传成功！！');
                         document.getElementById("uploadForm").reset();
+                        showAllName();
+                    }else{
+                        alert(data.message);
                     }
                 }
             });
         });
+
+        function showAllName(){
+            $.ajax({
+                type: 'get',
+                url: '/list',
+                success: data =>{
+                    if(data && data.length>0){
+                        let allLis = [];
+                        data.forEach(item=>{
+                            allLis.push(`<li>${item}</li>`);
+                        });
+                        
+                        $('#all-tplname').html(allLis.join(''));
+                    }
+                }
+            })
+        }
+
+        showAllName();
     </script>
 </body>
 
