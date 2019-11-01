@@ -37,6 +37,14 @@ router.get('/template/:tplName', (req, res) => {
 });
 
 /**
+ * 刷新模板内容
+ */
+router.get('/refresh', (req, res) => {
+  epd_tool.initAllTemplate(`${currentPath}/public/rules`);
+  res.json({status:"ok"});
+});
+
+/**
  * 调用模板方法
  * tplName：模板名称
  * body内容为inputParameters

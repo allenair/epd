@@ -30,6 +30,7 @@
     <p></p>
 
     服务器所有模板名称列表：<br />
+    <button onclick="refresh()">刷新</button>
     <ul id="all-tplname">
     </ul>
 
@@ -44,28 +45,40 @@
                 contentType: false,
                 success: data => {
                     console.log(data);
-                    if (data.status == 'ok') {
+                    if (data && data.status == 'ok') {
                         alert('上传成功！！');
                         document.getElementById("uploadForm").reset();
                         showAllName();
-                    }else{
+                    } else {
                         alert(data.message);
                     }
                 }
             });
         });
 
-        function showAllName(){
+        function refresh() {
+            $.ajax({
+                type: 'get',
+                url: '/refresh',
+                success: data=>{
+                    if(data && data.status=='ok'){
+                        showAllName();
+                    }
+                }
+            });
+        }
+
+        function showAllName() {
             $.ajax({
                 type: 'get',
                 url: '/list',
-                success: data =>{
-                    if(data && data.length>0){
+                success: data => {
+                    if (data && data.length > 0) {
                         let allLis = [];
-                        data.forEach(item=>{
+                        data.forEach(item => {
                             allLis.push(`<li>${item}</li>`);
                         });
-                        
+
                         $('#all-tplname').html(allLis.join(''));
                     }
                 }

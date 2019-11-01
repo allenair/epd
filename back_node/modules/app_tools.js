@@ -17,9 +17,13 @@ async function initAllTemplate(rulePath) {
     }
     console.log('=============All Templates Init Completed!!====================');
 
+    let allTplNames = [];
     for (let tplName in rulesObj) {
+        allTplNames.push(tplName);
         epd.M_initGlobalTemplateMap(tplName, rulesObj[tplName], true);
     }
+
+    epd.M_cleanDeletedTemplate(allTplNames);
 }
 
 /**
