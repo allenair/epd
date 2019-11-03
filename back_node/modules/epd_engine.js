@@ -1931,10 +1931,15 @@ function CBOOL(val) {
     return false;
 }
 
-module ? module.exports = {
-    M_getAllTemplateNames,
-    M_cleanDeletedTemplate,
-    M_getTemplateDataByName,
-    M_initGlobalTemplateMap,
-    M_calResultByRule
-} : '';
+if (typeof module == "undefined") {
+    console.log('Now u in browser!');
+    
+} else {
+    module.exports = {
+        M_getAllTemplateNames,
+        M_cleanDeletedTemplate,
+        M_getTemplateDataByName,
+        M_initGlobalTemplateMap,
+        M_calResultByRule
+    };
+}

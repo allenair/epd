@@ -121,6 +121,19 @@ function M_getAllTemplateNames() {
 }
 
 /**
+ * 根据上传的初始化模板名称，删除不在此名称范围内的缓存模板
+ */
+function M_cleanDeletedTemplate(allTplNames) {
+    for (let tplName in templateLogicUnitMap) {
+        if (!allTplNames.includes(tplName)) {
+            delete(templateLogicUnitMap[tplName]);
+            delete(templateParamterMap[tplName]);
+            delete(templateXYTableMap[tplName]);
+            delete(templateExcuteStep[tplName]);
+        }
+    }
+}
+/**
  * 依据模板名得到模板数据
  */
 function M_getTemplateDataByName(tplName) {
@@ -1918,10 +1931,15 @@ function CBOOL(val) {
     return false;
 }
 
-
-module.exports = {
-    M_getAllTemplateNames,
-    M_getTemplateDataByName,
-    M_initGlobalTemplateMap,
-    M_calResultByRule
-};
+if (typeof module == "undefined") {
+    console.log('Now u in browser!');
+    
+} else {
+    module.exports = {
+        M_getAllTemplateNames,
+        M_cleanDeletedTemplate,
+        M_getTemplateDataByName,
+        M_initGlobalTemplateMap,
+        M_calResultByRule
+    };
+}
