@@ -31,16 +31,7 @@
 
 3. **局限**：由于只能赋值一个模板的JSON，因此此页面仅支持简单的单模板计算场景。换句话，如果模板中有互相调用的情况，存在*GetValueFromGL、GetValuesFromGL*方法，则不支持。此时建议使用在线的测试方式。
 
-4. **引擎文件**：本次前后台共用相同的引擎代码（*epd_engine.js*），由于一些限制，前端应用需要删除该文件最后的以下代码（此部分代码仅在后端nodejs中模块管理时使用，放在此处会报错）：
-
-   ```javascript
-   module.exports = {
-       M_getAllTemplateNames,
-       M_getTemplateDataByName,
-       M_initGlobalTemplateMap,
-       M_calResultByRule
-   };
-   ```
+4. **引擎文件**：本次前后台共用相同的引擎代码（*epd_engine.js*）
 
 
 
