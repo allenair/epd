@@ -16,7 +16,7 @@ const currentPath = (process.env.EPDPATH || './back_node').trim();
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {
-    title: 'Express'
+    title: 'EPD'
   });
 });
 
@@ -40,8 +40,10 @@ router.get('/template/:tplName', (req, res) => {
  * 刷新模板内容
  */
 router.get('/refresh', (req, res) => {
-  epd_tool.initAllTemplate(`${currentPath}/public/rules`).then(reslut=>{
-    res.json({status:"ok"});
+  epd_tool.initAllTemplate(`${currentPath}/public/rules`).then(reslut => {
+    res.json({
+      status: "ok"
+    });
   });
 });
 

@@ -85,7 +85,7 @@ const templateExcuteStep = {}; // 模板执行单元的执行方式（应对循�
 
 // 标识非标的特殊字符
 const UNSTANDARDFLAG = '_';
-// 所有可能在公式中出现的函数名称
+// 所有可能在公式中出现的函数名称，用于在表达式参数提取时，作为参数名称的排除项
 const GLOBALFUNCTIONS = ['GetValueFromGL', 'GetValuesFromGL', 'QueryTable', 'QueryTable3D', 'ConvertTo3D', 'CTo3D', 'E_AND', 'E_OR', 'E_NOT', 'E_IF', 'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'SIN', 'TAN', 'PI', 'DEGREES', 'RADIANS', 'ROUND', 'ROUNDUP', 'ROUNDDOWN', 'INT', 'LN', 'LOG', 'MAX', 'MIN', 'POWER', 'SQRT', 'EMOD', 'CEILING', 'FLOOR', 'ISNUMBER', 'ISLOGICAL', 'ISTEXT', 'ISNA', 'CSTR', 'CNUM', 'CBOOL'];
 
 /**
@@ -102,14 +102,15 @@ const GLOBALFUNCTIONS = ['GetValueFromGL', 'GetValuesFromGL', 'QueryTable', 'Que
     ...
  }
  */
-let allParamsValues = {};
+let allParamsValues = {}; // 此处为本次运算的参数池，包括所有用户输入、本次计算主模板的输入和输出参数
 let childParamValues = {}; // 结构与全局相同，主要目的是存储子模板调用中的子模板的变量，单独出来的原因是避免两个模板变量名称相同的问题
 
-let usedTemplateNameStack = []; // 此处使用栈存储所有使用的模板名称, 避免循环调用
+let usedTemplateNameStack = []; // 此处使用栈结构存储所有使用的模板名称, 两个作用：1-避免循环调用；2-用于获取迭代计算中当前的模板名称（栈顶元素值）
 
 
 /**
  * 得到当前已经装载的模板名列表
+ * 由于同一模板会拆分为变量、逻辑、XY表三种结构，一般认为至少会存在逻辑部分（否则没有意义），因此可使用逻辑部分作为模板存在性的判断方法
  */
 function M_getAllTemplateNames() {
     let tplNameArr = [];
@@ -122,6 +123,7 @@ function M_getAllTemplateNames() {
 
 /**
  * 根据上传的初始化模板名称，删除不在此名称范围内的缓存模板
+ * 此处以模板文件夹中存在的模板文件为准，清理哪些已经从磁盘删除但是还存在于内存对象的模板内容
  */
 function M_cleanDeletedTemplate(allTplNames) {
     for (let tplName in templateLogicUnitMap) {
@@ -133,6 +135,7 @@ function M_cleanDeletedTemplate(allTplNames) {
         }
     }
 }
+
 /**
  * 依据模板名得到模板数据
  */
@@ -198,8 +201,10 @@ function M_calResultByRule(options) {
         return {};
     }
 
+    // 模板检查没有问题则将名称入栈
     usedTemplateNameStack.push(tplName);
 
+    // 依据初始调用的模板或执行中迭代调用的模板这两种情况，需要区分输入参数初始化的方式
     if (options['childFlag']) {
         _setInputsValue(tplName, options['inputParameters'], true);
 
@@ -207,7 +212,7 @@ function M_calResultByRule(options) {
         _setInputsValue(tplName, options['inputParameters'], false);
     }
 
-    // 进行实际计算
+    // 进行实际计算，此处依照该模板已经编排好的执行逻辑进行计算，目前不支持循环嵌套，今后如需支持此处需要修改
     let logicUnits = templateLogicUnitMap[tplName];
     for (let cell of templateExcuteStep[tplName]) {
         let logic;
@@ -234,8 +239,11 @@ function M_calResultByRule(options) {
         }
     }
 
+    // 该模板执行完毕后，名称出栈
     usedTemplateNameStack.pop();
 
+    // 整理模板输出，迭代中的子模板输出按照函数中的要求，类型也不做修改（保持JS类型）以便后续计算，
+    // 最终输出需要将全局变量池全部信息都输出，并且需要进行一些规范化处理（例如, true转换为YES，以及数组处理）
     let resMap = _combineOutputs(tplName, options['outParameters']);
     if (options['childFlag']) {
         return resMap;
@@ -373,6 +381,7 @@ function _updateValue(tplName, name, value) {
 }
 
 /**
+ * 提供统一的取值方式，以便应对主模板计算和迭代计算两种情况下的取值来源不同的问题
  * 获取变量的对象，先获取子模板的变量，找不到后再从变量池的变量中寻找
  * 因此重复变量的取值仅从本次子模板中取
  */
@@ -388,7 +397,7 @@ function _getParamObj(tplName, name) {
 }
 
 /**
- * 用于进行条件匹配检查
+ * 用于支持模板中逻辑部分的条件行匹配检查功能，需要支持单行匹配以及3D变量的多重匹配问题
  * tplName：模板名称
  * name：变量名 
  * conStr：匹配条件 
@@ -428,7 +437,17 @@ function _checkCondition(tplName, name, conStr, index) {
 }
 
 /**
- * 实际计算逻辑单元的值
+ * 实际计算逻辑单元的值,此处为引擎中的核心部分，其余函数基本上都为此核心函数提供功能服务
+ * 函数执行的逻辑是基于给定的逻辑单元进行条件判断和表达式执行，逻辑分为以下几种情况：
+ * 1、没有条件直接在行上指定表达式
+ * （1）对应GetValuesFromGL函数（#开头）
+ * （2）普通表达式函数
+ * 2、使用条件判断需要执行表达式的行
+ * （1）参数不存在3D变量
+ * （2）参数存在3D变量
+ * 所有执行都需要判断表达式的参数中是否有非标和NA的情况
+ * 在动态执行表达式时使用try-catch包裹，以便应对动态执行中参数异常问题，存在异常则认为最终值为非标（因为肯定存在不符合模板要求的问题）
+ * 获取的值都需要update到当前模板环境中，以便支持后续的逻辑运算
  * name：待赋值的变量名称，多个变量以英文逗号分隔
  * calUnit：逻辑判断与执行单元 
  * tplName：模板名称 
@@ -679,6 +698,9 @@ function _realCalResult(tplName, name, calUnit) {
 
 /**
  * 生成eval执行所需的上下文信息串，并整合此串与待执行语句
+ * eval执行中，可以理解JS会产生一个独立的作用域，因此表达式中的变量值需要在eval环境中进行声明赋值，否则表达式会找不到变量的值
+ * 因此在执行前，需要将表达式可能使用到的变量拼成一个赋值字符串，与表达式一起执行
+ * 此处需要注意对字符串、非标、数组进行特殊处理
  * tplName：模板名称
  * expressStr：待执行的语句
  */
@@ -789,18 +811,27 @@ function _max3dConditionCount(tplName, conParamArr) {
     return maxCount;
 }
 
-
 //======Inner Function====内部功能性函数===========================================
-
+/** 
+ * 此函数直接调用JS的eval函数进行表达式运算，引擎其他需要动态运算的地方均需要调用此函数
+ * 以便于今后需要对动态执行的方法进行统一处理
+ */
 function _evalExpress(expressStr) {
     return eval(expressStr);
 }
 
+/** 
+ * 引擎判断非标的方法
+ */
 function _isUnStandard(val) {
     return val === UNSTANDARDFLAG;
 }
 
-/* 解析模板中的变量，并生成内部对象返回 */
+/**
+ * 解析模板中的变量，并生成内部对象返回 
+ * 全部数据均来源于JSON模板，仅获取模板的输入输出变量部分，重点是获取变量范围定义与变量类型信息
+ * 此数据获取后如无重载需求会常驻后台以备使用
+ */
 function _parseTemplateParamters(tplObj) {
     let resObj = {};
 
@@ -829,7 +860,11 @@ function _parseTemplateParamters(tplObj) {
     return resObj;
 }
 
-/* 解析模板中的XY表，并生成内部对象返回 */
+/**
+ * 解析模板中的XY表，并生成内部对象返回 
+ * 全部数据均来源于JSON模板，仅获取XY表部分，以应对查表函数的调用
+ * 此数据获取后如无重载需求会常驻后台以备使用
+ */
 function _parseTemplateXYTable(tplObj) {
     let resObj = {};
 
@@ -862,7 +897,11 @@ function _parseTemplateXYTable(tplObj) {
     return resObj;
 }
 
-/* 解析模板中的判断逻辑，并生成内部对象返回 */
+/**
+ * 解析模板中的判断逻辑，并生成内部对象返回 
+ * 目的是处理成引擎可处理的结构，全部数据均来源于JSON模板，仅获取引擎关心部分，不会修改模板内容
+ * 此数据获取后如无重载需求会常驻后台以备使用
+ */
 function _parseTemplateLogicUnit(tplObj) {
     let resArr = [];
     const logicObj = tplObj['CPARA_FormulaLinkup'];
@@ -925,8 +964,11 @@ function _parseTemplateLogicUnit(tplObj) {
     return resArr;
 }
 
-/* 依照模板的执行单元循环情况，编制执行顺序，目的是将同一个循环单元放置在一个cell中执行，同一个执行单元所需执行的步骤存储在step中，
- *  内容是模板执行单元的数组序号
+/**
+ * 引擎不会改变模板中的所有内容，对于循环的情况，引擎使用一个数据结构进行执行逻辑的编排方式应对
+ * 此编排方式完全依赖模板中读取的逻辑内容，当前编排的方式不支持循环嵌套的情况，如果今后有此情况仅修改此处编排逻辑和执行部分即可
+ * 依照模板的执行单元循环情况，编制执行顺序，目的是将同一个循环单元放置在一个cell中执行，同一个执行单元所需执行的步骤存储在step中，
+ * 内容是模板执行单元的数组序号
  */
 function _arrangeTemplateLogicOrder(logicUnits) {
     const excuteCells = [];
@@ -972,7 +1014,10 @@ function _isNull(val) {
     return false;
 }
 
-/* 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断 */
+/**
+ * 此函数用于检查输入变量是否符合模板定义的范围要求，以及变量是否符合模板条件行判断使用
+ * 根据scope类型，对val进行是否满足scope要求进行判断，val为空值为不符合，scope的类型为N则符合，其他根据要求进行判断 
+ */
 function _checkParam(val, scopeStr) {
     if (_isNull(val) || _isUnStandard(val)) {
         return false;
@@ -1035,8 +1080,13 @@ function _checkParam(val, scopeStr) {
     return false;
 }
 
-
-/* 依据传入的字符串得到真正的数值  */
+/**
+ * 依据传入的字符串得到真正的数值
+ * 此处作为获取输入值、计算中间值实际值的统一方式，以便正确进行后续计算
+ * 转换规则按照dataType的指定进行，如果没有指定（某些初始输入值），则会根据值本身进行推断
+ * 对于null、undefined、NaN、非标值，可能是输入也可能是中间计算结果，这四种情况都认为是非标（因为无法支持后续计算，此处可直接给出判定）
+ * 对于数组类型的变量，此处需要依照类型进行转换，考虑到可能存在已经是数组再次进行值转换的问题，因此转换前需要进行判断
+ */
 function _realValue(valStr, dataType) {
     if (valStr == null || valStr == undefined || valStr.toString() === "NaN" || _isUnStandard(valStr)) {
         return UNSTANDARDFLAG;
@@ -1103,11 +1153,10 @@ function _realValue(valStr, dataType) {
     }
 }
 
-
-/* 
-判断公式中所有参数是否存在非标值或NA，存在则该公式值直接为非标或NA 
-如果公式为null或空字符串，则认为没有合适的公式，该值返回非标
-*/
+/** 
+ * 判断公式中所有参数是否存在非标值或NA，存在则该公式值直接为非标或NA 
+ * 如果公式为null或空字符串，则认为没有合适的公式，该值返回非标
+ */
 function _checkExpress(childParamValMap, paramValMap, formularExpress) {
     if (formularExpress == null || formularExpress === '') {
         return UNSTANDARDFLAG;
@@ -1134,6 +1183,9 @@ function _checkExpress(childParamValMap, paramValMap, formularExpress) {
     return 'OK';
 }
 
+/** 
+ * JS中两个数字无法判断相等（精度偏差问题），因此两数差值小于某一个较小的数，可认为相等
+ */
 function _isEqual(val1, val2) {
     if (Math.abs(val1 - val2) < 1e-7) {
         return true;
@@ -1146,7 +1198,10 @@ function _isString(str) {
 }
 
 
-/* 解析GetValueFromGL的第三个特殊参数格式 */
+/**
+ * 解析GetValueFromGL的第三个特殊参数格式 
+ * 存在变量映射和直接赋值两种情况，表达式书写方式需要相应处理
+ * */
 function _parseGLParamter(paramStr) {
     if (!paramStr) {
         return [];
@@ -1186,8 +1241,9 @@ function _parseGLParamter(paramStr) {
     return resArr;
 }
 
-/*
- * 根据模板指定，标定参数的所属类型，对照关系是：
+/** 
+ * 根据模板指定，标定参数的所属类型，后续引擎中逻辑判断使用转换后的类型名称
+ * 对照关系是：
  * Text --> S   Number --> N   Yes/No --> B
  * 3DText --> 3DS   3DNumber --> 3DN  3DYes/No --> 3DB
  */
@@ -1219,6 +1275,7 @@ function _paramType(typeName) {
 /*
  * 计算小数位数，目的是解决准确计算问题，一般需要将浮点转换为整数计算，例如1.5, 0.15, 0.00015这三个数都需要转换为15，
  * 此函数就是得到转换到15，三个数都需要乘以几个10（10的幂数），以便与其同时计算的其他数字扩大相同倍数
+ * 此处应对的问题是范围检查时候，应对step是小数的问题，例如：(0,2.78]/0.04，由于浮点数处理小数有偏差，因此只能采用转换为整数进行后续处理的办法
  */
 function _calFloatDigitsCount(val) {
     if (!val) {
@@ -1233,6 +1290,11 @@ function _calFloatDigitsCount(val) {
     return valStr.length - valStr.indexOf('.') - 1;
 }
 
+/**
+ * 判断两个值是否相等，
+ * 正常值按照转换成字符串字面值进行比较，
+ * 非正常的处理逻辑为：都为NA认为相同，一个为NA一个为null认为相等，都为null或undefined或NaN的为不相等
+ */
 function _checkParamValueEqual(val1, val2) {
     if (_isNull(val1) || _isNull(val2)) {
         return false;
@@ -1258,7 +1320,8 @@ function _checkParamValueEqual(val1, val2) {
 }
 
 /**
- * 将scope的值进行解析，为空标记为N, 单个值标记为O，范围值标记为S（并处理上下界以及步长问题），离散值标记为D（并解析为数组，以英文逗号分隔）
+ * 将scope的值进行解析，为后一步判断给定变量的值是否在指定范围的逻辑操作进行条件预处理
+ * 为空标记为N, 单个值标记为O，范围值标记为S（并处理上下界以及步长问题），离散值标记为D（并解析为数组，以英文逗号分隔）
  * 解析后返回值结构：
  {
      'valType': ***,
@@ -1345,7 +1408,9 @@ function _parseValueScope(scopeStr) {
     return resMap;
 }
 
-/* 处理公式问题，例如字符串拼接 & 需要修改为JS支持的 +，YES、NO转化为JS的true、false   */
+/** 
+ * 处理公式问题，例如字符串拼接 & 需要修改为JS支持的 +，YES、NO转化为JS的true、false   
+ * */
 function _dealFormularStr(valStr) {
     if (valStr == null || valStr == undefined) {
         return '';
@@ -1358,7 +1423,11 @@ function _dealFormularStr(valStr) {
     }
 }
 
-/* 从表达式中抽取出涉及到的全部变量，方法是使用计算符号分隔，并去除函数名、数字、字符串常量，剩余的可认为是公式中的变量   */
+/** 
+ * 从表达式中抽取出涉及到的全部变量，方法是使用计算符号分隔，并去除函数名、数字、字符串常量，剩余的可认为是公式中的变量   
+ * 由于此处仅需要判断公式中的变量是否灿在非标或NA的情况，因此不需要公式解析，仅得到公式中的所有变量即可，
+ * 此处要求是不能遗漏变量多一些没有影响（因为下一步中找不到变量对应的值不认为是非标）
+ * */
 function _extractParamArr(formularExpress) {
     if (!formularExpress || formularExpress.length == 0) {
         return [];
@@ -1369,6 +1438,7 @@ function _extractParamArr(formularExpress) {
     let resArr = new Set();
 
     // 此处正则表达式存在奇怪的问题，replace(/[()*+-\/,&]/g, " ")执行正确 但  replace(/[()+-*\/,&]/g, " ")错误
+    // 因此不能使用正则的方式进行处理
     let specialChars = new Set(['(', ')', '+', '-', '*', '/', '&', ',']);
     let charArr = [];
     for (let c of formularExpress) {
@@ -1509,7 +1579,9 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
     return UNSTANDARDFLAG;
 }
 
-// 此处需要能访问到全局的模板
+/** 
+ * 此处进行递归调用，要求模板已经加载，并能够使用DNum从全局中取得模板内容，否则直接返回非标
+ */
 function _callInnerChildTemplate(DNum, Para, inputParaArr) {
     let options = {
         "tplName": DNum,
@@ -1587,6 +1659,9 @@ function ConvertTo3D(...values) {
     return resArr;
 }
 
+/**
+ * 根据函数提供的分隔符进行数组转换，由于分隔符可能会是正则表达式特殊字符，因此此处没有使用正则的方式进行字符串拆分
+ */
 function CTo3D(valArr, separator) {
     if (separator == undefined || ISNUMBER(valArr)) {
         return [];
@@ -1606,6 +1681,9 @@ function CTo3D(valArr, separator) {
 }
 
 //======4.5=logic====================================================
+/**
+ * 逻辑部分，epd中按照yes/no表示，此处按照js标准的true/flase进行进一步计算，因此一般方式是进行字符串的判断以便明确真实的值
+ */
 function E_AND(...conditions) {
     if (conditions.length == 0) {
         return false;
@@ -1648,6 +1726,9 @@ function E_IF(condition, trueVal, falseVal) {
 }
 
 //======4.6=math===================================================
+/**
+ * 数学函数主要直接调用JS的标准函数，如果由于传入参数问题（不是数字），结果会返回JS的NaN，后续逻辑照此进一步处理（例如判定非标等）
+ */
 function ABS(val) {
     return Math.abs(parseFloat(val));
 }
@@ -1792,6 +1873,9 @@ function EMOD(val, divisor) {
     return val - INT(val / divisor) * divisor;
 }
 
+/**
+ * 根据文档描述，此函数的逻辑与JS自带的函数有区别
+ */
 function CEILING(val, significance) {
     if (!ISNUMBER(val) || !ISNUMBER(significance) || _isEqual(significance, 0)) {
         return NaN;
@@ -1831,6 +1915,9 @@ function CEILING(val, significance) {
     return NaN;
 }
 
+/**
+ * 根据文档描述，此函数的逻辑与JS自带的函数有区别
+ */
 function FLOOR(val, significance) {
     if (!ISNUMBER(val) || !ISNUMBER(significance) || _isEqual(significance, 0)) {
         return NaN;
@@ -1896,6 +1983,9 @@ function ISTEXT(val) {
     return !ISNUMBER(val) && !ISLOGICAL(val);
 }
 
+/**
+ * 依据js的特点，将几种未声明的情况也作为满足NA的条件，在实际使用中根据业务要求需要有所变化
+ */
 function ISNA(val) {
     if (val == undefined || val == null) {
         return true;
@@ -1931,9 +2021,12 @@ function CBOOL(val) {
     return false;
 }
 
+/**
+ * 对外暴露接口，仅在nodejs环境下使用，在html下会报没有声明module的错误，因此需要特殊判断
+ */
 if (typeof module == "undefined") {
     console.log('Now u in browser!');
-    
+
 } else {
     module.exports = {
         M_getAllTemplateNames,
