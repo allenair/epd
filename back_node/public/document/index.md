@@ -9,13 +9,14 @@
    * 网页端
 
      > + 将*epd_engine.js*（推荐进行压缩处理）文件载入到浏览器页面中，使用ES6标准开发，因此要求使用chrome、firefox等支持ES6标准的浏览器。
+     > + 如有需要支持陈旧版本浏览器，可以使用Babel在线转换功能，在线工具地址：https://www.babeljs.cn/repl/ 
      > + 上传JSON模板，初始化模板，函数：*M_initGlobalTemplateMap*
      > + 给定输入参数，JSON格式
      > + 调用引擎进行计算，函数：*M_calResultByRule*
-     > + 返回结果为JSON格式
-
-   * REST API接口
-
+  > + 返回结果为JSON格式
+   
+* REST API接口
+   
      > + 提供REST接口，模板装载后台自动处理，用户仅需要调用*M_calResultByRule*进行计算即可
      > + 另外提供了一些辅助接口以方便调用端
 
