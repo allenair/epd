@@ -209,6 +209,7 @@ function M_calResultByRule(options) {
         _setInputsValue(tplName, options['inputParameters'], true);
 
     } else {
+        allParamsValues = {};
         _setInputsValue(tplName, options['inputParameters'], false);
     }
 
