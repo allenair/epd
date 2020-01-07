@@ -1,0 +1,11 @@
+1、先下载好镜像     docker pull node:12.14
+
+2、再将源文件拷贝到服务器（参考Dockerfile的描述）
+
+3、删除原有镜像文件
+
+4、重新编译镜像     docker build -t epdnode .
+
+5、启动镜像        docker run -d -p 9999:9000 epdnode
+
+

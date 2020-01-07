@@ -161,4 +161,20 @@ router.get('/clean', (req, res) => {
   });
 });
 
+/**
+ * 删除模板文件
+ */
+router.post('/delete/:tplName', (req, res) => {
+  fs.unlink(`${currentPath}/public/rules/` + req.params.tplName + '.json', function (err) {
+    if (err) {
+      console.log(err);
+      res.send('ERROR');
+      return;
+    }
+    epd_tool.initAllTemplate(`${currentPath}/public/rules`).then(reslut => {
+      res.send('OK');;
+    });
+  });
+});
+
 module.exports = router;
