@@ -1,21 +1,20 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');  
-const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const epd_tool = require('./modules/app_tools');
+const log = require('./modules/log');
 
 // 初始化模板
 epd_tool.initAllTemplate(path.join(__dirname, 'public', 'rules'));
 
+// 启动应用
 const app = express();
 
-// 设置后台日志
-app.use(logger('dev'));
-
-var accessLogStream = fs.createWriteStream('access.log', {flags: 'a'})
-app.use(logger('combined', {stream: accessLogStream}))
+// 设置access日志
+log.useLogger(app)
+// 设置全局日志
+global.LOG = log.getLogger('info');
 
 // 支持json的body
 app.use(express.json({

@@ -197,7 +197,7 @@ function M_calResultByRule(options) {
 
     // 如果存在循环调用则返回{}
     if (usedTemplateNameStack.includes(tplName)) {
-        console.log('Template calling is LOOP!! templateName: ' + tplName);
+        LOG.info('Template calling is LOOP!! templateName: ' + tplName);
         return {};
     }
 
@@ -513,8 +513,8 @@ function _realCalResult(tplName, name, calUnit) {
                     for (let pname of nameArr) {
                         _updateValue(tplName, pname, UNSTANDARDFLAG);
                     }
-                    console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[0][0]}`);
-                    console.log(err);
+                    LOG.error(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[0][0]}`);
+                    LOG.error(err);
                 }
             }
 
@@ -534,8 +534,8 @@ function _realCalResult(tplName, name, calUnit) {
                         paramValue = _evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[0][nindex]));
 
                     } catch (err) {
-                        console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[0][nindex]}`);
-                        console.log(err);
+                        LOG.error(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[0][nindex]}`);
+                        LOG.error(err);
                         paramValue = UNSTANDARDFLAG;
                     }
                 }
@@ -594,8 +594,8 @@ function _realCalResult(tplName, name, calUnit) {
                                 paramValue = _evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
 
                             } catch (err) {
-                                console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[vindex][nindex]}`);
-                                console.log(err);
+                                LOG.error(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[vindex][nindex]}`);
+                                LOG.error(err);
                                 paramValue = UNSTANDARDFLAG;
                             }
                         }
@@ -660,8 +660,8 @@ function _realCalResult(tplName, name, calUnit) {
                                     paramValue = _evalExpress(_getDeclareParamterStr(tplName, formulaArr2D[vindex][nindex]));
 
                                 } catch (err) {
-                                    console.log(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[vindex][nindex]}`);
-                                    console.log(err);
+                                    LOG.error(`Calculate is template name: ${tplName}; formular: ${formulaArr2D[vindex][nindex]}`);
+                                    LOG.error(err);
                                     paramValue = UNSTANDARDFLAG;
                                 }
                             }
@@ -1572,8 +1572,8 @@ function _queryTableFunction(TNo, RNo, inputParaArr, is3DFlag) {
         }
 
     } catch (err) {
-        console.log(`Error at --> TNo: ${TNo}; RNo: ${RNo}; inputParaArr: ${inputParaArr}`);
-        console.log(err);
+        LOG.error(`Error at --> TNo: ${TNo}; RNo: ${RNo}; inputParaArr: ${inputParaArr}`);
+        LOG.error(err);
         return UNSTANDARDFLAG;
     }
 
@@ -2026,7 +2026,7 @@ function CBOOL(val) {
  * 对外暴露接口，仅在nodejs环境下使用，在html下会报没有声明module的错误，因此需要特殊判断
  */
 if (typeof module == "undefined") {
-    console.log('Now u in browser!');
+    LOG.info('Now u in browser!');
 
 } else {
     module.exports = {

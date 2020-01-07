@@ -6,6 +6,6 @@
 
 4、重新编译镜像     docker build -t epdnode .
 
-5、启动镜像        docker run -d --name epdnode -p 9999:9000 epdnode
+5、启动镜像        docker run -d --name epdnode -p 9999:9000 -v /zxtech/dockervm/epdnode:/zxtech/app/logs epdnode
 
 6、查看镜像内部     docker exec -it epdnode /bin/bash

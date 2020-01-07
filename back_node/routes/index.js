@@ -12,7 +12,6 @@ const epd_tool = require('../modules/app_tools');
 
 const currentPath = (process.env.EPDPATH || './back_node').trim();
 
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {
@@ -104,7 +103,7 @@ router.post('/upload', upload.any(), (req, res) => {
   }
 
   if (!req.files[0]) {
-    console.log(req.error);
+    LOG.error(req.error);
     res.json({
       status: "error",
       message: req.error
@@ -119,7 +118,7 @@ router.post('/upload', upload.any(), (req, res) => {
     let simplifedStr = JSON.stringify(simplifedObj);
     fs.writeFile(des_file, simplifedStr, function (err) {
       if (err) {
-        console.log(err);
+        LOG.error(err);
         res.json({
           status: "error",
           message: "Server ERROR!!"
@@ -143,7 +142,7 @@ router.get('/clean', (req, res) => {
   let desDir = `${currentPath}/tmp/`;
   fs.readdir(desDir, function (err, files) {
     if (err) {
-      console.log(err);
+      LOG.error(err);
       res.send('ERROR');
       return;
     }
@@ -151,7 +150,7 @@ router.get('/clean', (req, res) => {
       // 使用 unlink 删除
       fs.unlink(desDir + files[i], function (err) {
         if (err) {
-          console.log(err);
+          LOG.error(err);
           res.send('ERROR');
           return;
         }
@@ -167,7 +166,7 @@ router.get('/clean', (req, res) => {
 router.post('/delete/:tplName', (req, res) => {
   fs.unlink(`${currentPath}/public/rules/` + req.params.tplName + '.json', function (err) {
     if (err) {
-      console.log(err);
+      LOG.error(err);
       res.send('ERROR');
       return;
     }

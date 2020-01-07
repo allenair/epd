@@ -15,7 +15,7 @@ async function initAllTemplate(rulePath) {
         let data = await readAsync(`${rulePath}/${file}`);
         rulesObj[file.replace('.json', '')] = JSON.parse(data);
     }
-    console.log('=============All Templates Init Completed!!====================');
+    LOG.info('=============All Templates Init Completed!!====================');
 
     let allTplNames = [];
     for (let tplName in rulesObj) {
