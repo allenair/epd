@@ -7,6 +7,8 @@ COPY . /zxtech/app
 RUN npm set registry https://registry.npm.taobao.org/
 RUN npm install
 
+RUN export EPDPATH=/zxtech/app
+
 EXPOSE 9000
 
 CMD [ "npm", "start" ]
