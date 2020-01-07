@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');  
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
@@ -12,6 +13,9 @@ const app = express();
 
 // 设置后台日志
 app.use(logger('dev'));
+
+var accessLogStream = fs.createWriteStream('access.log', {flags: 'a'})
+app.use(logger('combined', {stream: accessLogStream}))
 
 // 支持json的body
 app.use(express.json({

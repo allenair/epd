@@ -8,4 +8,4 @@
 
 5、启动镜像        docker run -d --name epdnode -p 9999:9000 epdnode
 
-
+6、查看镜像内部     docker exec -it epdnode /bin/bash
