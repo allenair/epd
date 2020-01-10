@@ -9,3 +9,5 @@
 5、启动镜像        docker run -d --name epdnode -p 9999:9000 -v /zxtech/dockervm/epdnode:/zxtech/app/logs allenair/epdnode:1.0
 
 6、查看镜像内部     docker exec -it epdnode /bin/bash
+
+7、已经上传dockerhub， docker push allenair/epdnode:1.0
