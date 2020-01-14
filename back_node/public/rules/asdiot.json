@@ -1,0 +1,8720 @@
+{
+  "CPARA_ChangeRecord": [],
+  "CPARA_FormulaLinkup": [
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "netFrequency110",
+              "Value": "[49.8,50.2]"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "netFrequency110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "1"
+      },
+      "PropertyName": "netFrequency110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "netAB110",
+              "Value": "(115.5,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "netAB110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "2"
+      },
+      "PropertyName": "netAB110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "netBC110",
+              "Value": "(115.5,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "netBC110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "3"
+      },
+      "PropertyName": "netBC110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "netAOnly110",
+              "Value": "(262.4,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "netAOnly110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "4"
+      },
+      "PropertyName": "netAOnly110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "netBOnly110",
+              "Value": "(262.4,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "netBOnly110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "5"
+      },
+      "PropertyName": "netBOnly110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "netCOnly110",
+              "Value": "(262.4,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "netCOnly110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "6"
+      },
+      "PropertyName": "netCOnly110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transFrequency110",
+              "Value": "[49.8,50.2]"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transFrequency110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "7"
+      },
+      "PropertyName": "transFrequency110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transPower110",
+              "Value": "(36,45)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transPower110",
+              "Value": "(45,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "4"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transPower110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "8"
+      },
+      "PropertyName": "transPower110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transNoPower110",
+              "Value": "(5,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transNoPower110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "9"
+      },
+      "PropertyName": "transNoPower110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transFactor110",
+              "Value": "($,0.8)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transFactor110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "10"
+      },
+      "PropertyName": "transFactor110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transAB110",
+              "Value": "(115.5,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transAB110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "11"
+      },
+      "PropertyName": "transAB110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transBC110",
+              "Value": "(115.5,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transBC110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "12"
+      },
+      "PropertyName": "transBC110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transAOnly110",
+              "Value": "(262.4,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transAOnly110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "13"
+      },
+      "PropertyName": "transAOnly110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transBOnly110",
+              "Value": "(262.4,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transBOnly110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "14"
+      },
+      "PropertyName": "transBOnly110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transCOnly110",
+              "Value": "(262.4,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transCOnly110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "15"
+      },
+      "PropertyName": "transCOnly110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "trans3U0110",
+              "Value": "(0,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "trans3U0110",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "16"
+      },
+      "PropertyName": "trans3U0110Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transPower35",
+              "Value": "(36,45)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transPower35",
+              "Value": "(45,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "4"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transPower35",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "17"
+      },
+      "PropertyName": "transPower35Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transNoPower35",
+              "Value": "(5,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transNoPower35",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "18"
+      },
+      "PropertyName": "transNoPower35Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transFactor35",
+              "Value": "($,0.8)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transFactor35",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "19"
+      },
+      "PropertyName": "transFactor35Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transAB35",
+              "Value": "(36.75,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transAB35",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "20"
+      },
+      "PropertyName": "transAB35Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transBC35",
+              "Value": "(36.75,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transBC35",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "21"
+      },
+      "PropertyName": "transBC35Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transAOnly35",
+              "Value": "(824.8,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transAOnly35",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "22"
+      },
+      "PropertyName": "transAOnly35Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transBOnly35",
+              "Value": "(824.8,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transBOnly35",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "23"
+      },
+      "PropertyName": "transBOnly35Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transCOnly35",
+              "Value": "(824.8,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transCOnly35",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "24"
+      },
+      "PropertyName": "transCOnly35Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "trans3U035",
+              "Value": "(0,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "trans3U035",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "25"
+      },
+      "PropertyName": "trans3U035Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transPower10",
+              "Value": "(36,45)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transPower10",
+              "Value": "(45,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "4"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transPower10",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "56"
+      },
+      "PropertyName": "transPower10Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transNoPower10",
+              "Value": "(5,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transNoPower10",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "26"
+      },
+      "PropertyName": "transNoPower10Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transFactor10",
+              "Value": "($,0.8)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transFactor10",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "27"
+      },
+      "PropertyName": "transFactor10Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transAB10",
+              "Value": "(10.5,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transAB10",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "28"
+      },
+      "PropertyName": "transAB10Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transBC10",
+              "Value": "(10.5,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transBC10",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "29"
+      },
+      "PropertyName": "transBC10Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transAOnly10",
+              "Value": "(2887,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transAOnly10",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "30"
+      },
+      "PropertyName": "transAOnly10Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transBOnly10",
+              "Value": "(2887,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transBOnly10",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "31"
+      },
+      "PropertyName": "transBOnly10Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "transCOnly10",
+              "Value": "(2887,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "transCOnly10",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "32"
+      },
+      "PropertyName": "transCOnly10Flag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "tempTop",
+              "Value": "(95,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "4"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "tempTop",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "33"
+      },
+      "PropertyName": "tempTopFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "tempWinding",
+              "Value": "(95,$)"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "4"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "tempWinding",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "34"
+      },
+      "PropertyName": "tempWindingFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "coolerStopTrip",
+              "Value": "0"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "4"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "coolerStopTrip",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "35"
+      },
+      "PropertyName": "coolerStopTripFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "coolerStopAlarm",
+              "Value": "0"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "4"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "coolerStopAlarm",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "36"
+      },
+      "PropertyName": "coolerStopAlarmFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "coolerError",
+              "Value": "0"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "4"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "coolerError",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "37"
+      },
+      "PropertyName": "coolerErrorFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "coolerNoPower",
+              "Value": "0"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "4"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "coolerNoPower",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "38"
+      },
+      "PropertyName": "coolerNoPowerFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "oilSurface",
+              "Value": "[25,75]"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "oilSurface",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "2"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "39"
+      },
+      "PropertyName": "oilSurfaceFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "switchPost",
+              "Value": "@switchPostLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "switchPost",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "40"
+      },
+      "PropertyName": "switchPostFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "switchNoPower",
+              "Value": "0"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "3"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "switchNoPower",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "41"
+      },
+      "PropertyName": "switchNoPowerFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "switchLock",
+              "Value": "0"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "3"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "switchLock",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "42"
+      },
+      "PropertyName": "switchLockFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "switchError",
+              "Value": "0"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "3"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "switchError",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "43"
+      },
+      "PropertyName": "switchErrorFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "gasStatus",
+              "Value": "1"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "4"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "gasStatus",
+              "Value": "2"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "5"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "gasStatus",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "44"
+      },
+      "PropertyName": "gasStatusFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "pressStatus",
+              "Value": "0"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "5"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "pressStatus",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "45"
+      },
+      "PropertyName": "pressStatusFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "termDiffBoard",
+              "Value": "@termDiffBoardLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "termDiffBoard",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "46"
+      },
+      "PropertyName": "termDiffBoardFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "termDiffOut",
+              "Value": "@termDiffOutLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "termDiffOut",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "47"
+      },
+      "PropertyName": "termDiffOutFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "termHighBackBoard",
+              "Value": "@termHighBackBoardLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "termHighBackBoard",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "48"
+      },
+      "PropertyName": "termHighBackBoardFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "termHighBackOut",
+              "Value": "@termHighBackOutLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "termHighBackOut",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "49"
+      },
+      "PropertyName": "termHighBackOutFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "termMediumBackBoard",
+              "Value": "@termMediumBackBoardLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "termMediumBackBoard",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "50"
+      },
+      "PropertyName": "termMediumBackBoardFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "termMediumBackOut",
+              "Value": "@termMediumBackOutLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "termMediumBackOut",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "51"
+      },
+      "PropertyName": "termMediumBackOutFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "termLowBackBoard",
+              "Value": "@termLowBackBoardLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "termLowBackBoard",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "52"
+      },
+      "PropertyName": "termLowBackBoardFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "termLowBackOut",
+              "Value": "@termLowBackOutLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "termLowBackOut",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "53"
+      },
+      "PropertyName": "termLowBackOutFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "termNoBackBoard",
+              "Value": "@termNoBackBoardLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "termNoBackBoard",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "54"
+      },
+      "PropertyName": "termNoBackBoardFlag"
+    },
+    {
+      "Condition": [
+        {
+          "Conditions": [
+            {
+              "Key": "termNoBackOut",
+              "Value": "@termNoBackOutLast"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "0"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        },
+        {
+          "Conditions": [
+            {
+              "Key": "termNoBackOut",
+              "Value": "ELSE"
+            }
+          ],
+          "Results": [
+            {
+              "Key": "Formula1",
+              "Value": "1"
+            },
+            {
+              "Key": "Formula2",
+              "Value": null
+            },
+            {
+              "Key": "Formula3",
+              "Value": null
+            },
+            {
+              "Key": "Formula4",
+              "Value": null
+            },
+            {
+              "Key": "Formula5",
+              "Value": null
+            },
+            {
+              "Key": "Formula6",
+              "Value": null
+            },
+            {
+              "Key": "Formula7",
+              "Value": null
+            },
+            {
+              "Key": "Formula8",
+              "Value": null
+            },
+            {
+              "Key": "Formula9",
+              "Value": null
+            },
+            {
+              "Key": "Formula10",
+              "Value": null
+            },
+            {
+              "Key": "Formula11",
+              "Value": null
+            },
+            {
+              "Key": "Formula12",
+              "Value": null
+            }
+          ]
+        }
+      ],
+      "Data": {
+        "Formula1": null,
+        "Formula10": null,
+        "Formula11": null,
+        "Formula12": null,
+        "Formula2": null,
+        "Formula3": null,
+        "Formula4": null,
+        "Formula5": null,
+        "Formula6": null,
+        "Formula7": null,
+        "Formula8": null,
+        "Formula9": null,
+        "ID": "55"
+      },
+      "PropertyName": "termNoBackOutFlag"
+    }
+  ],
+  "CPARA_InputParameterValueList": [
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netFrequency110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netAB110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netBC110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netAOnly110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netBOnly110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netCOnly110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transFrequency110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transPower110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transNoPower110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transFactor110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAB110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBC110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAOnly110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBOnly110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transCOnly110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "trans3U0110",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transPower35",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transNoPower35",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transFactor35",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAB35",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBC35",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAOnly35",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBOnly35",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transCOnly35",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "trans3U035",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transPower10",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transNoPower10",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transFactor10",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAB10",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBC10",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAOnly10",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBOnly10",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transCOnly10",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "tempTop",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "tempWinding",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "coolerStopTrip",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "coolerStopAlarm",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "coolerError",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "coolerNoPower",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "oilSurface",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "switchPost",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "switchPostLast",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "switchNoPower",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "switchLock",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "switchError",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "gasStatus",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "pressStatus",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termDiffBoard",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termDiffBoardLast",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termDiffOut",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termDiffOutLast",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termHighBackBoard",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termHighBackBoardLast",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termHighBackOut",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termHighBackOutLast",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termMediumBackBoard",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termMediumBackBoardLast",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termMediumBackOut",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termMediumBackOutLast",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termLowBackBoard",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termLowBackBoardLast",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termLowBackOut",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termLowBackOutLast",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termNoBackBoard",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termNoBackBoardLast",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termNoBackOut",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Text"
+      },
+      "PropertyName": "termNoBackOutLast",
+      "ValueList": null
+    }
+  ],
+  "CPARA_InternalParameterValueList": [
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netFrequency110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netAB110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netBC110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netAOnly110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netBOnly110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "netCOnly110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transFrequency110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transPower110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transNoPower110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transFactor110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAB110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBC110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAOnly110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBOnly110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transCOnly110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "trans3U0110Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transPower35Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transNoPower35Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transFactor35Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAB35Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBC35Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAOnly35Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBOnly35Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transCOnly35Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "trans3U035Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transPower10Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transNoPower10Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transFactor10Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAB10Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBC10Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transAOnly10Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transBOnly10Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "transCOnly10Flag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "tempTopFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "tempWindingFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "coolerStopTripFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "coolerStopAlarmFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "coolerErrorFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "coolerNoPowerFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "oilSurfaceFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "switchPostFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "switchNoPowerFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "switchLockFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "switchErrorFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "gasStatusFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "pressStatusFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "termDiffBoardFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "termDiffOutFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "termHighBackBoardFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "termHighBackOutFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "termMediumBackBoardFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "termMediumBackOutFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "termLowBackBoardFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "termLowBackOutFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "termNoBackBoardFlag",
+      "ValueList": null
+    },
+    {
+      "Data": {
+        "Type": "Number"
+      },
+      "PropertyName": "termNoBackOutFlag",
+      "ValueList": null
+    }
+  ],
+  "CPARA_Script": [],
+  "CPARA_XYTable": []
+}
